@@ -85,6 +85,20 @@ class MemberController extends Controller
             return CNMessage::getSuccess("ไม่พบข้อมูล");
         }
     }
+    public function actionGetOrderDetail()
+    {
+        try{
+            $order_id = \Yii::$app->request->get('order_id');
+            $orders = ClsOrder::getOrderDetail($order_id);
+            if($orders){
+                return CNMessage::getSuccess("Success", $orders);
+            }else{
+                return CNMessage::getSuccess("Success", []);
+            }
+        }catch (Exception $ex){
+            return CNMessage::getSuccess("ไม่พบข้อมูล");
+        }
+    }
     public function actionUploadOrder()
     {
         try{
