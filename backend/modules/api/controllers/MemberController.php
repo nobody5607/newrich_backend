@@ -89,6 +89,7 @@ class MemberController extends Controller
     {
         try{
             $order_id = \Yii::$app->request->get('order_id');
+
             $orders = ClsOrder::getOrderDetail($order_id);
             if($orders){
                 return CNMessage::getSuccess("Success", $orders);
