@@ -1,0 +1,530 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="./bootstrap/css/bootstrap.min.css">
+    <link href="./css/designer.css" rel="stylesheet">
+
+    <script src="./jquery.min.js"></script>
+    <script src="./bootstrap/js/bootstrap.min.js"></script>
+    <script src="./js/stampdesigner.min.js"></script>
+
+    
+
+    <link href="./css/foundation.min.css" rel="stylesheet">
+        <script src="./js/foundation.min.js"></script>
+        <script>
+            $(document).ready(function () {
+                $(document).foundation();
+            });
+        </script>
+    <link href="./css/designer.css" rel="stylesheet">
+    <script src="./js/stampdesigner.min.js"></script>
+
+</head>
+<body>
+    <form name="aspnetForm" method="post" action="/rubber-stamps/custom-stamp-maker.aspx?fbclid=IwAR1uart-tEWPy8rraEAPVTTT8cRRUvAQ4E77M4Bq-daOw5g8egMYFfcdClc" onsubmit="javascript:return WebForm_OnSubmit();" id="aspnetForm">
+        <script type="text/javascript">
+            //init ค่าเริ่มต้งตรงการ สีเหลี่ยมสีขาว
+            var _bvLoggedIn = 0;  
+            function bvLoggedIn(_lis) {
+                return _lis == undefined ? _bvLoggedIn : _bvLoggedIn = _lis; 
+            };
+        </script>
+         
+    <div id="stamp-designer">
+        <h1>Design a Custom Rubber Stamp</h1>
+        <div class="row">
+            <div class="large-5 columns">
+                <div id="rulers">
+                    <div id="svg-holder">
+                        <div id="svg-sizer">
+                            <svg id="s" preserveAspectRatio="xMidYMid" text-rendering="geometricPrecision" shape-rendering="geometricPrecision" image-rendering="geometricPrecision" viewBox="0 0 576 576"></svg>
+                            <svg id="flrls" preserveAspectRatio="xMidYMid" text-rendering="geometricPrecision" viewBox="0 0 576 576">
+                                <defs>
+                                    <marker id="flrls-s" orient="auto" refX="0" refY="0" style="overflow:visible">
+                                       <polygon points="0 0, 4 4, 1.7 0, 4 -4, 0 0" />
+                                    </marker>
+                                    <marker id="flrls-e" orient="auto" refX="0" refY="0" style="overflow:visible">
+                                       <polygon points="0 0, 4 4, 1.7 0, 4 -4, 0 0" transform="rotate(180)"/>
+                                    </marker>
+                                </defs>
+                                <g id="flrls-horz" transform="translate(288,0)">
+                                    <g transform="scale(1.1) translate(0, 2)">
+                                        <text text-anchor="middle" x="0" y="11.175" id="flrls-htext" style="font-size: 13.333px; font-family: Addington CF; font-weight: 400; font-style: normal;">.25"</text>
+                                        <g id="flrls-hlines">
+                                            <line x1="-45" y1="7.7" x2="-20" y2="7.7" stroke="#000" stroke-width="1.4" marker-start="url(#flrls-s)" />
+                                            <line x1="20" y1="7.7" x2="45" y2="7.7"stroke="#000" stroke-width="1.4" marker-end="url(#flrls-e)" />
+                                        </g>
+                                     </g>
+                                </g>
+                                <g id="flrls-vert" transform="translate(288,288)">
+                                    <g transform="scale(1.1) translate(2, 0)">
+                                        <text transform="rotate(90) translate(0,-13.333)" x="0" text-anchor="middle" y="11.175" id="flrls-vtext" style="font-size: 13.333px; font-family: Addington CF; font-weight: 400; font-style: normal;">.22"</text>
+                                        <g id="flrls-vlines">
+                                            <line x1="7.7" y1="-45" x2="7.7" y2="-20" stroke="#000" stroke-width="1.4" marker-start="url(#flrls-s)" />
+                                            <line x1="7.7" y1="20" x2="7.7" y2="45"stroke="#000" stroke-width="1.4" marker-end="url(#flrls-e)" />
+                                        </g>
+                                         
+                                   </g>
+                                </g>
+                            </svg>
+                       </div>
+                    </div>
+                </div>
+
+                
+            </div>
+
+            <div class="large-7 columns">
+			
+                <div class="hideforlowres">
+				    <h4>Step 1. Design Your Stamp.</h4>
+				    <p class="regularstamp" style="font-weight:normal;display:none">Note: Stamp designs cannot exceed 6” x 3.75” (or 3.75” x 6”).</p>
+                </div>
+                <!-- Tabs -->
+
+                <div class="section-container tabs clearfix" data-section="tabs" data-options="deep_linking: true">
+
+
+                    
+                    <section class="active">
+                        <p class="title" data-section-title>
+                            <a id="tabs--text-a" href="javascript:void(0);">
+                                <img src="https://www.thestampmaker.com/BVModules/Themes/StampMaker/images/designer/icon-text.svg" class="hideforlowres" />
+                                <span>Text</span>
+                            </a>
+                        </p>
+                        <div id="tabs--text" class="content" data-section-content>
+                            <h3>Add text to your stamp</h3>
+
+                            <div id="group00" data-textgroup-id="0">
+                                
+                                <div id="tabs--groupheader00"></div>
+                                <div class="text-editor-holder">
+                                    <div id="text00-00" class="row text-editor tight" data-target-id="0" >
+                                        <div class="large-5 columns">
+                                            
+                                            <input type="text" id="text00-00--input" placeholder="Enter text here...">
+                                        </div>
+                                        <div class="small-6 large-4 columns">
+                                            <select class="text-font small">
+                                                <option value="Addington CF" class="font-addington-times">Addington Times</option>
+                                                <option value="Articulat CF v2">Articulat</option>
+                                                <option value="Greycliff CF">Greycliff</option>
+                                                <option value="Engravers Gothic FS">Engravers Gothic</option>
+                                                <option value="Florence Script FS">Florence Script</option>
+                                                
+                                                <option value="Loveletter Script">Love Letters</option>
+                                                <option value="Jenna">Jenna</option>
+                                                <option value="Zakia">Zakia</option>
+                                               
+                                            </select>
+                                        </div>
+                                        <div class="small-6 large-3 columns">
+                                            <select class="text-size small" style="width:75px;">
+                                                <option value="7">7 pt</option>
+                                                <option value="8">8 pt</option>
+                                                <option value="9">9 pt</option>
+                                                <option value="10">10 pt</option>
+                                                <option value="11">11 pt</option>
+                                                <option value="12">12 pt</option>
+                                                <option value="14">14 pt</option>
+                                                <option value="18">18 pt</option>
+                                                <option value="24">24 pt</option>
+                                                <option value="36">36 pt</option>
+                                                <option value="48">48 pt</option>
+                                                <option value="60">60 pt</option>
+                                                <option value="72">72 pt</option>
+                                                <option value="96">96 pt</option>
+                                            </select>
+                                        </div>
+                                        <div class="large-12 columns tabs--text-icons" style="padding-bottom:10px;">
+                                            <!-- 
+                                            <input type="number" class="text-size" name="text-size" value="7" min="7" max="100" maxlength="3" size="3" /> pt
+                                            -->
+                                            
+
+                                            <!--
+                                            </div>
+                                            <div class="tabs--text-icons large-5 columns">
+                                            -->
+                                            <a href="javascript:void(0);"><img src="https://www.thestampmaker.com/BVModules/Themes/StampMaker/images/designer/icon-left-align.svg" class="align-left" alt="align left" /></a>
+                                            <a href="javascript:void(0);"><img src="https://www.thestampmaker.com/BVModules/Themes/StampMaker/images/designer/icon-center-align.svg" class="align-center" alt="align center" /></a>
+                                            <a href="javascript:void(0);"><img src="https://www.thestampmaker.com/BVModules/Themes/StampMaker/images/designer/icon-right-align.svg" class="align-right" alt="align right" /></a>
+                                            <a href="javascript:void(0);"><img src="https://www.thestampmaker.com/BVModules/Themes/StampMaker/images/designer/icon-bold.svg" class="bold" alt="bold" /></a>
+                                            <a href="javascript:void(0);"><img src="https://www.thestampmaker.com/BVModules/Themes/StampMaker/images/designer/icon-italic.png" class="italic" alt="italic" /></a>
+                                            <a href="javascript:void(0);"><img src="https://www.thestampmaker.com/BVModules/Themes/StampMaker/images/designer/icon-underline.png" class="underline" alt="underline" /></a>
+                                            <a href="javascript:void(0);" class="remove"><img src="https://www.thestampmaker.com/BVModules/Themes/StampMaker/images/designer/icon-close.svg" alt="remove" /></a>
+                                        </div>
+                                        
+                                        
+                                    </div>
+                                </div>
+                                <p style="margin-bottom:2em;">
+                                    <a id="tabs--add-textline00" class="tabs--add-textline" href="javascript:void(0);">
+                                        <img src="https://www.thestampmaker.com/BVModules/Themes/StampMaker/images/designer/icon-plus.svg" alt="plus" />Add another line of text
+                                    </a>
+                                </p>
+
+                            </div>
+                            <!--
+                            <p>
+                                <a id="tabs--add-textline" href="#">
+                                    <img src="../../images/designer/icon-plus.svg" alt="plus">Add another line of text
+                                </a>
+                            </p>
+                            -->
+                        </div>
+                    </section>
+
+
+                    
+                    <section class="hidden">
+                        <p class="title" data-section-title>
+                            <a id="tabs--image-a" href="javascript:void(0);" id="d-image-tab">
+                                <img src="https://www.thestampmaker.com/BVModules/Themes/StampMaker/images/designer/icon-image.svg" class="hideforlowres" />
+                                <span>Image</span>
+                            </a>
+                        </p>
+                        <div id="tabs--image" style="width:100%; height:100%; position:relative" class="content" data-section-content>
+
+                            
+                            <div id="artwork-overlay" class="wait" style="display:none;">
+                                <div>
+                                    <span>
+                                        Please wait...
+                                    </span>
+                                    <img src="../images/system/ajax-loader.gif" alt="processing" />
+                                </div>
+                            </div>
+
+                            <div id="artwork" class="clearfix">
+                                <a id="artwork--back-link" href="javascript:void(0);">&laquo; BACK</a>
+
+                                <section id="artwork--options" class="options active">
+                                    <h3>Add artwork to your stamp</h3>
+
+                                    <label>
+                                        <input type="radio" id="upload-link" name="artwork-links" value="upload">
+                                        Upload an image
+                                    </label>
+                                    <label>
+                                        <input type="radio" id="browse-link" name="artwork-links" value="browse">
+                                        Browse Clipart
+                                    </label>
+                                    <label>
+                                        <input type="radio" id="library-link" name="artwork-links" value="library">
+                                        Browse My Images
+                                    </label>
+                                </section>
+
+
+                                
+                                <section id="artwork--upload">
+                                    <h3>Upload an Image</h3>
+
+                                    <p>Accepted Formats: PDF, JPG, GIF, PNG, BMP, TIFF<br />
+                                    Required Resolution: 300 or 600 pixels/inch</p>
+
+                                    <div id="ctl00_MainContentHolder_caUploadUpdatePanel">
+	
+                                            <div id="UploadImageControl">
+                                                
+
+<link href="/Content/UploadImage.css" rel="stylesheet" type="text/css" />
+
+<div id="ctl00_MainContentHolder_UploadImage1_UploadImagePanel">
+		
+        
+
+        
+
+        <!-- The fileinput-button span is used to style the file input field as button -->
+        <span id="upli_btn" class="button success fileinput-button">
+            
+            <i class="fa fa-file" aria-hidden="true"></i>
+            <span id="upli_btn_text"></span>
+            <!-- The file input field used as target for the file upload widget -->
+            <input id="fileupload" onclick="return upli_allowed();" type="file" name="files[]">
+        </span>
+        <br>
+        <br>
+        <div id="upli_container" class="progress">
+          <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="">
+            <span></span>            
+          </div>
+        </div>        
+        <br>
+        <font color="red"></font>
+    
+	</div>
+
+                                            </div>
+                                        
+</div>
+                                </section>
+
+                                <section id="artwork--browse">
+                                    <h3>Browse Clipart</h3>
+                                    
+                                    <div class="row">
+                                        <div class="large-6 columns">
+                                            <select class="text-font small" id="clipart-select">
+                                                <option value="none">Select a gallery</option>
+                                            </select>
+                                        </div>
+                                        <div class="large-6 columns text-right">
+                                            <a href="javascript:void(0);" class="button small clean" id="gallery-position-link">Next: Position &amp; Scale</a>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="clipart-gallery">
+                                        <div id="none" class="clipart-container" style="display:none">
+                                            <ul class="clipart-list">
+                                                
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    
+                                </section>
+
+                                <section id="artwork--library">
+
+                                    <div class="row">
+                                        <div class="large-6 columns">
+                                            <h3>Browse My Images</h3>
+                                        </div>
+                                        <div class="large-6 columns text-right">
+                                            <a href="javascript:void(0);" class="button small clean" id="library-position-link">Next: Position &amp; Scale</a>
+                                        </div>
+                                    </div>
+
+                                    <div class="clipart-gallery library-gallery">
+                                        <div id="user-library" class="clipart-container">
+                                            <ul class="clipart-list">
+                                                
+                                            </ul>
+                                        </div>
+                                    </div>
+
+                                    
+                                </section>
+
+                                <section id="artwork--position">
+                                    <h3>Resize &amp; Position Image</h3>
+                                    <div class="row">
+                                        <div class="large-3 columns selected-artwork-image">
+                                            <img id="selected-artwork-image" src="" /> 
+                                            <span id="clip-dimensions"></span>
+                                        </div>
+
+                                        <div class="large-9 columns change-artwork-image">
+                                            <a href="javascript:void(0);" class="remove-image">
+                                                <img src="https://www.thestampmaker.com/BVModules/Themes/StampMaker/images/designer/icon-close.svg" alt="remove" /> Remove
+                                            </a>
+                                        </div>
+                                    </div>
+                                    <hr />
+                                    
+                                    <div class="row">
+                                        <div class="large-3 columns">
+                                            <label class="inline">Image Size</label>
+                                        </div>
+                                        <div class="large-9 columns artwork-size-input">
+
+                                            <div class="row">
+                                                
+                                                <div class="large-4 columns">
+                                                    <div class="row collapse">
+                                                        <div class="small-3 columns">
+                                                            <label class="prefix">W</label>
+                                                        </div>
+                                                        <div class="small-9 columns">
+                                                            <input type="number" required id="image-size-width" name="image-size-width" value=".25" step=".01" >
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="large-4 columns">
+                                                    <div class="row collapse">
+                                                        <div class="small-3 columns">
+                                                            <label class="prefix">H</label>
+                                                        </div>
+                                                        <div class="small-9 columns">
+                                                            <input type="number" required id="image-size-height" name="image-size-height"  value=".25" step=".01" >
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="large-4 columns">
+                                                    <div class="row collapse">
+                                                        <div class="small-3 columns">
+                                                            <span class="prefix">%</span>
+                                                        </div>
+                                                        <div class="small-9 columns">
+                                                            
+                                                            
+                                                    
+                                                    
+                                                            <input type="number" required id="image-size-percent" name="image-size-percent" value="10" step=".01"> 
+                                                    
+                                                           
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="large-12 columns">
+                                                    <span style="font-weight:normal;font-size:13px;display:block;margin-bottom:10px;">The proportions of your image will be maintained.</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="large-3 columns">
+                                            <label class="inline">Image Position</label>
+                                        </div>
+                                        <div id="position-controls" class="large-9 columns tabs--image-icons clearfix">
+                                            <a href="javascript:void(0);" title="align top">
+                                                <img src="./images/designer/icon-image-align-top.svg" class="align-image-top" alt="align top" />
+                                            </a>
+                                            <a href="javascript:void(0);" title="align bottom">
+                                                <img src="./images/designer/icon-image-align-bottom.svg" class="align-image-bottom" alt="align bottom" />
+                                            </a>
+                                            <a href="javascript:void(0);" title="align left">
+                                                <img src="./images/designer/icon-image-align-left.svg" class="align-image-left" alt="align left" />
+                                            </a>
+                                            <a href="javascript:void(0);" title="align right">
+                                                <img src="./images/designer/icon-image-align-right.svg" class="align-image-right" alt="align right" />
+                                            </a>
+                                            <a href="javascript:void(0);" title="align center" class="a-align-image-center">
+                                                <img src="./images/designer/icon-image-align-middle.svg" class="align-image-center" alt="align center" />
+                                            </a>
+                                        </div>
+                                    </div>
+
+                                    <hr />
+                                     <a href="javascript:void(0);" class="button clean" id="apply-image-link">Apply</a>
+                               </section>
+                            </div>
+                        </div>
+                    </section>
+                    <section class="hidden">
+                        <p class="title" data-section-title>
+                            <a id="tabs--border-a" href="javascript:void(0);">
+                                <img src="https://www.thestampmaker.com/BVModules/Themes/StampMaker/images/designer/icon-border.svg" class="hideforlowres" />
+                                <span>Border</span>
+                            </a>
+                        </p>
+                        <div id="tabs--border" class="content" data-section-content>
+                            <h3>Add a border to your stamp</h3>
+                            <div id="border-styles" class="options clearfix">
+
+                                <label for="border1">
+                                    <input id="border1" type="radio" name="stamp-border" value="no" checked> No Border
+                                </label>
+
+                                
+
+                                <label for="border3">
+                                    <input id="border3" type="radio" name="stamp-border" value="solid"> Solid 
+                                    <div class="border-solid"></div>
+                                </label>
+
+                                <label for="border4">
+                                    <input id="border4" type="radio" name="stamp-border" value="dotted"> Dotted 
+                                    <div class="border-dotted"></div>
+                                </label>
+                            
+                                <!--
+                                <label for="border5">
+                                    <input id="border5" type="radio" name="stamp-border" value="double"> Double <div class="border-double"></div>
+                                </label>-->
+
+                            </div>
+                            
+                            <div class="row">
+                                <div class="large-2 columns">
+                                    <label for="dropdown-border-weight" class="inline">Weight</label>
+                                </div>
+                                <div class="large-10 columns">
+                                    <select id="dropdown-border-weight">
+                                        <option value="1.66666">Fine (1 pt)</option>
+                                        <option value="2.66667">Thin (2 pt)</option>
+                                        <option value="5.33333">Medium (4 pt)</option>
+                                        <option value="8">Thick (6 pt)</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+            </div>
+        </div> 
+    </div>
+<script type="text/javascript">
+    const SVG_WIDTH = 576;
+    const SVG_HEIGHT = 576;
+    const SVG_CENTER_X = SVG_WIDTH / 2;
+    const SVG_CENTER_Y = SVG_HEIGHT / 2;
+    STROKE_COLOR = 'black';
+    const FILL = 'white';
+    //const MIN_STAMP_SIZE = 24;
+    //const MAX_STAMP_SIZE = 576;
+    const MAX_TEXT_LINES = 23;
+    const STARTING_SIZE = 24;  // 24
+    const START_FONT = "Articulat CF v2";
+    const START_FONT_SIZE = 12; // Starting font size
+    //const PADDING = START_FONT_SIZE / 4;
+    const PADDING = 0; //TEST
+    const MIN_STAMP_SIZE_X = 24; // TEST
+    const MIN_STAMP_SIZE_Y = 24;
+
+    const ENABLE_IMAGE = 1;
+    const ENABLE_BORDER = 's00';
+var si; 
+var initsi = {"p1":null,"width":0,"height":0,"fSelIdx":-1,"fSelColor":"","fSelBvin":null,"user":null,"initialTemplate":"\u003cg id=\"gsvgimpression\" xml:space=\"default\" rsu:impressiongroups=\"s00:1\" rsu:layoutorder=\"s00\"\u003e\u003cg id=\"svgsubgroup00\" xml:space=\"default\" rsu:syncgroups=\"t00,g00\" rsu:align=\"top\" rsu:syncsize=\"full,center\" rsu:layoutorder=\"g00,t00\" rsu:dmsize=\"24,24\"\u003e\u003cg id=\"svgtextgroup00\" xml:space=\"default\" rsu:syncsize=\"best,center\" rsu:anchor=\"opposite,g00:o\"\u003e\u003c/g\u003e\u003cg id=\"svggraphicgroup00\" xml:space=\"default\" rsu:align=\"top\"\u003e\u003c/g\u003e\u003c/g\u003e\u003c/g\u003e","allowedBodies":"[\"Maxlight,Rectangle,,,MAXLIGHT_XL_305|MAXLIGHT_XL_325,Premium - 50,000+ impressions\",\"Trodat,Rectangle,,,,Standard - 7,000+ impressions\", \"TheStampMaker.com,Rectangle,,,,Economy - for use with a stamp pad\"]","initialBody":null,"templateProductId":"26980e28-cb46-4b7c-ac66-3675316e0750","itemId":null,"itemIdType":0};
+var brm = [
+        {"ff":"Addington CF","fn":null,"bd":true,"it":false,"uo":-0.075,"ut":0.05,"a":1.025,"d":0.175,"m":10.666667},
+        {"ff":"Addington CF","fn":null,"bd":true,"it":true,"uo":-0.075,"ut":0.05,"a":1.025,"d":0.175,"m":10.666667},
+        {"ff":"Addington CF","fn":"Addington Times","bd":false,"it":false,"uo":-0.075,"ut":0.05,"a":1.025,"d":0.175,"m":10.666667},
+        {"ff":"Addington CF","fn":null,"bd":false,"it":true,"uo":-0.075,"ut":0.05,"a":1.025,"d":0.175,"m":10.666667},
+        {"ff":"Articulat CF v2","fn":null,"bd":true,"it":false,"uo":-0.075,"ut":0.05,"a":0.98,"d":0.22,"m":9.333334},
+        {"ff":"Articulat CF v2","fn":null,"bd":true,"it":true,"uo":-0.075,"ut":0.05,"a":0.98,"d":0.22,"m":9.333334},
+        {"ff":"Articulat CF v2","fn":"Articulat","bd":false,"it":false,"uo":-0.075,"ut":0.05,"a":0.98,"d":0.22,"m":9.333334},
+        {"ff":"Articulat CF v2","fn":null,"bd":false,"it":true,"uo":-0.075,"ut":0.05,"a":0.98,"d":0.22,"m":9.333334},
+        {"ff":"Engravers Gothic FS","fn":null,"bd":true,"it":false,"uo":-0.177,"ut":0.065,"a":0.8,"d":0.2,"m":10.666667},
+        {"ff":"Engravers Gothic FS","fn":null,"bd":true,"it":true,"uo":-0.177,"ut":0.065,"a":0.8,"d":0.2,"m":10.666667},
+        {"ff":"Engravers Gothic FS","fn":"Engravers Gothic","bd":false,"it":false,"uo":-0.191,"ut":0.05,"a":0.8,"d":0.2,"m":10.666667},
+        {"ff":"Engravers Gothic FS","fn":null,"bd":false,"it":true,"uo":-0.191,"ut":0.05,"a":0.8,"d":0.2,"m":10.666667},
+        {"ff":"Greycliff CF","fn":null,"bd":true,"it":false,"uo":-0.075,"ut":0.05,"a":0.94,"d":0.306,"m":10.666667},
+        {"ff":"Greycliff CF","fn":null,"bd":true,"it":true,"uo":-0.075,"ut":0.05,"a":0.94,"d":0.25,"m":10.666667},
+        {"ff":"Greycliff CF","fn":"Greycliff","bd":false,"it":false,"uo":-0.075,"ut":0.05,"a":0.938,"d":0.264,"m":10.666667},
+        {"ff":"Greycliff CF","fn":null,"bd":false,"it":true,"uo":-0.075,"ut":0.05,"a":0.938,"d":0.211,"m":10.666667},
+        {"ff":"Florence Script FS","fn":null,"bd":true,"it":false,"uo":-0.095,"ut":0.05,"a":0.913,"d":0.303,"m":10.666667},
+        {"ff":"Florence Script FS","fn":null,"bd":true,"it":true,"uo":-0.095,"ut":0.05,"a":0.913,"d":0.302,"m":10.666667},
+        {"ff":"Florence Script FS","fn":null,"bd":false,"it":true,"uo":-0.095,"ut":0.05,"a":0.898,"d":0.29,"m":10.666667},
+        {"ff":"Florence Script FS","fn":"Florence Script","bd":false,"it":false,"uo":-0.095,"ut":0.05,"a":0.898,"d":0.29,"m":10.666667},
+        {"ff":"Sherina","fn":"Sherina","bd":false,"it":false,"uo":-0.075,"ut":0.05,"a":1.136,"d":0.531,"m":13.333334},
+        {"ff":"Sherina","fn":null,"bd":true,"it":false,"uo":-0.06,"ut":0.065,"a":1.136,"d":0.531,"m":13.333334},
+        {"ff":"Sherina","fn":null,"bd":false,"it":true,"uo":-0.075,"ut":0.05,"a":1.136,"d":0.531,"m":13.333334},
+        {"ff":"Sherina","fn":null,"bd":true,"it":true,"uo":-0.06,"ut":0.065,"a":1.136,"d":0.531,"m":13.333334},
+        {"ff":"Loveletter Script","fn":"Love Letters","bd":false,"it":false,"uo":-0.075,"ut":0.05,"a":1.035,"d":0,"m":18.6666679},
+        {"ff":"Loveletter Script","fn":null,"bd":true,"it":false,"uo":-0.06,"ut":0.065,"a":1.039,"d":0.004,"m":18.6666679},
+        {"ff":"Loveletter Script","fn":null,"bd":false,"it":true,"uo":-0.075,"ut":0.05,"a":1.035,"d":0,"m":18.6666679},
+        {"ff":"Loveletter Script","fn":null,"bd":true,"it":true,"uo":-0.06,"ut":0.065,"a":1.039,"d":0.004,"m":18.6666679},
+        {"ff":"Jenna","fn":"Jenna","bd":false,"it":false,"uo":-0.075,"ut":0.05,"a":0.845,"d":0.395,"m":12},
+        {"ff":"Jenna","fn":null,"bd":true,"it":false,"uo":-0.06,"ut":0.065,"a":0.845,"d":0.395,"m":12},
+        {"ff":"Jenna","fn":null,"bd":false,"it":true,"uo":-0.075,"ut":0.05,"a":0.845,"d":0.395,"m":12},
+        {"ff":"Jenna","fn":null,"bd":true,"it":true,"uo":-0.06,"ut":0.065,"a":0.845,"d":0.395,"m":12}
+];
+var lgi = false;
+var dfs=[7,8,9,10,11,12,14,18,24,36,48,60,72,96];
+</script>
+    </form> 
+</body>
+</html>
