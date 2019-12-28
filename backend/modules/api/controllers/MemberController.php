@@ -27,6 +27,7 @@ class MemberController extends Controller
         $this->enableCsrfValidation = false;
         return true;
     }
+
     public function actionIndex()
     {
         $users = User::find()->orderBy(['id'=>SORT_DESC])->all();
