@@ -5,6 +5,7 @@ namespace backend\modules\api\controllers;
 use appxq\sdii\utils\VarDumper;
 use backend\modules\api\classes\ClsAccessCoss;
 use backend\modules\api\classes\ClsOrder;
+use common\modules\user\models\Profile;
 use common\modules\user\models\User;
 use cpn\chanpan\classes\CNMessage;
 use yii\db\Exception;
@@ -18,11 +19,12 @@ class MemberController extends Controller
 {
     public function beforeAction($action)
     {
-        $origin = "*";
-        if (array_key_exists('HTTP_ORIGIN', $_SERVER)) {
-            $origin = $_SERVER['HTTP_ORIGIN'];
-        }
-        header("Access-Control-Allow-Origin: $origin", true);
+//        $origin = "*";
+//        if (array_key_exists('HTTP_ORIGIN', $_SERVER)) {
+//            $origin = $_SERVER['HTTP_ORIGIN'];
+//        }
+
+        header('Access-Control-Allow-Origin: *');
         header("Access-Control-Allow-Headers: Origin,Content-Type,Authorization,x-access-token,application,uuid,version,platform");
         $this->enableCsrfValidation = false;
         return true;
@@ -30,7 +32,16 @@ class MemberController extends Controller
 
     public function actionIndex()
     {
-        $users = User::find()->orderBy(['id'=>SORT_DESC])->all();
+
+        $limit = \Yii::$app->request->get('limit');
+        $query = User::find()->orderBy(['id'=>SORT_DESC]);
+        $users = $query->all();
+        if($limit){
+            $users = $query->limit($limit)->all();
+        }else{
+            $users = $query->all();
+        }
+
         $outptu = [];
 
         foreach ($users as $k=>$user){
@@ -50,6 +61,29 @@ class MemberController extends Controller
         }
         return CNMessage::getSuccess("success", $outptu);
     }
+
+
+    public function actionGetMemberByType(){
+        $type= \Yii::$app->request->get('type');
+        $output = [];
+        $profiles = Profile::find()->where('member_type=:type',[':type'=>$type])->all();
+        if(!$profiles){
+            return CNMessage::getError("Success","ไม่พบข้อมูล");
+        }
+
+        foreach($profiles as $k=>$profile){
+            $id = $profile->user_id;
+            $user = User::find()->where('id=:id',[':id' => $id])->one();
+            $output[] = [
+                'user'=>$user,
+                'profile'=>$profile,
+                'order'=>[]
+            ];
+        }
+        return CNMessage::getSuccess("Success", $output);
+    }
+
+
     public function actionGetMemberById()
     {
         $id = \Yii::$app->request->get('id');
