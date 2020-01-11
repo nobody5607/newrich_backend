@@ -48,10 +48,12 @@ class MemberController extends Controller
             unset($user->password_hash);
             //unset($user->auth_key);
             $orders = ClsOrder::getOrder($user->id);
+            $storageUrl = isset(\Yii::$app->params['storageUrl'])?\Yii::$app->params['storageUrl']:'';
 
             $avatar_base_url = isset($user->profile->avatar_base_url)?$user->profile->avatar_base_url:'';
             $avatar_path = isset($user->profile->avatar_path)?$user->profile->avatar_path:'';
-            $user->profile->avatar_path = "{$avatar_base_url}/{$avatar_path}";
+            $user->profile->avatar_path = "{$storageUrl}/uploads/{$avatar_path}";
+            //return $user->profile->image;
             $outptu[]=[
               'count'=>count($users),
               'user'=>$user,

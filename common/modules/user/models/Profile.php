@@ -35,6 +35,7 @@ class Profile extends BaseProfile{
             'member_id' => ['member_id', 'string', 'max' => 255],
             'link' => ['link', 'string', 'max' => 255],
             'parent_id' => ['parent_id', 'safe'],
+            'avatar_path' => ['avatar_path', 'safe'],
 
             
         ];
@@ -61,7 +62,7 @@ class Profile extends BaseProfile{
             'location'       => Yii::t('_user', 'Location'),
             'website'        => Yii::t('_user', 'Website'),
             'bio'            => Yii::t('_user', 'Birth date'),
-            'image'          => Yii::t('_user', 'My Picture'),
+
             'public_email'   => Yii::t('_user', 'Email'),
             'location'      => Yii::t('_user', 'Location'),
             'timezone'      => Yii::t('_user', 'Timezone'),
