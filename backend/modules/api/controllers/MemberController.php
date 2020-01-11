@@ -48,10 +48,11 @@ class MemberController extends Controller
             unset($user->password_hash);
             //unset($user->auth_key);
             $orders = ClsOrder::getOrder($user->id);
-            $storageUrl = isset(\Yii::$app->params['storageUrl'])?\Yii::$app->params['storageUrl']:'';
+
 
             $avatar_base_url = isset($user->profile->avatar_base_url)?$user->profile->avatar_base_url:'';
             $avatar_path = isset($user->profile->avatar_path)?$user->profile->avatar_path:'';
+            $storageUrl = isset(\Yii::$app->params['storageUrl'])?\Yii::$app->params['storageUrl']:'';
             $user->profile->avatar_path = "{$storageUrl}/uploads/{$avatar_path}";
             //return $user->profile->image;
             $outptu[]=[
@@ -72,10 +73,12 @@ class MemberController extends Controller
         if(!$profiles){
             return CNMessage::getError("Success","ไม่พบข้อมูล");
         }
-
+        $storageUrl = isset(\Yii::$app->params['storageUrl'])?\Yii::$app->params['storageUrl']:'';
         foreach($profiles as $k=>$profile){
             $id = $profile->user_id;
             $user = User::find()->where('id=:id',[':id' => $id])->one();
+            $avatar_path = isset($profile->avatar_path)?$profile->avatar_path:'';
+            $profile->avatar_path = "{$storageUrl}/uploads/{$avatar_path}";
             $output[] = [
                 'user'=>$user,
                 'profile'=>$profile,
