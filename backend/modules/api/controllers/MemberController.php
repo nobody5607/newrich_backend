@@ -2,6 +2,7 @@
 
 namespace backend\modules\api\controllers;
 
+use appxq\sdii\utils\SDdate;
 use appxq\sdii\utils\VarDumper;
 use backend\modules\api\classes\ClsAccessCoss;
 use backend\modules\api\classes\ClsOrder;
@@ -48,12 +49,11 @@ class MemberController extends Controller
             unset($user->password_hash);
             //unset($user->auth_key);
             $orders = ClsOrder::getOrder($user->id);
-
-
             $avatar_base_url = isset($user->profile->avatar_base_url)?$user->profile->avatar_base_url:'';
             $avatar_path = isset($user->profile->avatar_path)?$user->profile->avatar_path:'';
             $storageUrl = isset(\Yii::$app->params['storageUrl'])?\Yii::$app->params['storageUrl']:'';
             $user->profile->avatar_path = "{$storageUrl}/uploads/{$avatar_path}";
+            $user->profile->create_date = isset($user->profile->create_date)?SDdate::mysql2phpThDateSmall($user->profile->create_date):'';
             //return $user->profile->image;
             $outptu[]=[
               'count'=>count($users),
