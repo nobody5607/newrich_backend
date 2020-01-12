@@ -43,7 +43,9 @@ class MemberController extends Controller
             $storageUrl = isset(\Yii::$app->params['storageUrl'])?\Yii::$app->params['storageUrl']:'';
             foreach($profile as $k=>$v){
                 $avatar_path = isset($v->avatar_path)?$v->avatar_path:'';
-                $v->avatar_path = "{$storageUrl}/uploads/{$avatar_path}";
+                if($avatar_path != ''){
+                    $v->avatar_path = "{$storageUrl}/uploads/{$avatar_path}";
+                }
                 $v->create_date = isset($v->create_date)?SDdate::mysql2phpThDateSmall($v->create_date):'';
                 $output[] = [
                     'user_id'=>$v['user_id'],
@@ -107,10 +109,18 @@ class MemberController extends Controller
             $avatar_path = isset($profile->avatar_path)?$profile->avatar_path:'';
             $profile->avatar_path = "{$storageUrl}/uploads/{$avatar_path}";
             $output[] = [
-                'user'=>$user,
-                'profile'=>$profile,
-                'order'=>[]
+                'user_id'=>$profile['user_id'],
+                'name'=>$profile['name'],
+                'avatar_path'=>$profile['avatar_path'],
+                'member_type'=>$profile['member_type'],
+                'link'=>$profile['link'],
+                'create_date'=>$profile['create_date']
             ];
+//            $output[] = [
+//                'user'=>$user,
+//                'profile'=>$profile,
+//                'order'=>[]
+//            ];
         }
         return CNMessage::getSuccess("Success", $output);
     }
@@ -125,8 +135,15 @@ class MemberController extends Controller
             unset($user->auth_key);
             $orders = ClsOrder::getOrder($user->id);
             $avatar_base_url = isset($user->profile->avatar_base_url)?$user->profile->avatar_base_url:'';
+
             $avatar_path = isset($user->profile->avatar_path)?$user->profile->avatar_path:'';
             $user->profile->avatar_path = "{$avatar_base_url}/{$avatar_path}";
+            $storageUrl = isset(\Yii::$app->params['storageUrl'])?\Yii::$app->params['storageUrl']:'';
+            $avatar_path = isset($user->profile->avatar_path)?$user->profile->avatar_path:'';
+            if($avatar_path != ''){
+                $user->profile->avatar_path = "{$storageUrl}/uploads/{$avatar_path}";
+            }
+
             $outptu=[
                 'user'=>$user,
                 'profile'=>$user->profile,
