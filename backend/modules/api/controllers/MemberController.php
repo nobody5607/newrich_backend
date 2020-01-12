@@ -5,6 +5,7 @@ namespace backend\modules\api\controllers;
 use appxq\sdii\utils\SDdate;
 use appxq\sdii\utils\VarDumper;
 use backend\modules\api\classes\ClsAccessCoss;
+use backend\modules\api\classes\ClsAuth;
 use backend\modules\api\classes\ClsOrder;
 use common\modules\user\models\Profile;
 use common\modules\user\models\User;
@@ -18,19 +19,22 @@ use yii\web\UploadedFile;
  */
 class MemberController extends Controller
 {
+    private $token = "";
     public function beforeAction($action)
     {
-//        $origin = "*";
-//        if (array_key_exists('HTTP_ORIGIN', $_SERVER)) {
-//            $origin = $_SERVER['HTTP_ORIGIN'];
-//        }
-
         header('Access-Control-Allow-Origin: *');
         header("Access-Control-Allow-Headers: Origin,Content-Type,Authorization,x-access-token,application,uuid,version,platform");
         $this->enableCsrfValidation = false;
+        $this->token = \Yii::$app->request->headers->get('x-access-token');
+        if(!$this->token){
+            return CNMessage::getError("Error", "คุณไม่มีสิทธิ์ใช้งานส่วนนี้");
+        }
         return true;
     }
-
+    public function actionGetMember(){
+        $user = ClsAuth::getUserByToken($this->token);
+        return CNMessage::getSuccess("success", $user);
+    }
     public function actionIndex()
     {
 
