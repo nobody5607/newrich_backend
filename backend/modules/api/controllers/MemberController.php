@@ -32,8 +32,31 @@ class MemberController extends Controller
         return true;
     }
     public function actionGetMember(){
+        $limit = \Yii::$app->request->get('limit');
         $user = ClsAuth::getUserByToken($this->token);
-        return CNMessage::getSuccess("success", $user);
+        $output = [];
+        if($user){
+            $profile = Profile::find()->where('parent_id=:parent_id AND user_id <> :user_id',[
+                ':parent_id' => $user->id,
+                ':user_id' => $user->id
+            ])->limit($limit)->all();
+            $storageUrl = isset(\Yii::$app->params['storageUrl'])?\Yii::$app->params['storageUrl']:'';
+            foreach($profile as $k=>$v){
+                $avatar_path = isset($v->avatar_path)?$v->avatar_path:'';
+                $v->avatar_path = "{$storageUrl}/uploads/{$avatar_path}";
+                $v->create_date = isset($v->create_date)?SDdate::mysql2phpThDateSmall($v->create_date):'';
+                $output[] = [
+                    'user_id'=>$v['user_id'],
+                    'name'=>$v['name'],
+                    'avatar_path'=>$v['avatar_path'],
+                    'member_type'=>$v['member_type'],
+                    'link'=>$v['link'],
+                    'create_date'=>$v['create_date']
+                ];
+            }
+            return CNMessage::getSuccess("success", $output);
+        }
+
     }
     public function actionIndex()
     {
