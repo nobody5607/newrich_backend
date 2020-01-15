@@ -37,6 +37,7 @@ class Profile extends BaseProfile{
             'parent_id' => ['parent_id', 'safe'],
             'avatar_path' => ['avatar_path', 'safe'],
             'create_date'=>  ['create_date', 'safe'],
+            'profile'=>  ['create_date', 'profile'],
 
             
         ];
