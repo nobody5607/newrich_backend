@@ -137,7 +137,7 @@ class MemberController extends Controller
             $avatar_base_url = isset($user->profile->avatar_base_url)?$user->profile->avatar_base_url:'';
 
             $avatar_path = isset($user->profile->avatar_path)?$user->profile->avatar_path:'';
-            $user->profile->avatar_path = "{$avatar_base_url}/{$avatar_path}";
+           // $user->profile->avatar_path = "{$avatar_base_url}/{$avatar_path}";
             $storageUrl = isset(\Yii::$app->params['storageUrl'])?\Yii::$app->params['storageUrl']:'';
             $avatar_path = isset($user->profile->avatar_path)?$user->profile->avatar_path:'';
             if($avatar_path != ''){
