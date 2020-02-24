@@ -63,5 +63,10 @@ class SiteController extends Controller
        ]);
  
     }
+    public function actionSocial()
+    {
+        return $this->renderPartial('social');
+
+    }
  
 }
