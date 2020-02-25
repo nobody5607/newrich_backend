@@ -33,10 +33,12 @@ class MemberController extends Controller
     }
     public function actionGetMember(){
         $limit = \Yii::$app->request->get('limit');
+        $site = \Yii::$app->request->get('site');
         $user = ClsAuth::getUserByToken($this->token);
         $output = [];
         if($user){
-            $profile = Profile::find()->where('parent_id=:parent_id AND user_id <> :user_id',[
+            $profile = Profile::find()
+                ->where('parent_id=:parent_id AND user_id <> :user_id',[
                 ':parent_id' => $user->id,
                 ':user_id' => $user->id
             ])->limit($limit)->all();
