@@ -38,11 +38,19 @@ class MemberController extends Controller
         $user = ClsAuth::getUserByToken($this->token);
         $output = [];
         if($user){
-            $profile = Profile::find()
+            /*$profile = Profile::find()
                 ->where('parent_id=:parent_id AND user_id <> :user_id',[
                 ':parent_id' => $user->id,
                 ':user_id' => $user->id
+            ])->limit($limit)->all();*/
+
+	   $profile = Profile::find()
+                ->where('parent_id=:parent_id AND user_id <> :user_id AND site=:site',[
+                ':parent_id' => $user->id,
+                ':user_id' => $user->id,
+                ':site'=>$site
             ])->limit($limit)->all();
+
             $storageUrl = isset(\Yii::$app->params['storageUrl'])?\Yii::$app->params['storageUrl']:'';
             foreach($profile as $k=>$v){
                 $avatar_path = isset($v->avatar_path)?$v->avatar_path:'';
