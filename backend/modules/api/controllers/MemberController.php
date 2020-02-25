@@ -34,6 +34,7 @@ class MemberController extends Controller
     public function actionGetMember(){
         $limit = \Yii::$app->request->get('limit');
         $site = \Yii::$app->request->get('site');
+
         $user = ClsAuth::getUserByToken($this->token);
         $output = [];
         if($user){
