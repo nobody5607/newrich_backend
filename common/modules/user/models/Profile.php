@@ -38,6 +38,7 @@ class Profile extends BaseProfile{
             'avatar_path' => ['avatar_path', 'safe'],
             'create_date'=>  ['create_date', 'safe'],
             'profile'=>  ['profile', 'safe'],
+            'site'=>  ['site', 'safe'],
 
             
         ];
