@@ -46,6 +46,7 @@ class AuthHandler {
             $data['email']=$attributes['email'];
             $data['image']=$attributes['image']['url'];
         }
+        VarDumper::dump($clientObj);
         $auth = CNSocialFunc::checkAuth($clientObj);
         if (\Yii::$app->user->isGuest) {
             $user = CNSocialFunc::checkUser('', $data['email']);
@@ -53,7 +54,7 @@ class AuthHandler {
                 $msg = \Yii::t('user','Your account has been blocked');
                 throw new \yii\base\UserException($msg);
             }
-            VarDumper::dump($user);
+
             if($user){
                 $user->confirm();
                 $loginWith = $this->client->getId();
