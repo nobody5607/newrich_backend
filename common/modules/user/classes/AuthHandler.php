@@ -53,6 +53,7 @@ class AuthHandler {
                 $msg = \Yii::t('user','Your account has been blocked');
                 throw new \yii\base\UserException($msg);
             }
+            VarDumper::dump($user);
             if($user){
                 $user->confirm();
                 $loginWith = $this->client->getId();
