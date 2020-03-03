@@ -46,7 +46,6 @@ class SiteController extends Controller
             $user->username = date('YmdHis'). rand(0,10000).time();
             $user->password = Yii::$app->security->generateRandomString(12);
             $user->email = isset($userAttributes['email']) ? $userAttributes['email'] : '';
-            $user->status=10;
             $user->created_at = time();
             $user->confirmed_at = time();
             $user->updated_at =time();
