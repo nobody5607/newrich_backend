@@ -63,12 +63,12 @@ class SiteController extends Controller
                 $profile->name = isset($userAttributes['name']) ? $userAttributes['name'] : '';
                 $profile->public_email = isset($userAttributes['email']) ? $userAttributes['email'] : '';
                 $profile->gravatar_email = isset($userAttributes['email']) ? $userAttributes['email'] : '';
-                $profile->dob = '00/00/0000';
-                $profile->firstname = $userAttributes['first_name'];
+//                $profile->dob = '00/00/0000';
                 $profile->lastname = $userAttributes['last_name'];
                 $profile->department = '00'; //$this->department,
                 $profile->position = 0;
                 $profile->sitecode = '0001'; //$this->sitecode,
+                $profile->site = '0001'; //$this->sitecode,
                 if($profile->save()){
                     $user = User::getUserByEmail($userAttributes['email']);
                     VarDumper::dump($user);
