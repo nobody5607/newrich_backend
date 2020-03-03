@@ -42,7 +42,7 @@ class SiteController extends Controller
             return \Yii::$app->user->login($user);
         }else{
             $user = new User();
-            $user->id = \appxq\sdii\utils\SDUtility::getMillisecTime();
+           // $user->id = \appxq\sdii\utils\SDUtility::getMillisecTime();
             $user->username = date('YmdHis'). rand(0,10000).time();
             $user->password = Yii::$app->security->generateRandomString(12);
             $user->email = isset($userAttributes['email']) ? $userAttributes['email'] : '';
