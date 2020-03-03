@@ -35,9 +35,13 @@ class SiteController extends Controller
     public function onAuthSuccess($client)
     {
         $userAttributes = $client->getUserAttributes();
-        //VarDumper::dump($userAttributes);
+        VarDumper::dump($userAttributes);
         $user = User::find()->where('email=:email')->addParams([':email'=>$userAttributes['email']])->one();
-        return \Yii::$app->user->login($user);
+        if($user){
+            return \Yii::$app->user->login($user);
+        }else{
+
+        }
     }
 
     /**
