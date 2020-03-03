@@ -21,9 +21,9 @@ class SiteController extends Controller
     public function actions()
     {
         return [
-            'error' => [
-                'class' => 'yii\web\ErrorAction',
-            ],
+//            'error' => [
+//                'class' => 'yii\web\ErrorAction',
+//            ],
             'auth' => [
                 'class' => 'yii\authclient\AuthAction',
                 'successCallback' => [$this, 'oAuthSuccess'],
@@ -35,12 +35,13 @@ class SiteController extends Controller
     public function oAuthSuccess($client) {
         // get user data from client
         $userAttributes = $client->getUserAttributes();
+
+        VarDumper::dump($userAttributes);
         if(empty($userAttributes['email'])){
             Yii::$app->session->setFlash('error', 'กรุณากด Allow Access ใน Facebook เพื่อใช้งาน Facebook Login');
             return $this->redirect('/site/login');
         }
         $user = User::findOne(['email' => $userAttributes['email']]);
-        VarDumper::dump($user);
 
         if($user){//ถ้ามี user ในระบบแล้ว
             //echo 'user email';

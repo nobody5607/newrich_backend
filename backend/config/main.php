@@ -29,6 +29,7 @@ return [
                     'class' => 'yii\authclient\clients\Facebook',
                     'clientId' => '824540648022199',
                     'clientSecret' => '808e14b820c9adac18338dacd0883240',
+                    'attributeNames' => ['name', 'email', 'first_name', 'last_name'],
                 ],
             ],
         ],

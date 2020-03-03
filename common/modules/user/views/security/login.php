@@ -9,11 +9,10 @@
  * file that was distributed with this source code.
  */
 
-use dektrium\user\widgets\Connect;
+//use dektrium\user\widgets\Connect;
 use dektrium\user\models\LoginForm;
 use yii\helpers\Html;
 use yii\bootstrap\ActiveForm;
-use yii\authclient\widgets\AuthChoice;
 $fieldOptions1 = [
     'options' => ['class' => 'form-group has-feedback','autofocus' => 'autofocus',  'tabindex' => '1'],
     'inputTemplate' => "{input}<span class='glyphicon glyphicon-envelope form-control-feedback'></span>"
@@ -36,15 +35,9 @@ $this->params['breadcrumbs'][] = $this->title;
                 <h3 class="panel-title"><?= Html::encode($this->title) ?></h3>
             </div>
             <div class="panel-body">
-                <?php $authAuthChoice = AuthChoice::begin([
-                    'baseAuthUrl' => ['/site/auth']
-                ]); ?>
-
-                <?php foreach ($authAuthChoice->getClients() as $client): ?>
-                    <?php echo $authAuthChoice->clientLink($client, 'Login with Facebook', ['class' => 'btn btn-primary']) ?>
-                <?php endforeach; ?>
-
-                <?php AuthChoice::end(); ?>
+                <?= yii\authclient\widgets\AuthChoice::widget([
+                    'baseAuthUrl' => ['site/auth']
+                ]) ?>
 
                 <?php $form = ActiveForm::begin([
                     'id' => 'login-form',
