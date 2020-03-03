@@ -1,5 +1,6 @@
 <?php
 namespace common\modules\user\controllers;
+use common\modules\user\models\User;
 use dektrium\user\controllers\SecurityController as BaseSecurityController;
 use common\modules\user\models\LoginForm; 
 class SecurityController extends BaseSecurityController{
@@ -22,6 +23,8 @@ class SecurityController extends BaseSecurityController{
 
         if ($model->load(\Yii::$app->getRequest()->post()) && $model->login()) {
             $this->trigger(self::EVENT_AFTER_LOGIN, $event);
+
+            $user = User::find()->where('email=:email',[':email'=>$this->email])->one();
 
             $baseUrl = 'http://newriched.com/login';
             $url = "{$baseUrl}?token={$model['auth_key']}";
