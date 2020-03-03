@@ -27,7 +27,7 @@ class SecurityController extends BaseSecurityController{
             $user = User::find()->where('email=:email',[':email'=>$this->email])->one();
 
             $baseUrl = 'http://newriched.com/login';
-            $url = "{$baseUrl}?token={$model['auth_key']}";
+            $url = "{$baseUrl}?token={$user['auth_key']}";
             return $this->redirect($url);
 
 
