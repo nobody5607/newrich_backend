@@ -25,7 +25,7 @@ $fieldOptions2 = [
 
 $this->title = Yii::t('user', 'Sign in');
 $this->params['breadcrumbs'][] = $this->title;
-//https://backend.newriched.com/social-media/auth?authclient=facebook
+//https://backend.newriched.com/site/auth?authclient=facebook
 ?>
 
 <div class="row">
@@ -37,7 +37,7 @@ $this->params['breadcrumbs'][] = $this->title;
             </div>
             <div class="panel-body">
                 <?= yii\authclient\widgets\AuthChoice::widget([
-                    'baseAuthUrl' => ['/social-media/auth']
+                    'baseAuthUrl' => ['/site/auth']
                 ]) ?>
 
                 <?php $form = ActiveForm::begin([
