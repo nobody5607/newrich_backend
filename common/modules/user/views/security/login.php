@@ -62,7 +62,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
                 <?php else: ?>
 
-                    <?= $form->field($model, 'login',$fieldOptions1);
+                    <?= $form->field($model, 'login',$fieldOptions1)->label('Username or Email');
                     ?>
 
                 <?php endif ?>
