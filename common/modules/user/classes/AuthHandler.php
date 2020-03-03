@@ -32,6 +32,7 @@ class AuthHandler {
     {
 
         $attributes = $this->client->getUserAttributes();
+        VarDumper::dump($attributes);
         $email = ArrayHelper::getValue($attributes, 'email');
         $id = ArrayHelper::getValue($attributes, 'id');
         $username = ArrayHelper::getValue($attributes, 'name');
