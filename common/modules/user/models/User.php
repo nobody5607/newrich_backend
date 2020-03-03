@@ -90,4 +90,8 @@ class User extends BaseUser{
         //s\Yii::$app->security->generatePasswordHash($password);
         $this->password_hash = Yii::$app->security->generatePasswordHash($password);
     }
+    public static function getUserByEmail($email){
+        $user = User::find()->where('email=:email')->addParams([':email'=>$email])->one();
+        return $user;
+    }
 }
