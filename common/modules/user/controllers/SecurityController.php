@@ -22,16 +22,16 @@ class SecurityController extends BaseSecurityController{
 
         $this->trigger(self::EVENT_BEFORE_LOGIN, $event);
         //VarDumper::dump($model);exit();
-        $user = User::find()->where('email=:email',[':email'=>$model->login])->one();
-        $baseUrl = 'http://newriched.com/login';
-        $url = "{$baseUrl}?token={$user['auth_key']}";
-        return $this->redirect($url);
+
 
 
         if ($model->load(\Yii::$app->getRequest()->post()) && $model->login()) {
             $this->trigger(self::EVENT_AFTER_LOGIN, $event);
 
-
+            $user = User::find()->where('email=:email',[':email'=>$model->login])->one();
+            $baseUrl = 'http://newriched.com/login';
+            $url = "{$baseUrl}?token={$user['auth_key']}";
+            return $this->redirect($url);
 
             return $this->goBack();
         }
