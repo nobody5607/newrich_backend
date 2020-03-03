@@ -41,7 +41,7 @@ class SiteController extends Controller
         //VarDumper::dump($userAttributes);
         $user = User::getUserByEmail($userAttributes['email']);
         if($user){
-            $url = "{$baseUrl}?token=".$user['id'];
+            $url = "{$baseUrl}?token={$user['auth_key']}";
             return $this->redirect($url);
 //            return \Yii::$app->user->login($user);
         }else{
