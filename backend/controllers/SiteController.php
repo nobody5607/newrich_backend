@@ -64,7 +64,7 @@ class SiteController extends Controller
                 $profile->public_email = isset($userAttributes['email']) ? $userAttributes['email'] : '';
                 $profile->gravatar_email = isset($userAttributes['email']) ? $userAttributes['email'] : '';
                 $profile->lastname = $userAttributes['last_name'];
-                $profile->position = 0;
+                $profile->firstname = $userAttributes['first_name'];
                 $profile->sitecode = '0001'; //$this->sitecode,
                 $profile->site = '0001'; //$this->sitecode,
                 if($profile->save()){
