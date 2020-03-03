@@ -57,6 +57,7 @@ class SiteController extends Controller
                     $assignData = ['item_name'=>'user','user_id'=>$user->id, 'created_at'=> time()];
                     \Yii::$app->db->createCommand()->insert('auth_assignment', $assignData)->execute();
                 } catch (\yii\db\Exception $ex){
+                    VarDumper::dump($ex->getMessage());
                 }
                 $profile = Profile::findOne($user->id);
                 $profile->user_id = $user->id;
