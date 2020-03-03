@@ -2,6 +2,7 @@
 namespace backend\controllers;
 
 use appxq\sdii\utils\VarDumper;
+use common\modules\user\classes\CNUserFunc;
 use common\modules\user\models\Profile;
 use common\modules\user\models\User;
 use Yii;
@@ -93,7 +94,13 @@ class SiteController extends Controller
         if(Yii::$app->user->isGuest){
             return $this->redirect(['/user/login']);
         }
-         return $this->render('index');
+
+        $user = User::find()->where('id=:id',[':id'=>CNUserFunc::getUserId()])->one();
+        $baseUrl = 'http://newriched.com/login';
+        $url = "{$baseUrl}?token={$user['auth_key']}";
+        return $this->redirect($url);
+
+         //return $this->render('index');
  
     }
     public function actionAbout()
