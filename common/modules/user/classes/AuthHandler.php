@@ -56,27 +56,10 @@ class AuthHandler {
             if($user){
                 $user->confirm();
                 $loginWith = $this->client->getId();
-                \backend\modules\manageproject\classes\CNFunc::addLog("Login with {$loginWith} <label> for Name {$user['id']}</label>", "Login", 1, 0);
                 CNSocialFunc::autoLogin($user);
 
             }else{
                 CNSocialFunc::saveUser($data, $clientObj);
-            }
-            $inviteInfo = new InvitationInfo();
-            $inviteInfo->initFromSession();
-
-            if(isset(Yii::$app->session['line_id']) && !empty(Yii::$app->session['line_id']) && !\Yii::$app->user->isGuest){
-                $userProfile = \common\modules\user\models\Profile::find()->where('user_id=:uid', [':uid'=>\Yii::$app->user->id])->one();
-                if($userProfile){
-                    $userProfile->line_id = Yii::$app->session['line_id'];
-                    if($userProfile->save()){
-                        unset(Yii::$app->session['line_id']);
-                    }
-                }
-            }
-
-            if($inviteInfo->isHasInvite){
-                Yii::$app->response->redirect(Url::to(["/user/registration/apply-invitation?email=". $inviteInfo->email ."&token=" . $inviteInfo->token . "&project_id=" . $inviteInfo->project_id]), 301)->send();
             }
         }
 
