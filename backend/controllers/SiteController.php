@@ -57,16 +57,13 @@ class SiteController extends Controller
                     $assignData = ['item_name'=>'user','user_id'=>$user->id, 'created_at'=> time()];
                     \Yii::$app->db->createCommand()->insert('auth_assignment', $assignData)->execute();
                 } catch (\yii\db\Exception $ex){
-                    VarDumper::dump($ex->getMessage());
                 }
                 $profile = Profile::findOne($user->id);
                 $profile->user_id = $user->id;
                 $profile->name = isset($userAttributes['name']) ? $userAttributes['name'] : '';
                 $profile->public_email = isset($userAttributes['email']) ? $userAttributes['email'] : '';
                 $profile->gravatar_email = isset($userAttributes['email']) ? $userAttributes['email'] : '';
-//                $profile->dob = '00/00/0000';
                 $profile->lastname = $userAttributes['last_name'];
-                $profile->department = '00'; //$this->department,
                 $profile->position = 0;
                 $profile->sitecode = '0001'; //$this->sitecode,
                 $profile->site = '0001'; //$this->sitecode,
