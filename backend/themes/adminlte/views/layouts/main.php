@@ -44,7 +44,7 @@ use yii\helpers\Html;
         <link rel="stylesheet" href="<?= $baseUrl;?>/css/custom.css"/>
 
     </head>
-    <body class="<?= $skin?> sidebar-mini fixed">
+    <body class="skin-blue layout-top-nav">
     <?php $this->beginBody() ?>
     <div class="">
         
@@ -53,12 +53,7 @@ use yii\helpers\Html;
             ['directoryAsset' => $directoryAsset]
         ) ?>
 
-        <?php 
-            echo $this->render(
-            'left.php',
-            ['directoryAsset' => $directoryAsset]
-        )
-        ?> 
+
          
         <?= $this->render(
             'content.php',
