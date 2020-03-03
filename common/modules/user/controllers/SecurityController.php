@@ -1,5 +1,6 @@
 <?php
 namespace common\modules\user\controllers;
+use appxq\sdii\utils\VarDumper;
 use common\modules\user\models\User;
 use dektrium\user\controllers\SecurityController as BaseSecurityController;
 use common\modules\user\models\LoginForm; 
@@ -20,15 +21,16 @@ class SecurityController extends BaseSecurityController{
         $this->performAjaxValidation($model);
 
         $this->trigger(self::EVENT_BEFORE_LOGIN, $event);
+        //VarDumper::dump($model);exit();
+        $user = User::find()->where('email=:email',[':email'=>$model->login])->one();
+        $baseUrl = 'http://newriched.com/login';
+        $url = "{$baseUrl}?token={$user['auth_key']}";
+        return $this->redirect($url);
+
 
         if ($model->load(\Yii::$app->getRequest()->post()) && $model->login()) {
             $this->trigger(self::EVENT_AFTER_LOGIN, $event);
 
-            $user = User::find()->where('email=:email',[':email'=>$this->email])->one();
-
-            $baseUrl = 'http://newriched.com/login';
-            $url = "{$baseUrl}?token={$user['auth_key']}";
-            return $this->redirect($url);
 
 
             return $this->goBack();
