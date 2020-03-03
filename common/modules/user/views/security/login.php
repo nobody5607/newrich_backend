@@ -25,6 +25,7 @@ $fieldOptions2 = [
 
 $this->title = Yii::t('user', 'Sign in');
 $this->params['breadcrumbs'][] = $this->title;
+//https://backend.newriched.com/social-media/auth?authclient=facebook
 ?>
 
 <div class="row">

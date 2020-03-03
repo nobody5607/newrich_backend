@@ -24,8 +24,17 @@ class SiteController extends Controller
             'error' => [
                 'class' => 'yii\web\ErrorAction',
             ],
+            'auth' => [
+                'class' => 'yii\authclient\AuthAction',
+                'successCallback' => [$this, 'onAuthSuccess'],
+            ],
 
         ];
+    }
+    public function onAuthSuccess($client)
+    {
+        $userAttributes = $client->getUserAttributes();
+        VarDumper::dump($userAttributes);
     }
 
     /**
