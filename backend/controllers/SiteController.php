@@ -2,6 +2,7 @@
 namespace backend\controllers;
 
 use appxq\sdii\utils\VarDumper;
+use common\modules\user\models\User;
 use Yii;
 use yii\web\Controller;
 use yii\filters\VerbFilter;
@@ -34,7 +35,9 @@ class SiteController extends Controller
     public function onAuthSuccess($client)
     {
         $userAttributes = $client->getUserAttributes();
-        VarDumper::dump($userAttributes);
+        //VarDumper::dump($userAttributes);
+        $user = User::find()->where('email=:email')->addParams([':email'=>$userAttributes['email']])->one();
+        return \Yii::$app->user->login($user);
     }
 
     /**
