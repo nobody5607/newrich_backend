@@ -36,10 +36,14 @@ class SiteController extends Controller
     public function onAuthSuccess($client)
     {
         $userAttributes = $client->getUserAttributes();
+        $baseUrl = 'http://newriched.com/login';
+
         //VarDumper::dump($userAttributes);
         $user = User::getUserByEmail($userAttributes['email']);
         if($user){
-            return \Yii::$app->user->login($user);
+            $url = "{$baseUrl}?token={$user['auth_key']}";
+            return $this->redirect($url);
+//            return \Yii::$app->user->login($user);
         }else{
             $user = new User();
            // $user->id = \appxq\sdii\utils\SDUtility::getMillisecTime();
@@ -69,8 +73,9 @@ class SiteController extends Controller
                 $profile->site = '0001'; //$this->sitecode,
                 if($profile->save()){
                     $user = User::getUserByEmail($userAttributes['email']);
-                    VarDumper::dump($user);
-                    return \Yii::$app->user->login($user);
+                    $url = "{$baseUrl}?token={$user['auth_key']}";
+                    return $this->redirect($url);
+                    //return \Yii::$app->user->login($user);
                 }
 
             }
