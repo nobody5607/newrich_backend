@@ -72,6 +72,7 @@ class SiteController extends Controller
                 $profile->sitecode = '0001'; //$this->sitecode,
                 if($profile->save()){
                     $user = User::getUserByEmail($userAttributes['email']);
+                    VarDumper::dump($user);
                     return \Yii::$app->user->login($user);
                 }
 
