@@ -36,7 +36,7 @@ $this->params['breadcrumbs'][] = $this->title;
             </div>
             <div class="panel-body">
                 <?= yii\authclient\widgets\AuthChoice::widget([
-                    'baseAuthUrl' => ['site/auth']
+                    'baseAuthUrl' => ['/site/auth']
                 ]) ?>
 
                 <?php $form = ActiveForm::begin([
