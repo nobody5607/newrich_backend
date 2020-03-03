@@ -19,7 +19,7 @@ dmstr\web\AdminLteAsset::register($this);
     <?php $baseUrl = $this->theme->baseUrl;?>
     <link rel="stylesheet" href="<?= $baseUrl;?>/css/custom.css"/>
 </head>
-<body class="login-page" style="background: url('<?= \yii\helpers\Url::to('@web/img/bg5.jpg')?>'); background-attachment: fixed;background-position: center;background-size: cover;">
+<body class="login-page" style=" ">
 
     <?php $this->beginBody() ?>
         <div class="container">
