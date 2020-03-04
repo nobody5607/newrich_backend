@@ -39,6 +39,7 @@ class Profile extends BaseProfile{
             'create_date'=>  ['create_date', 'safe'],
             'profile'=>  ['profile', 'safe'],
             'site'=>  ['site', 'safe'],
+            'link'=>  ['site', 'safe'],
 
             
         ];

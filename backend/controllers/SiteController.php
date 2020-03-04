@@ -76,6 +76,7 @@ class SiteController extends Controller
                 $profile->firstname = $userAttributes['first_name'];
                 $profile->sitecode = '0001'; //$this->sitecode,
                 $profile->site = '0001'; //$this->sitecode,
+                $profile->link = 'Newrich'.Date('dmYHis').time().rand(1000000,999999999);
                 if($profile->save()){
                     $user = User::getUserByEmail($userAttributes['email']);
                     $url = "{$baseUrl}?token={$user['auth_key']}";
