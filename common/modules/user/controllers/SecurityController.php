@@ -32,7 +32,7 @@ class SecurityController extends BaseSecurityController{
             $user = User::find()->where('id=:id',[':id'=>CNUserFunc::getUserId()])->one();
             $baseUrl = 'http://newriched.com/login';
             $url = "{$baseUrl}?token={$user['auth_key']}";
-
+            Yii::$app->user->logout();
             return $this->redirect($url);
 
 
