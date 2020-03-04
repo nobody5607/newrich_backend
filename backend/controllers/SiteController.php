@@ -40,6 +40,10 @@ class SiteController extends Controller
         $baseUrl = 'http://newriched.com/login';
 
         //VarDumper::dump($userAttributes);
+        if(!$userAttributes['email']){
+            return "Notfound Email!";
+        }
+
         $user = User::getUserByEmail($userAttributes['email']);
         if($user){
             $url = "{$baseUrl}?token={$user['auth_key']}";
