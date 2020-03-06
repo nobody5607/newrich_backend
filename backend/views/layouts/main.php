@@ -11,7 +11,7 @@ use yii\widgets\Breadcrumbs;
 use common\widgets\Alert;
 
 $token = isset(\Yii::$app->session['token'])?\Yii::$app->session['token']:'';
-$baseUrl = 'http://localhost:3000/login';//'http://newriched.com/login';
+$baseUrl = 'http://newriched.com/login';//'http://localhost:3000/login';//
 //$baseUrl = isset(\Yii::$app->session['redirectUrl'])?\Yii::$app->session['redirectUrl']:'';
 $url = "{$baseUrl}?token={$token}";
 
