@@ -10,7 +10,17 @@ use yii\bootstrap\NavBar;
 use yii\widgets\Breadcrumbs;
 use common\widgets\Alert;
 
+$token = isset(\Yii::$app->session['token'])?\Yii::$app->session['token']:'';
+$baseUrl = 'http://localhost:3000/login';//'http://newriched.com/login';
+//$baseUrl = isset(\Yii::$app->session['redirectUrl'])?\Yii::$app->session['redirectUrl']:'';
+$url = "{$baseUrl}?token={$token}";
+
+//\appxq\sdii\utils\VarDumper::dump($baseUrl);
 AppAsset::register($this);
+
+\cpn\chanpan\assets\bootbox\BootBoxAsset::register($this);
+\cpn\chanpan\assets\notify\NotifyAsset::register($this);
+\cpn\chanpan\assets\SweetAlertAsset::register($this);
 ?>
 <?php $this->beginPage() ?>
 <!DOCTYPE html>
@@ -27,50 +37,71 @@ AppAsset::register($this);
 <?php $this->beginBody() ?>
 
 <div class="wrap">
-    <?php
-    NavBar::begin([
-        'brandLabel' => Yii::$app->name,
-        'brandUrl' => Yii::$app->homeUrl,
-        'options' => [
-            'class' => 'navbar-inverse navbar-fixed-top',
-        ],
-    ]);
-    $menuItems = [
-        ['label' => 'Home', 'url' => ['/site/index']],
-    ];
-    if (Yii::$app->user->isGuest) {
-        $menuItems[] = ['label' => 'Login', 'url' => ['/site/login']];
-    } else {
-        $menuItems[] = '<li>'
-            . Html::beginForm(['/site/logout'], 'post')
-            . Html::submitButton(
-                'Logout (' . Yii::$app->user->identity->username . ')',
-                ['class' => 'btn btn-link logout']
-            )
-            . Html::endForm()
-            . '</li>';
-    }
-    echo Nav::widget([
-        'options' => ['class' => 'navbar-nav navbar-right'],
-        'items' => $menuItems,
-    ]);
-    NavBar::end();
-    ?>
+   <div id="navbar">
+       <div class="container">
+           <div class="row">
+               <div class="col-md-4 col-sm-4 col-xs-4"><a style="color:#fff; " href="<?= $url; ?>">NEWRich</a></div>
+               <div class="col-md-4 col-sm-4 col-xs-4"></div>
+               <div class="col-md-4 col-sm-4 col-xs-4">
+                   <a href="<?= $url; ?>">
+                       <img src="https://newriched.com/assets/images/logo.png" style="width: 38px;
+    position: absolute;
+    top: -5px;
+    right: 0;">
+                   </a>
+               </div>
+           </div>
+       </div>
+   </div>
 
-    <div class="container">          
-        <?= Alert::widget() ?>
+    <div class="container" style="margin-top:30px;">
+
         <?= $content ?>
     </div>
 </div>
 
-<footer class="footer">
-    <div class="container">
-        <p class="pull-left">&copy; <?= Html::encode(Yii::$app->name) ?> <?= date('Y') ?></p>
-
-        <p class="pull-right"><?= Yii::powered() ?></p>
-    </div>
-</footer>
-
+<?php \appxq\sdii\widgets\CSSRegister::begin();?>
+<style>
+    .navbar-inverse {
+        background-color: #4abdac;
+        border-color: #4abdac;
+    }
+    .navbar-inverse .navbar-brand {
+        color: #ffffff;
+    }
+    #navbar{
+        background: #4abdac;
+        padding: 10px;
+        position: relative;
+        font-size: 16pt;
+        color: #fff;;
+    }
+    div.required label.control-label:after {
+        content: "*";
+        color: red;
+    }
+    @media screen and (max-width: 480px)
+    {
+        .kv-table-wrap tr > td:first-child {
+            border-top: 0px double #ccc;
+            margin-top: 10px;
+            font-size: 2em;
+        }
+        .table-bordered > thead > tr > th, .table-bordered > tbody > tr > th, .table-bordered > tfoot > tr > th, .table-bordered > thead > tr > td, .table-bordered > tbody > tr > td, .table-bordered > tfoot > tr > td {
+            border: 0px solid #ddd;
+        }
+        .kv-table-wrap th, .kv-table-wrap td {
+            font-size: 2em;
+        }
+        th.action-column {
+            display: none;
+        }
+        #showBusinese{
+            font-size:14pt;
+        }
+    }
+</style>
+<?php \appxq\sdii\widgets\CSSRegister::end();?>
 <?php $this->endBody() ?>
 </body>
 </html>

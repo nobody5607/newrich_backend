@@ -9,7 +9,11 @@ class SecurityController extends BaseSecurityController{
     //put your code here
     public function actionLogin()
     {
-       
+       $redirectUrl = \Yii::$app->request->get('redirectUrl');
+       if(empty( \Yii::$app->session['redirectUrl'])){
+           \Yii::$app->session['redirectUrl']=$redirectUrl;
+       }
+
        // $this->layout='@backend/themes/adminlte/views/layouts/main';
         if (!\Yii::$app->user->isGuest) {
             $this->goHome();
@@ -30,7 +34,8 @@ class SecurityController extends BaseSecurityController{
             $this->trigger(self::EVENT_AFTER_LOGIN, $event);
 
             $user = User::find()->where('id=:id',[':id'=>CNUserFunc::getUserId()])->one();
-            $baseUrl = 'http://newriched.com/login';
+            $url = isset(\Yii::$app->session['redirectUrl'])?\Yii::$app->session['redirectUrl']:'';
+            $baseUrl = $url.'/login';
             $url = "{$baseUrl}?token={$user['auth_key']}";
             \Yii::$app->user->logout();
             return $this->redirect($url);

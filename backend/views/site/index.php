@@ -13,37 +13,14 @@ ini_set('post_max_size', '20m');
 ]);
 ?>
 <script>
-    // JS script
-    $('#BtnSaveData').on('click', function () {
-        let url = $("#url").val();
-        $.ajax(
-            {
-                // Define AJAX properties.
-                method: "get",
-                url: url,
-                dataType: "json",
-                timeout: (2 * 10000),
+    var settings = {
+        "url": "https://www.sam.or.th/api/product_dd3.php?From_date=2000-11-01&2999-11-30&page=1",
+        "method": "GET",
+        "timeout": 0,
+    };
 
-
-                // Define the succss method.
-                success: function(){
-                    //$( "#response" ).text( "Success!" );
-                },
-
-
-                // Define the error method.
-                error: function( objAJAXRequest, strError ){
-                    alert(
-                        "Error! Type: " +
-                        strError
-                    );
-                }
-            }
-        );
-
-
-
-        return false;
+    $.ajax(settings).done(function (response) {
+        console.log(response);
     });
 
 </script>

@@ -10,6 +10,7 @@ namespace common\modules\user\classes;
 
 use appxq\sdii\utils\VarDumper;
 use common\modules\user\models\Profile;
+use common\modules\user\models\User;
 
 /**
  * Description of CNUser
@@ -28,6 +29,11 @@ class CNUserFunc {
             $fullName = "{$fname} {$lname}";
         }
         return $fullName;
+    }
+
+
+    public static function getUserByToken($token){
+        return User::find()->where('auth_key=:token',[':token'=>$token])->one();
     }
     public static function getUserId(){
         return isset(\Yii::$app->user->id)?\Yii::$app->user->id:'';

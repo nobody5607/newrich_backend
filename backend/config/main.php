@@ -7,7 +7,7 @@ $params = array_merge(
 );
 
 return [
-    'name'=>'APP',
+    'name'=>'NEWRiched',
     'id' => 'app-backend',
     'basePath' => dirname(__DIR__),
     'controllerNamespace' => 'backend\controllers',
@@ -129,6 +129,10 @@ return [
             'user/recovery/request',
             'user/recovery/reset',
             'api/*',
+            'group/*',
+            'gii/*',
+            'create-busines/*',
+            'create-group/*'
             //'informations/index',
             //'admin/*',
         ]
