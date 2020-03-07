@@ -96,19 +96,20 @@ class SiteController extends Controller
      */
     public function actionIndex()
     {
-        return $this->render('index');
+        //return $this->render('index');
         if(Yii::$app->user->isGuest){
             return $this->redirect(['/user/login']);
         }
-
-        $user = User::find()->where('id=:id',[':id'=>CNUserFunc::getUserId()])->one();
-        $baseUrl = 'http://newriched.com/login';
-        $url = "{$baseUrl}?token={$user['auth_key']}";
-        Yii::$app->user->logout();
-        return $this->redirect($url);
-
-
-         //return $this->render('index');
+        \Yii::$app->user->logout();
+        $url = isset(\Yii::$app->session['redirectUrl'])?\Yii::$app->session['redirectUrl']:'';
+        if($url != ''){
+            $user = User::find()->where('id=:id',[':id'=>CNUserFunc::getUserId()])->one();
+            //$baseUrl = 'http://newriched.com/login';
+            $url = "{$url}?token={$user['auth_key']}";
+            \Yii::$app->user->logout();
+            return $this->redirect($url);
+        }
+        return $this->render('index');
  
     }
     public function actionAbout()

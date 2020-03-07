@@ -62,7 +62,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
                 <?php else: ?>
 
-                    <?= $form->field($model, 'login',$fieldOptions1)->label('Username or Email');
+                    <?= $form->field($model, 'login',$fieldOptions1)->label('ชื่อผู้ใช้งานหรือ เบอร์โทรศัพท์');
                     ?>
 
                 <?php endif ?>
@@ -78,19 +78,18 @@ $this->params['breadcrumbs'][] = $this->title;
                         $fieldOptions2)
                         ->passwordInput()
                         ->label(
-                            Yii::t('user', 'Password')
+                            Yii::t('user', 'รหัสผ่าน')
                             . ($module->enablePasswordRecovery ?
                                 ' (' . Html::a(
-                                    Yii::t('user', 'Forgot password?'),
+                                    Yii::t('user', 'ลืมรหัสผ่าน'),
                                     ['/user/recovery/request'],
                                     ['tabindex' => '5']
                                 )
                                 . ')' : '')
                         ) ?>
                 <?php endif ?>
-                 <?= $form->field($model, 'rememberMe')->checkbox(['tabindex' => '3']) ?>
                  <?= Html::submitButton(
-                    Yii::t('user', 'Sign in'),
+                    Yii::t('user', 'เข้าสู่ระบบ'),
                     ['class' => 'btn btn-primary btn-block btn-lg', 'tabindex' => '4']
                 ) ?>
 
@@ -139,6 +138,16 @@ $this->params['breadcrumbs'][] = $this->title;
         transition: border-color ease-in-out .15s, -webkit-box-shadow ease-in-out .15s;
         transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
         transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s, -webkit-box-shadow ease-in-out .15s;
+    }
+    .btn-primary {
+        color: #fff;
+        background-color: #4abdac;
+        border-color: #269887;
+    }
+    .btn-primary:hover,.btn-primary:active {
+        color: #fff;
+        background-color: #4abdac;
+        border-color: #3ca797;
     }
 </style>
 <?php \appxq\sdii\widgets\CSSRegister::end()?>

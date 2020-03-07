@@ -14,7 +14,7 @@ class AppComponent extends Component
     public function init()
     {
         parent::init();
-//        Yii::$app->language = 'th';
+        Yii::$app->language = 'th-TH';
         //VarDumper::dump(Yii::$app->language);
         $params = \backend\modules\core\classes\CoreQuery::getOptionsParams();
         \Yii::$app->params = \yii\helpers\ArrayHelper::merge(\Yii::$app->params, $params);

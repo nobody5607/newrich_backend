@@ -13,6 +13,7 @@ use common\widgets\Alert;
 $token = isset(\Yii::$app->session['token'])?\Yii::$app->session['token']:'';
 
 $baseUrl = isset(\Yii::$app->session['redirectUrl'])?\Yii::$app->session['redirectUrl']:'';
+//\appxq\sdii\utils\VarDumper::dump($baseUrl);
 if($baseUrl == ''){
     $baseUrl = 'http://newriched.com/login';//'http://localhost:3000/login';//
 }

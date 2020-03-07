@@ -11,6 +11,7 @@ return [
     ],
     'vendorPath' => dirname(dirname(__DIR__)) . '/vendor',
     'timeZone' => 'Asia/Bangkok',
+    'language'=>'th-TH',
     'components' => [
         'cache' => [
             'class' => 'yii\caching\FileCache',
