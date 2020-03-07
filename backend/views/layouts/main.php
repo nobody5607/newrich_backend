@@ -11,8 +11,11 @@ use yii\widgets\Breadcrumbs;
 use common\widgets\Alert;
 
 $token = isset(\Yii::$app->session['token'])?\Yii::$app->session['token']:'';
-$baseUrl = 'http://newriched.com/login';//'http://localhost:3000/login';//
-//$baseUrl = isset(\Yii::$app->session['redirectUrl'])?\Yii::$app->session['redirectUrl']:'';
+
+$baseUrl = isset(\Yii::$app->session['redirectUrl'])?\Yii::$app->session['redirectUrl']:'';
+if($baseUrl == ''){
+    $baseUrl = 'http://newriched.com/login';//'http://localhost:3000/login';//
+}
 $url = "{$baseUrl}?token={$token}";
 
 //\appxq\sdii\utils\VarDumper::dump($baseUrl);

@@ -4,6 +4,7 @@ namespace backend\modules\api\controllers;
 
 use appxq\sdii\utils\SDdate;
 use appxq\sdii\utils\VarDumper;
+use backend\models\CreateGroup;
 use backend\modules\api\classes\ClsAccessCoss;
 use backend\modules\api\classes\ClsAuth;
 use backend\modules\api\classes\ClsOrder;
@@ -30,6 +31,11 @@ class MemberController extends Controller
             return CNMessage::getError("Error", "คุณไม่มีสิทธิ์ใช้งานส่วนนี้");
         }
         return true;
+    }
+    //create group
+    public function actionGroup(){
+        $group = CreateGroup::find()->orderBy(['createDate'=>SORT_DESC])->all();
+        return CNMessage::getSuccess("success", $group);
     }
     public function actionGetMember(){
         $limit = \Yii::$app->request->get('limit');
