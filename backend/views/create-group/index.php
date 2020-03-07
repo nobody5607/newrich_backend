@@ -52,9 +52,18 @@ $this->params['breadcrumbs'][] = $this->title;
 
                     [
                         'class' => 'appxq\sdii\widgets\ActionColumn',
-                        'contentOptions' => ['style' => 'width:150px;text-align: center;'],
-                        'template' => '{update} {delete}',
+                        'contentOptions' => ['style' => 'width:200px;text-align: center;'],
+                        'template' => '{view} {update} {delete}',
                         'buttons' => [
+                            'view' => function ($url, $model) {
+                                return Html::a('<span class="fa fa-eye"></span> ' . Yii::t('app', 'รายละเอียด'),
+                                    yii\helpers\Url::to(['/group/busines?groupID=' . $model->id]), [
+                                        'title' => Yii::t('app', 'รายละเอียด'),
+                                        'class' => 'btn btn-default btn-sm',
+                                        'data-action' => 'view',
+                                        'data-pjax' => 0
+                                    ]);
+                            },
                             'update' => function ($url, $model) {
                                 return Html::a('<span class="fa fa-pencil"></span> ' . Yii::t('app', 'แก้ไข'),
                                     yii\helpers\Url::to(['create-group/update?id=' . $model->id]), [
@@ -145,7 +154,10 @@ $this->params['breadcrumbs'][] = $this->title;
             var url = $(this).attr('href');
             var action = $(this).attr('data-action');
 
-            if (action === 'update' || action === 'view') {
+            if( action === 'view' ){
+                window.open(url,'_PARENT');
+            }
+            else if (action === 'update') {
                 modalCreateGroup(url);
             } else if (action === 'delete') {
                 yii.confirm('<?= Yii::t('chanpan', 'Are you sure you want to delete this item?')?>', function () {
