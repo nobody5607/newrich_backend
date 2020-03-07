@@ -31,8 +31,8 @@ class CreateBusines extends \yii\db\ActiveRecord
     {
         return [
             [['createBy', 'orderBy'], 'integer'],
-            [['createDate','groupID'], 'safe'],
-            [['title', 'detail'], 'string', 'max' => 255],
+            [['createDate','groupID','detail'], 'safe'],
+            [['title'], 'string', 'max' => 255],
         ];
     }
 

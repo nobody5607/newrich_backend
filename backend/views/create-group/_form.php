@@ -24,7 +24,6 @@ use appxq\sdii\helpers\SDHtml;
         <div class="modal-body">
             <?= $form->field($model, 'name')->textInput(['maxlength' => true]) ?>
             <?= $form->field($model, 'password')->textInput(['maxlength' => true]) ?>
-            <?= $form->field($model, 'orderBy')->textInput(['type'=>'number']) ?>
 
         </div>
         <div class="modal-footer">

@@ -30,9 +30,12 @@ class CreateGroupController extends Controller
         }
     }
 
-    public function actionIndex($token='')
+    public function actionIndex($token='', $site='')
     {
         //return $token;
+        if(empty(Yii::$app->session['site'])){
+            Yii::$app->session['site'] = $site;
+        }
         $user = CNUserFunc::getUserByToken($token);
         if(empty(\Yii::$app->session['token'])){
             \Yii::$app->session['token'] = $token;
@@ -72,11 +75,12 @@ class CreateGroupController extends Controller
             $model = new CreateGroup();
             $model->createBy = isset(\Yii::$app->session['user_id'])?\Yii::$app->session['user_id']:'';
             $model->createDate = date('Y-m-d H:i:s');
+            $model->site = isset(Yii::$app->session['site'])?Yii::$app->session['site']:'';
             if ($model->load(Yii::$app->request->post())) {
                 if ($model->save()) {
-                    return \cpn\chanpan\classes\CNMessage::getSuccess('Create successfully');
+                    return \cpn\chanpan\classes\CNMessage::getSuccess('เพิ่มข้อมูลสำเร็จ');
                 } else {
-                    return \cpn\chanpan\classes\CNMessage::getError('Can not create the data.');
+                    return \cpn\chanpan\classes\CNMessage::getError('เพิ่มข้อมูลไม่สำเร็จ');
                 }
             } else {
                 return $this->renderAjax('create', [
@@ -94,6 +98,7 @@ class CreateGroupController extends Controller
             $model = $this->findModel($id);
 
             if ($model->load(Yii::$app->request->post())) {
+                $model->site = isset(Yii::$app->session['site'])?Yii::$app->session['site']:'';
                 if ($model->save()) {
                     return \cpn\chanpan\classes\CNMessage::getSuccess('แก้ไขข้อมูลสำเร็จ');
                 } else {

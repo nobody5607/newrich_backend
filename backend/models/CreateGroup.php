@@ -30,7 +30,7 @@ class CreateGroup extends \yii\db\ActiveRecord
     {
         return [
             [['createBy', 'orderBy'], 'integer'],
-            [['createDate'], 'safe'],
+            [['createDate','site'], 'safe'],
             [['name'], 'string', 'max' => 255],
             [['name'], 'required','message'=>'ชื่อกลุ่มต้องไม่ว่างเปล่า'],
             [['password'], 'required','message'=>'รหัสผ่านต้องไม่ว่างเปล่า'],
@@ -48,6 +48,7 @@ class CreateGroup extends \yii\db\ActiveRecord
             'createBy' => 'สร้างโดย',
             'createDate' => 'สร้างเมื่อ',
             'orderBy' => 'เรียงลำดับ',
+            'site'=>'Site'
         ];
     }
 }

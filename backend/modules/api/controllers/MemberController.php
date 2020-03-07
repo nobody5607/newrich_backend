@@ -4,6 +4,7 @@ namespace backend\modules\api\controllers;
 
 use appxq\sdii\utils\SDdate;
 use appxq\sdii\utils\VarDumper;
+use backend\models\CreateBusines;
 use backend\models\CreateGroup;
 use backend\modules\api\classes\ClsAccessCoss;
 use backend\modules\api\classes\ClsAuth;
@@ -34,9 +35,33 @@ class MemberController extends Controller
     }
     //create group
     public function actionGroup(){
-        $group = CreateGroup::find()->orderBy(['createDate'=>SORT_DESC])->all();
+        $site = \Yii::$app->request->get('site');
+        $group = CreateGroup::find()->where('site=:site',[
+            ':site'=>$site
+        ])->orderBy(['createDate'=>SORT_DESC])->all();
         return CNMessage::getSuccess("success", $group);
     }
+    public function actionGroupPass(){
+        $id = \Yii::$app->request->get('id');
+        $pass = \Yii::$app->request->get('password');
+        $group = CreateGroup::find()->where('id=:id AND password=:password',[
+            ':id'=>$id,
+            ':password'=>$pass
+        ])->orderBy(['createDate'=>SORT_DESC])->all();
+        if($group){
+            return CNMessage::getSuccess("success", $group);
+        }else{
+            return CNMessage::getError("error");
+        }
+    }
+    public function actionGroupDetail($groupID){
+        $group = CreateBusines::find()->where('groupID=:groupID',[
+            ':groupID'=>$groupID
+        ])->orderBy(['createDate'=>SORT_DESC])->all();
+        return CNMessage::getSuccess("success", $group);
+    }
+
+
     public function actionGetMember(){
         $limit = \Yii::$app->request->get('limit');
         $site = \Yii::$app->request->get('site');

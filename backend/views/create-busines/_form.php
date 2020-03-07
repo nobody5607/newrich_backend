@@ -26,7 +26,7 @@ use appxq\sdii\helpers\SDHtml;
 
     <?php
     echo $form->field($model, 'detail')->widget(\cpn\chanpan\widgets\CNFroalaEditorWidget::className(), [
-        'toolbar_size' => 'sm',
+        'toolbar_size' => 'md',
         'options' => ['class' => 'detail'],
     ])->label(false);
     ?>
