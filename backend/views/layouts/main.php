@@ -15,9 +15,9 @@ $token = isset(\Yii::$app->session['token'])?\Yii::$app->session['token']:'';
 $baseUrl = isset(\Yii::$app->session['redirectUrl'])?\Yii::$app->session['redirectUrl']:'';
 //\appxq\sdii\utils\VarDumper::dump($baseUrl);
 if($baseUrl == ''){
-    $baseUrl = 'http://newriched.com/login';//'http://localhost:3000/login';//
+    $baseUrl = 'http://newriched.com';//'http://localhost:3000/login';//
 }
-$url = "{$baseUrl}?token={$token}";
+$url = "{$baseUrl}/login?token={$token}";
 
 //\appxq\sdii\utils\VarDumper::dump($baseUrl);
 AppAsset::register($this);
