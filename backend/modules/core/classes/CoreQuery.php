@@ -12,6 +12,8 @@ namespace backend\modules\core\classes;
  * @package 
  * @version 1.0.0 Date: 2 เม.ย. 2557 13:07:28
  */
+
+use appxq\sdii\utils\VarDumper;
 use Yii;
 use backend\modules\core\models\CoreOptions;
 use backend\modules\core\models\CoreFields;
