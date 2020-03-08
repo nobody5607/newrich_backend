@@ -42,7 +42,7 @@ class CreateGroupController extends Controller
             \Yii::$app->session['token'] = $token;
         }
         if(empty(\Yii::$app->session['user_id'])){
-            \Yii::$app->session['user_id'] = $user->id;
+            \Yii::$app->session['user_id'] = $user['id'];
         }
 
         $dataProvider = new ActiveDataProvider([
