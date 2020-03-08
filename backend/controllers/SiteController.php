@@ -97,6 +97,18 @@ class SiteController extends Controller
     public function actionIndex()
     {
         //return $this->render('index');
+        Yii::$app->mailer->compose('@backend/mail/layouts/reset',[
+            'fullname'=>'สาธิต สีถาพล'
+        ])
+            ->setFrom(['chanpan.nuttaphon@gmail.com'=>'Nuttaphon Chanpan'])
+            ->setTo('chanpan.nuttaphon1993@gmail.com')
+            ->setSubject('OK')
+            ->send();
+
+
+
+
+        VarDumper::dump("OK");
         if(Yii::$app->user->isGuest){
             return $this->redirect(['/user/login']);
         }
