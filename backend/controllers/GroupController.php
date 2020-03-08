@@ -85,7 +85,7 @@ class GroupController extends Controller
     }
 
     public function actionUpdate(){
-        $user = User::find()->where('auth_key=:token',[':token'=>$token])->one();
-        return $user;
+//        actionUpdate$user = User::find()->where('auth_key=:token',[':token'=>$token])->one();
+//        return $user;$user
     }
 }

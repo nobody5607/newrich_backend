@@ -4,6 +4,7 @@ namespace backend\controllers;
 
 use appxq\sdii\utils\SDdate;
 use appxq\sdii\utils\VarDumper;
+use backend\models\CreateBusines;
 use common\modules\user\classes\CNUserFunc;
 use Yii;
 use backend\models\CreateGroup;
@@ -119,7 +120,13 @@ class CreateGroupController extends Controller
         if (Yii::$app->getRequest()->isAjax) {
             $model = $this->findModel($id);
             if ($model->delete()) {
-
+                $bussiness = CreateBusines::find()
+                    ->where('groupID=:groupID',[
+                        ':groupID'=>$id
+                    ])->all();
+                foreach($bussiness as $k=>$v){
+                    $v->delete();
+                }
                 return \cpn\chanpan\classes\CNMessage::getSuccess('ลบข้อมูลสำเร็จ');
             } else {
                 return \cpn\chanpan\classes\CNMessage::getError('ลบข้อมูลไม่สำเร็จ');
