@@ -138,9 +138,20 @@ class MemberController extends Controller
 
 
     public function actionGetMemberByType(){
+        $limit = \Yii::$app->request->get('limit');
+        $site = \Yii::$app->request->get('site');
         $type= \Yii::$app->request->get('type');
+
+        $user = ClsAuth::getUserByToken($this->token);
+        $profiles = Profile::find()
+            ->where('parent_id=:parent_id AND user_id <> :user_id AND member_type=:type AND site=:site',[
+                ':parent_id' => $user->id,
+                ':user_id' => $user->id,
+                ':site'=>$site,
+                ':type'=>$type
+            ])->all();
         $output = [];
-        $profiles = Profile::find()->where('member_type=:type',[':type'=>$type])->all();
+//        $profiles = Profile::find()->where('member_type=:type',[':type'=>$type])->all();
         if(!$profiles){
             return CNMessage::getError("Success","ไม่พบข้อมูล");
         }
