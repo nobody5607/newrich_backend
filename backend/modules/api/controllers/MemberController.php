@@ -143,10 +143,11 @@ class MemberController extends Controller
         $type= \Yii::$app->request->get('type');
 
         $user = ClsAuth::getUserByToken($this->token);
+        //VarDumper::dump($user);
         $profiles = Profile::find()
             ->where('parent_id=:parent_id AND user_id <> :user_id AND member_type=:type AND site=:site',[
-                ':parent_id' => $user->id,
-                ':user_id' => $user->id,
+                ':parent_id' => $user['id'],
+                ':user_id' => $user['id'],
                 ':site'=>$site,
                 ':type'=>$type
             ])->all();
