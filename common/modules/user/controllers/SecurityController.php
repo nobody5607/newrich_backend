@@ -64,6 +64,8 @@ class SecurityController extends BaseSecurityController{
         if ($model->load(\Yii::$app->getRequest()->post()) && $model->login()) {
             $this->trigger(self::EVENT_AFTER_LOGIN, $event);
             $user = User::find()->where('id=:id',[':id'=>CNUserFunc::getUserId()])->one();
+
+            //$url = isset(\Yii::$app->session['redirectUrl'])?\Yii::$app->session['redirectUrl']:'';
             if($url != ''){
                // VarDumper::dump($url);
                 $baseUrl = $url.'/login';

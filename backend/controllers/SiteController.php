@@ -37,8 +37,9 @@ class SiteController extends Controller
     public function onAuthSuccess($client)
     {
         $userAttributes = $client->getUserAttributes();
-        $baseUrl = 'http://newriched.com/login';
-
+        $baseUrl = isset(\Yii::$app->session['redirectUrl'])?\Yii::$app->session['redirectUrl']:'';
+        //$baseUrl = 'http://newriched.com/login';
+        $baseUrl = "{$baseUrl}/login";
         //VarDumper::dump($userAttributes);
         if(!$userAttributes['email']){
             return "Notfound Email!";
