@@ -132,7 +132,8 @@ return [
             'group/*',
             'gii/*',
             'create-busines/*',
-            'create-group/*'
+            'create-group/*',
+            'text-editor/*',
             //'informations/index',
             //'admin/*',
         ]
