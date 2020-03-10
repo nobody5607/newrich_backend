@@ -45,6 +45,7 @@ class CreateGroupController extends Controller
             \Yii::$app->session['user_id'] = $user['id'];
         }
 
+
         $dataProvider = new ActiveDataProvider([
             'query' => CreateGroup::find()
                 ->where(['createBy'=>$user->id])
