@@ -13,87 +13,75 @@ use appxq\sdii\helpers\SDHtml;
 
 $this->title = 'สร้างกลุ่ม';
 $this->params['breadcrumbs'][] = $this->title;
-
+$datas = $dataProvider->getModels();
 ?>
-    <div class="box box-primary">
-        <div class="box-header">
-            <div class="row">
-                <div class="col-md-6 col-xs-6">
-                    <div style="font-size:20pt">
-                        <?= Html::encode($this->title) ?>
-                    </div>
-                </div>
-                <div class="col-md-6 col-xs-6 text-right">
-                    <?= Html::button(SDHtml::getBtnAdd() . ' สร้างกลุ่ม', ['data-url' => Url::to(['create-group/create']), 'class' => 'btn btn-success', 'id' => 'modal-addbtn-create-group'])
-                    ?>
-                </div>
-
+<div class="row">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="col-md-8 col-xs-8">
+                <h3>กลุ่มธุรกิจ</h3>
+            </div>
+            <div class="col-md-4 col-xs-4 text-right">
+                <?= Html::button(SDHtml::getBtnAdd() . ' สร้างกลุ่ม', ['data-url' => Url::to(['create-group/create']), 'class' => 'btn btn-success btnCreate', 'id' => 'modal-addbtn-create-group'])
+                ?>
             </div>
         </div>
-        <div class="box-body">
-
-            <?php Pjax::begin(['id' => 'create-group-grid-pjax']); ?>
-            <?= \kartik\grid\GridView::widget([
-                'id' => 'create-group-grid',
-                /*	'panelBtn' => Html::button(SDHtml::getBtnAdd(), ['data-url'=>Url::to(['create-group/create']), 'class' => 'btn btn-success btn-sm', 'id'=>'modal-addbtn-create-group']). ' ' .
-                              Html::button(SDHtml::getBtnDelete(), ['data-url'=>Url::to(['create-group/deletes']), 'class' => 'btn btn-danger btn-sm', 'id'=>'modal-delbtn-create-group', 'disabled'=>true]),*/
-                'dataProvider' => $dataProvider,
-                'layout'=> "{items}",
-                'columns' => [
-
-                    [
-                        'format' => 'raw',
-                        'label' => 'ชื่อกลุ่ม',
-                        'value' => function ($model) {
-                            return "<div class='linkCreateBusines' data-url=" . Url::to(['/group/busines?groupID=' . $model->id]) . " style='cursor:pointer;'>{$model->name}</div>";
-                        }
-                    ],
-//                    'orderBy',
-
-                    [
-                        'class' => 'appxq\sdii\widgets\ActionColumn',
-                        'contentOptions' => ['style' => 'width:200px;text-align: center;'],
-                        'template' => '{view} {update} {delete}',
-                        'buttons' => [
-                            'view' => function ($url, $model) {
-                                return Html::a('<span class="fa fa-eye"></span> ' . Yii::t('app', 'รายละเอียด'),
-                                    yii\helpers\Url::to(['/group/busines?groupID=' . $model->id]), [
-                                        'title' => Yii::t('app', 'รายละเอียด'),
-                                        'class' => 'btn btn-default btn-sm',
-                                        'data-action' => 'view',
-                                        'data-pjax' => 0
-                                    ]);
-                            },
-                            'update' => function ($url, $model) {
-                                return Html::a('<span class="fa fa-pencil"></span> ' . Yii::t('app', 'แก้ไข'),
-                                    yii\helpers\Url::to(['create-group/update?id=' . $model->id]), [
-                                        'title' => Yii::t('app', 'Update'),
-                                        'class' => 'btn btn-primary btn-sm',
-                                        'data-action' => 'update',
-                                        'data-pjax' => 0
-                                    ]);
-                            },
-                            'delete' => function ($url, $model) {
-                                return Html::a('<span class="fa fa-trash"></span> ' . Yii::t('app', 'ลบ'),
-                                    yii\helpers\Url::to(['create-group/delete?id=' . $model->id]), [
-                                        'title' => Yii::t('app', 'Delete'),
-                                        'class' => 'btn btn-danger btn-sm',
-                                        'data-confirm' => Yii::t('chanpan', 'Are you sure you want to delete this item?'),
-                                        'data-method' => 'post',
-                                        'data-action' => 'delete',
-                                        'data-pjax' => 0
-                                    ]);
-
-
-                            },
-                        ]
-                    ],
-                ],
-            ]); ?>
-            <?php Pjax::end(); ?>
-
-        </div>
     </div>
+    <?php if ($datas): ?>
+        <?php foreach ($datas as $k => $v): ?>
+            <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
+                <div class="thumbnail">
+                    <div class="caption">
+                        <div class="col-lg-12">
+
+
+                            <div class="pull-left">
+                                <a
+                                   href="<?= \yii\helpers\Url::to(['/group/busines?groupID=' . $v->id]) ?>">
+                                    <i class="glyphicon glyphicon-eye-open"></i> ดูรายละเอียด</a>
+
+                                <a href="#" class="btnEdit"
+                                   data-url="<?= \yii\helpers\Url::to(['/create-group/update?id=' . $v->id]) ?>">
+                                    <i class="glyphicon glyphicon-pencil"></i> แก้ไข</a>
+                                <a href="#" class="btnDelete"
+                                   data-url="<?= \yii\helpers\Url::to(['/create-group/delete?id=' . $v->id]) ?>">
+                                    <i class="glyphicon glyphicon-trash"></i> ลบ</a>
+                            </div>
+
+                        </div>
+                        <div class="col-lg-12 well-add-card">
+                            <h4>
+                                <?php
+                                if (isset($v['name'])) {
+                                    echo $v['name'];
+                                }
+                                ?>
+                            </h4>
+                        </div>
+
+                        <div>
+                            <div class="col-md-12">
+
+                                <i class="glyphicon glyphicon-calendar"></i> <?php
+
+                                if (isset($v['createDate'])) {
+                                    echo \appxq\sdii\utils\SDdate::mysql2phpThDate($v['createDate']);
+                                }
+                                ?>
+                            </div>
+                        </div>
+                        <div class="row"></div>
+
+                    </div>
+                </div>
+            </div>
+        <?php endforeach; ?>
+    <?php else: ?>
+
+    <?php endif; ?>
+</div>
+
+
 <?= ModalForm::widget([
     'id' => 'modal-create-group',
     //'size'=>'modal-lg',
@@ -104,135 +92,60 @@ $this->params['breadcrumbs'][] = $this->title;
     //'key' => 'bootstrap-modal',
     'position' => \yii\web\View::POS_READY
 ]); ?>
-    <script>
-        // JS script
-        $(".linkCreateBusines").on('click', function () {
-            let url = $(this).attr('data-url');
-            window.open(url,'_PARENT');
-            //alert(url);
-            return false;
-        });
-        function loadData(url) {
-            $.get(url, function (result) {
-                $("#reloadDive").html(result);
-            });
-            return false;
-        }
+<script>
+    // JS script
+    $(".btnCreate").on('click', function () {
+        let url = $(this).attr('data-url');
+        modalCreateGroup(url);
+        //alert(url);
+        return false;
+    });
 
-        $(".pagination li a").on('click', function () {
-            let url = $(this).attr('href');
-            loadData(url)
-            return false;
-        });
-
-        $('#modal-addbtn-create-group').on('click', function () {
-            modalCreateGroup($(this).attr('data-url'));
-        });
-
-        $('#modal-delbtn-create-group').on('click', function () {
-            selectionCreateGroupGrid($(this).attr('data-url'));
-        });
-
-        $('#create-group-grid-pjax').on('click', '.select-on-check-all', function () {
-            window.setTimeout(function () {
-                var key = $('#create-group-grid').yiiGridView('getSelectedRows');
-                disabledCreateGroupBtn(key.length);
-            }, 100);
-        });
-
-        $('.selectionCoreOptionIds').on('click', function () {
-            var key = $('input:checked[class=\"' + $(this).attr('class') + '\"]');
-            disabledCreateGroupBtn(key.length);
-        });
-
-        $('#create-group-grid-pjax').on('dblclick', 'tbody tr', function () {
-            var id = $(this).attr('data-key');
-            modalCreateGroup('<?= Url::to(['create-group/update', 'id' => ''])?>' + id);
-        });
-
-        $('#create-group-grid-pjax').on('click', 'tbody tr td a', function () {
-            var url = $(this).attr('href');
-            var action = $(this).attr('data-action');
-
-            if( action === 'view' ){
-                window.open(url,'_PARENT');
-            }
-            else if (action === 'update') {
-                modalCreateGroup(url);
-            } else if (action === 'delete') {
-                yii.confirm('<?= Yii::t('chanpan', 'Are you sure you want to delete this item?')?>', function () {
-                    $.post(
-                        url
-                    ).done(function (result) {
-                        if (result.status == 'success') {
-                            swal({
-                                title: result.message,
-                                text: result.message,
-                                type: result.status,
-                                timer: 1000
-                            });
-                            $.pjax.reload({container: '#create-group-grid-pjax'});
-                        } else {
-                            swal({
-                                title: result.message,
-                                text: result.message,
-                                type: result.status,
-                                timer: 1000
-                            });
-                        }
-                    }).fail(function () {
-                        <?= SDNoty::show("'" . SDHtml::getMsgError() . "Server Error'", '"error"')?>
-                        console.log('server error');
-                    });
-                });
-            }
-            return false;
-        });
-
-        function disabledCreateGroupBtn(num) {
-            if (num > 0) {
-                $('#modal-delbtn-create-group').attr('disabled', false);
-            } else {
-                $('#modal-delbtn-create-group').attr('disabled', true);
-            }
-        }
-
-        function selectionCreateGroupGrid(url) {
-            yii.confirm('<?= Yii::t('chanpan', 'Are you sure you want to delete these items?')?>', function () {
-                $.ajax({
-                    method: 'POST',
-                    url: url,
-                    data: $('.selectionCreateGroupIds:checked[name=\"selection[]\"]').serialize(),
-                    dataType: 'JSON',
-                    success: function (result, textStatus) {
-                        if (result.status == 'success') {
-                            swal({
-                                title: result.status,
-                                text: result.message,
-                                type: result.status,
-                                timer: 2000
-                            });
-                            $.pjax.reload({container: '#create-group-grid-pjax'});
-                        } else {
-                            swal({
-                                title: result.status,
-                                text: result.message,
-                                type: result.status,
-                                timer: 2000
-                            });
-                        }
+    $(".btnEdit").on('click', function () {
+        let url = $(this).attr('data-url');
+        modalCreateGroup(url);
+        return false;
+    });
+    $(".btnDelete").on('click', function () {
+        let url = $(this).attr('data-url');
+        bootbox.confirm('คุณต้องการลบรายการนี้ใช่หรือไม่', function (result) {
+            if(result === true){
+                $.post(
+                    url
+                ).done(function (result) {
+                    if (result.status == 'success') {
+                        swal({
+                            title: result.message,
+                            text: result.message,
+                            type: result.status,
+                            timer: 1000
+                        });
+                        location.reload();
+                    } else {
+                        swal({
+                            title: result.message,
+                            text: result.message,
+                            type: result.status,
+                            timer: 1000
+                        });
                     }
+                }).fail(function () {
+                    <?= SDNoty::show("'" . SDHtml::getMsgError() . "Server Error'", '"error"')?>
+                    console.log('server error');
                 });
-            });
-        }
+            }
+        })
+        return false;
+    });
 
-        function modalCreateGroup(url) {
-            $('#modal-create-group .modal-content').html('<div class=\"sdloader \"><i class=\"sdloader-icon\"></i></div>');
-            $('#modal-create-group').modal('show')
-                .find('.modal-content')
-                .load(url);
-        }
-    </script>
+
+    function modalCreateGroup(url) {
+        $('#modal-create-group .modal-content').html('<div class=\"sdloader \"><i class=\"sdloader-icon\"></i></div>');
+        $('#modal-create-group').modal('show')
+            .find('.modal-content')
+            .load(url);
+    }
+</script>
 <?php \richardfan\widget\JSRegister::end(); ?>
 
 

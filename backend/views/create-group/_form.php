@@ -61,17 +61,19 @@ use appxq\sdii\helpers\SDHtml;
                         title: result.message,
                         text: result.message,
                         type: result.status,
-                        timer: 1000
+                        timer: 2000
                     });
                     $(document).find('#modal-create-group').modal('hide');
-                    $.pjax.reload({container: '#create-group-grid-pjax'});
+                    setTimeout(function () {
+                        location.reload();
+                    },2000);
 
                 } else {
                     swal({
                         title: result.message,
                         text: result.message,
                         type: result.status,
-                        timer: 1000
+                        timer: 2000
                     });
                 }
             }).fail(function () {
