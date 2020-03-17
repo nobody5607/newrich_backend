@@ -35,8 +35,8 @@ class Orders extends \yii\db\ActiveRecord
     {
         return [
             [['id'], 'required'],
-            [['user_id', 'create_by', 'update_by', 'rstat'], 'integer'],
-            [['create_date', 'update_date'], 'safe'],
+            [['create_by', 'update_by', 'rstat'], 'integer'],
+            [['create_date', 'update_date','user_id'], 'safe'],
             [['id'], 'string', 'max' => 100],
             [['order', 'score', 'percent'], 'string', 'max' => 255],
             [['id'], 'unique'],

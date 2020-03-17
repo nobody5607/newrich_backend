@@ -125,7 +125,7 @@ class SiteController extends Controller
                     if($k<3){
                         continue;
                     }else{
-                        $user = Profile::find()->where(['member_id'=>$v['F']])->one();
+                        //$user = Profile::find()->where(['member_id'=>$v['F']])->one();
                         $order = Orders::findOne((string)$v['A']);
                         $insert = false;
                         if(!$order){
@@ -134,7 +134,7 @@ class SiteController extends Controller
                         }
                         $order->setAttributes([
                             'id'=>(string)$v['A'],
-                            'user_id'=>$user['user_id'],
+                            'user_id'=>(string)$v['F'],
                             'order'=>(string)$v['D'],
                             'score'=>(string)$v['B'],
                             'percent'=>(string)$v['C'],
