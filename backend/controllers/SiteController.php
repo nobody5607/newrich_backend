@@ -160,7 +160,7 @@ class SiteController extends Controller
                                             $detail->qty = (int)$d['D'];
                                             $detail->price = (string)$d['E'];
                                             $detail->score = $d['F'];
-                                            $detail->percent = $d['G'];
+                                            $detail->percent = (string)$d['G'];
                                             $detail->create_date = $convertDate;
                                             $detail->create_by = CNUserFunc::getUserId();
                                             $detail->unit_price = (string)$d['I'];
