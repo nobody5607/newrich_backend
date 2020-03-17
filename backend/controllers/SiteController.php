@@ -1,16 +1,23 @@
 <?php
 namespace backend\controllers;
 
+use appxq\sdii\utils\SDdate;
+use appxq\sdii\utils\SDUtility;
 use appxq\sdii\utils\VarDumper;
+use backend\models\Files;
+use backend\modules\api\models\OrderDetail;
+use backend\modules\api\models\Orders;
 use common\modules\user\classes\CNUserFunc;
 use common\modules\user\models\Profile;
 use common\modules\user\models\User;
+use cpn\chanpan\classes\CNMessage;
 use Yii;
 use yii\web\Controller;
 use yii\filters\VerbFilter;
 use yii\filters\AccessControl;
 use common\models\LoginForm;
 use kartik\mpdf\Pdf;
+use yii\web\UploadedFile;
 
 /**
  * Site controller
@@ -97,29 +104,89 @@ class SiteController extends Controller
      */
     public function actionIndex()
     {
-//        //return $this->render('index');
-//        Yii::$app->mailer->compose('@backend/mail/layouts/reset',[
-//            'fullname'=>'สาธิต สีถาพล'
-//        ])
-//            ->setFrom(['chanpan.nuttaphon@gmail.com'=>'Nuttaphon Chanpan'])
-//            ->setTo('chanpan.nuttaphon1993@gmail.com')
-//            ->setSubject('OK')
-//            ->send();send
+        $model = new Files();
+        if (Yii::$app->request->isPost) {
+            $model->file = UploadedFile::getInstance($model, 'file');
 
+            if ($model->file && $model->validate()) {
+                $fileName = 'uploads/' . SDUtility::getMillisecTime() . '.' . $model->file->extension;
+                $model->file->saveAs($fileName);
 
-        if(Yii::$app->user->isGuest){
-            return $this->redirect(['/user/login']);
+                $objPHPExcel = \PHPExcel_IOFactory::load($fileName);
+                $order = $objPHPExcel->getSheet(0)
+                    ->toArray(null, true, true, true);
+                $orderDetail = $objPHPExcel->getSheet(1)
+                    ->toArray(null, true, true, true);
+                $insert = false;
+
+                @unlink($fileName);
+
+                foreach($order as $k=>$v){
+                    if($k<3){
+                        continue;
+                    }else{
+                        $user = Profile::find()->where(['member_id'=>$v['F']])->one();
+                        $order = Orders::findOne((string)$v['A']);
+                        $insert = false;
+                        if(!$order){
+                            $insert = true;
+                            $order = new Orders();
+                        }
+                        $order->setAttributes([
+                            'id'=>(string)$v['A'],
+                            'user_id'=>$user['user_id'],
+                            'order'=>(string)$v['D'],
+                            'score'=>(string)$v['B'],
+                            'percent'=>(string)$v['C'],
+                            'create_by'=>CNUserFunc::getUserId(),
+                            'create_date'=>date('Y-m-d H:i:s'),
+                            'rstat'=>1
+
+                        ]);
+                        if($order->save()){
+                            if($insert === true){
+                                foreach($orderDetail as $k2=>$d){
+                                    if($k2<3){
+                                        continue;
+                                    }else{
+                                        if($d['A'] == $d['A']){
+                                            $time = strtotime($d['H']);
+                                            $convertDate = date('Y-m-d',$time);
+
+                                            $detail= new OrderDetail();
+                                            $detail->order_id = (string)$d['A'];
+                                            $detail->product_id = (string)$d['B'];
+                                            $detail->product_name = (string)$d['C'];
+                                            $detail->qty = (int)$d['D'];
+                                            $detail->price = (string)$d['E'];
+                                            $detail->score = $d['F'];
+                                            $detail->percent = $d['G'];
+                                            $detail->create_date = $convertDate;
+                                            $detail->create_by = CNUserFunc::getUserId();
+                                            $detail->unit_price = (string)$d['I'];
+                                            $detail->rstat = 1;
+//                            VarDumper::dump($d);
+                                            if(!$detail->save()){
+                                                VarDumper::dump($detail->errors);
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }else{
+                            return CNMessage::getError("เกิดข้อผิดพลาด", $order->errors);
+                        }
+                        //end if save order
+                    }
+
+                }//end foreach order
+                return CNMessage::getSuccess("อัพโหลดข้อมูลสำเร็จ");
+
+            }
         }
-        \Yii::$app->user->logout();
-        $url = isset(\Yii::$app->session['redirectUrl'])?\Yii::$app->session['redirectUrl']:'';
-        if($url != ''){
-            $user = User::find()->where('id=:id',[':id'=>CNUserFunc::getUserId()])->one();
-            //$baseUrl = 'http://newriched.com/login';
-            $url = "{$url}?token={$user['auth_key']}";
-            \Yii::$app->user->logout();
-            return $this->redirect($url);
-        }
-        return $this->render('index');
+        return $this->render('index',[
+            'model'=>$model
+        ]);
  
     }
     public function actionAbout()

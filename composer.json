@@ -44,7 +44,8 @@
         "meysampg/yii2-formbuilder": "*",
         "sansusan/yii2-jqwidgets-asset": "dev-master",
         "loveorigami/yii2-slimscroll-widget": "*",
-        "firebase/php-jwt": "^5.0"
+        "firebase/php-jwt": "^5.0",
+        "phpoffice/phpexcel": "^1.8"
         
     },
     "require-dev": {
