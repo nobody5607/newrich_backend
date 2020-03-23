@@ -5,6 +5,7 @@ namespace backend\controllers;
 use appxq\sdii\utils\SDdate;
 use appxq\sdii\utils\VarDumper;
 use backend\models\CreateBusines;
+use backend\models\GroupUser;
 use common\modules\user\classes\CNUserFunc;
 use Yii;
 use backend\models\CreateGroup;
@@ -80,6 +81,13 @@ class CreateGroupController extends Controller
             $model->site = isset(Yii::$app->session['site'])?Yii::$app->session['site']:'';
             if ($model->load(Yii::$app->request->post())) {
                 if ($model->save()) {
+                    $creareGroup = new GroupUser();
+                    $creareGroup->group_id = $model->id;
+                    $creareGroup->user_id = $model->createBy;
+                    $creareGroup->create_by = $model->createBy;
+                    $creareGroup->create_date = date('Y-m-d H:i:s');
+                    $creareGroup->rstat = 1;
+                    $creareGroup->save();
                     return \cpn\chanpan\classes\CNMessage::getSuccess('เพิ่มข้อมูลสำเร็จ');
                 } else {
                     return \cpn\chanpan\classes\CNMessage::getError('เพิ่มข้อมูลไม่สำเร็จ');
@@ -119,7 +127,14 @@ class CreateGroupController extends Controller
     public function actionDelete($id)
     {
         if (Yii::$app->getRequest()->isAjax) {
+
             $model = $this->findModel($id);
+
+            $groupUser = GroupUser::find()->where(['group_id'=>$model->id])->all();
+            foreach($groupUser as $k=>$v){
+                $v->delete();
+            }
+
             if ($model->delete()) {
                 $bussiness = CreateBusines::find()
                     ->where('groupID=:groupID',[
