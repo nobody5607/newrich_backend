@@ -42,6 +42,7 @@ class MemberController extends Controller
             ->select('createGroup.*')
             ->innerJoin('groupUser','groupUser.group_id=createGroup.id')
             ->where(['createGroup.site'=>$site,'groupUser.user_id'=>$user['id']])
+            ->orWhere(['groupUser.create_by'=>$user['id']])
             //->andWhere(['groupUser.user_id'=>$user->id])
             ->orderBy(['createDate'=>SORT_DESC])->all();
 
