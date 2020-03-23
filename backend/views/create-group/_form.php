@@ -24,7 +24,9 @@ use appxq\sdii\helpers\SDHtml;
         <div class="modal-body">
             <?= $form->field($model, 'name')->textInput(['maxlength' => true]) ?>
             <?= $form->field($model, 'password')->textInput(['maxlength' => true]) ?>
-
+            <?php if(!$model->isNewRecord):?>
+                <a href="<?= \yii\helpers\Url::to(['/group-user/index?id='.$model->id])?>">เพิ่มผู้ใช้</a>
+            <?php endif; ?>
         </div>
         <div class="modal-footer">
             <div class="row">

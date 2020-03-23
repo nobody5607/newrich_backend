@@ -134,6 +134,7 @@ return [
             'create-busines/*',
             'create-group/*',
             'text-editor/*',
+            'group-user/*',
             //'informations/index',
             //'admin/*',
         ]

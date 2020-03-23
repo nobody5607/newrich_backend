@@ -32,24 +32,7 @@ $datas = $dataProvider->getModels();
             <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
                 <div class="thumbnail">
                     <div class="caption">
-                        <div class="col-lg-12">
 
-
-                            <div class="pull-left">
-                                <a
-                                   href="<?= \yii\helpers\Url::to(['/group/busines?groupID=' . $v->id]) ?>">
-                                    <i class="glyphicon glyphicon-eye-open"></i> ดูรายละเอียด</a>
-
-                                <a class="btn btn-primary btnEdit" href="#"
-                                   data-url="<?= \yii\helpers\Url::to(['/create-group/update?id=' . $v->id]) ?>">
-                                    <i class="glyphicon glyphicon-pencil"></i> แก้ไข</a>
-                                <a class="btn btn-danger btnDelete" href="#"
-                                   data-url="<?= \yii\helpers\Url::to(['/create-group/delete?id=' . $v->id]) ?>">
-                                    <i class="glyphicon glyphicon-trash"></i> ลบ</a>
-                            </div>
-                            <div class="clearfix"></div>
-
-                        </div>
                         <div class="col-lg-12 well-add-card">
                             <h4>
                                 <?php
@@ -70,6 +53,34 @@ $datas = $dataProvider->getModels();
                                 }
                                 ?>
                             </div>
+                        </div>
+                        <div class="col-lg-12">
+
+                            <div class="clearfix"></div>
+                            <br>
+                            <div class="pull-left">
+                                <a
+                                        href="<?= \yii\helpers\Url::to(['/group/busines?groupID=' . $v->id]) ?>">
+                                    <i class="glyphicon glyphicon-eye-open"></i> ดูรายละเอียด
+                                </a> |
+
+                                <a class=" btnEdit" href="#"
+                                   data-url="<?= \yii\helpers\Url::to(['/create-group/update?id=' . $v->id]) ?>">
+                                    <i class="glyphicon glyphicon-pencil"></i> แก้ไข
+                                </a>
+                                |
+                                <a class=" btnDelete" href="#"
+                                   data-url="<?= \yii\helpers\Url::to(['/create-group/delete?id=' . $v->id]) ?>">
+                                    <i class="glyphicon glyphicon-trash"></i> ลบ</a>
+                                |
+                                <a
+                                        href="<?= \yii\helpers\Url::to(['/group-user/index?id=' . $v->id]) ?>">
+                                    <i class="glyphicon glyphicon-user"></i>  เพิ่มผู้ใช้</a>
+
+
+                            </div>
+                            <div class="clearfix"></div>
+
                         </div>
                         <div class="row"></div>
 
