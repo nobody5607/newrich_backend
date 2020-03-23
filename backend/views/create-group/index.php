@@ -36,14 +36,14 @@ $datas = $dataProvider->getModels();
 
 
                             <div class="pull-left">
-                                <a
+                                <a class="btn btn-default "
                                    href="<?= \yii\helpers\Url::to(['/group/busines?groupID=' . $v->id]) ?>">
                                     <i class="glyphicon glyphicon-eye-open"></i> ดูรายละเอียด</a>
 
-                                <a href="#" class="btnEdit"
+                                <a class="btn btn-primary " href="#" class="btnEdit"
                                    data-url="<?= \yii\helpers\Url::to(['/create-group/update?id=' . $v->id]) ?>">
                                     <i class="glyphicon glyphicon-pencil"></i> แก้ไข</a>
-                                <a href="#" class="btnDelete"
+                                <a class="btn btn-danger " href="#" class="btnDelete"
                                    data-url="<?= \yii\helpers\Url::to(['/create-group/delete?id=' . $v->id]) ?>">
                                     <i class="glyphicon glyphicon-trash"></i> ลบ</a>
                             </div>
