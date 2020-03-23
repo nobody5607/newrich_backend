@@ -73,6 +73,9 @@ class SecurityController extends BaseSecurityController{
                 \Yii::$app->user->logout();
                 return $this->redirect($url);
             }else{
+                if(\Yii::$app->user->can('admin')) {
+                    return $this->redirect(['/admins']);
+                }
                 return $this->goHome();
             }
             return $this->goBack();
