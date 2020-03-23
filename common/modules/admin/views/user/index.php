@@ -11,6 +11,7 @@ use mdm\admin\components\Helper;
 $this->title = Yii::t('rbac-admin', 'ผู้ใช้');
 $this->params['breadcrumbs'][] = $this->title;
 ?>
+<a  href="<?= \yii\helpers\Url::to(['/admins/index'])?>">&lt; ย้อนกลับ</a>
 <div class="box box-primary">
     <div class="box-header">
         <div class="row">

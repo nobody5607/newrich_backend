@@ -8,6 +8,9 @@ use yii\base\InvalidParamException;
  
 class CNUtils {
 
+    public static $statusPayment = ['0'=>'รอชำระเงิน','1'=>'ชำระเงินแล้ว'];
+//    public static $amountDay = ['30'=>'1 เดือน','90'=>'3 เดือน','183'=>'6 เดือน','365'=>'1 ปี'];
+    public static $amountDay = ['365'=>'1 ปี'];
     public static function array2String($arry) {
         $str = '';
         try {
