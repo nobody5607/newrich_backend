@@ -31,14 +31,21 @@ class MemberController extends Controller
         if(!$this->token){
             return CNMessage::getError("Error", "คุณไม่มีสิทธิ์ใช้งานส่วนนี้");
         }
+
         return true;
     }
     //create group
     public function actionGroup(){
         $site = \Yii::$app->request->get('site');
-        $group = CreateGroup::find()->where('site=:site',[
-            ':site'=>$site
-        ])->orderBy(['createDate'=>SORT_DESC])->all();
+        $user = ClsAuth::getUserByToken($this->token);
+        $group = CreateGroup::find()
+            ->select('createGroup.*')
+            ->innerJoin('groupUser','groupUser.group_id=createGroup.id')
+            ->where(['createGroup.site'=>$site,'groupUser.user_id'=>$user['id']])
+            //->andWhere(['groupUser.user_id'=>$user->id])
+            ->orderBy(['createDate'=>SORT_DESC])->all();
+
+
         return CNMessage::getSuccess("success", $group);
     }
     public function actionGroupPass(){
