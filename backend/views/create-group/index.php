@@ -47,6 +47,7 @@ $datas = $dataProvider->getModels();
                                    data-url="<?= \yii\helpers\Url::to(['/create-group/delete?id=' . $v->id]) ?>">
                                     <i class="glyphicon glyphicon-trash"></i> ลบ</a>
                             </div>
+                            <div class="clearfix"></div>
 
                         </div>
                         <div class="col-lg-12 well-add-card">
