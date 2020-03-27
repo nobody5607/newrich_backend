@@ -14,7 +14,6 @@ class NotifyAsset extends AssetBundle {
 		'js/jquery.noty.js',
 	];
 	public $depends = [
-            'yii\web\YiiAsset',
 	];
 
 }

@@ -14,9 +14,6 @@ class BootBoxAsset extends AssetBundle {
 		'js/confirm.js?995'
 	];
 	public $depends = [
-		'yii\web\YiiAsset',
-		'yii\bootstrap\BootstrapAsset',
-		'yii\bootstrap\BootstrapPluginAsset',
 	];
 
 }

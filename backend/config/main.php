@@ -36,6 +36,15 @@ return [
         'request' => [
             'csrfParam' => '_csrf-backend',
         ],
+        'urlManager' => [
+            'class' => 'yii\web\UrlManager',
+            'showScriptName' => false, // Disable index.php
+            'enablePrettyUrl' => true, // Disable r= routes
+            'rules' => [
+                '' => 'site/index',
+                //'/admins/default/price' => 'admins/price',
+            ],
+        ],
 //        'view' => [
 //            'theme' => [
 //                'pathMap' => [
@@ -94,6 +103,9 @@ return [
                 ]
             ],
             
+        ],
+        'admins' => [
+            'class' => 'backend\modules\admins\Module',
         ],
         'user' => [
             'class' => 'dektrium\user\Module',

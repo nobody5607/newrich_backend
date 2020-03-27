@@ -1,12 +1,9 @@
 <?php
 
-use yii\helpers\Html;
+use yii\bootstrap4\Html;
 use yii\widgets\Pjax;
 use yii\helpers\Url;
-use appxq\sdii\widgets\GridView;
-use appxq\sdii\widgets\ModalForm;
-use appxq\sdii\helpers\SDNoty;
-use appxq\sdii\helpers\SDHtml;
+use kartik\grid\GridView;
 
 /* @var $this yii\web\View */
 /* @var $searchModel backend\models\PaymentSearch */
@@ -16,13 +13,13 @@ $this->title = 'อนุมัติการใช้งานระบบ';
 $this->params['breadcrumbs'][] = $this->title;
 
 ?>
-    <a href="<?= \yii\helpers\Url::to(['/admins/index']) ?>">&lt; ย้อนกลับ</a>
+    <a href="<?= \yii\helpers\Url::to(['/admins']) ?>">&lt; ย้อนกลับ</a>
     <div class="box box-primary">
         <div class="box-header">
-            <i class=""></i> <?= Html::encode($this->title) ?>
+            <h2><?= Html::encode($this->title) ?></h2>
             <div class="pull-right">
-                <?= Html::button(SDHtml::getBtnAdd(), ['data-url' => Url::to(['payment/create']), 'class' => 'btn btn-success btn-sm', 'id' => 'modal-addbtn-payment']) . ' ' .
-                Html::button(SDHtml::getBtnDelete(), ['data-url' => Url::to(['payment/deletes']), 'class' => 'btn btn-danger btn-sm', 'id' => 'modal-delbtn-payment', 'disabled' => false])
+                <?= Html::button('เพิ่มรายการ', ['data-url' => Url::to(['/admins/payment/create']), 'class' => 'btn btn-success btn-sm', 'id' => 'modal-addbtn-payment']) . ' ' .
+                Html::button('ลบรายการ', ['data-url' => Url::to(['/admins/payment/deletes']), 'class' => 'btn btn-danger btn-sm', 'id' => 'modal-delbtn-payment', 'disabled' => false])
                 ?>
             </div>
         </div>
@@ -37,13 +34,43 @@ $this->params['breadcrumbs'][] = $this->title;
                 'dataProvider' => $dataProvider,
                 'filterModel' => $searchModel,
                 'columns' => [
+
                     [
                         'class' => 'yii\grid\CheckboxColumn',
                         'checkboxOptions' => [
-                            'class' =>'selectionPaymentIds'
+                            'class' => 'selectionPaymentIds'
                         ],
                         'headerOptions' => ['style' => 'text-align: center;'],
                         'contentOptions' => ['style' => 'width:40px;text-align: center;'],
+                    ],
+                    [
+                        'class' => 'appxq\sdii\widgets\ActionColumn',
+                        'contentOptions' => ['style' => 'width:180px;text-align: center;'],
+                        'template' => '{update} {delete}',
+                        'buttons' => [
+                            'update' => function ($url, $model) {
+                                return Html::a('<span class="fa fa-pencil"></span> แก้ไข',
+                                    yii\helpers\Url::to(['/admins/payment/update?id=' . $model->id]), [
+                                        'title' => 'แก้ไข',
+                                        'class' => 'btn btn-primary btn-xs',
+                                        'data-action' => 'update',
+                                        'data-pjax' => 0
+                                    ]);
+                            },
+                            'delete' => function ($url, $model) {
+                                return Html::a('<span class="fa fa-trash"></span> ลบ',
+                                    yii\helpers\Url::to(['/admins/payment/delete?id=' . $model->id]), [
+                                        'title' => 'ลบ',
+                                        'class' => 'btn btn-danger btn-xs',
+                                        'data-confirm' => 'คุณต้องการลบรายการนี้ใช่หรือไม่',
+                                        'data-method' => 'post',
+                                        'data-action' => 'delete',
+                                        'data-pjax' => 0
+                                    ]);
+
+
+                            },
+                        ]
                     ],
                     [
                         'class' => 'yii\grid\SerialColumn',
@@ -51,19 +78,19 @@ $this->params['breadcrumbs'][] = $this->title;
                         'contentOptions' => ['style' => 'width:60px;text-align: center;'],
                     ],
                     [
-                        'attribute'=>'user_id',
-                        'value'=>function($model){
-                            if(isset($model->user->profile->name)){
+                        'attribute' => 'user_id',
+                        'value' => function ($model) {
+                            if (isset($model->user->profile->name)) {
                                 return $model->user->profile->name;
                             }
                         }
                     ],
                     [
-                        'attribute'=>'status',
-                        'value'=>function($model){
+                        'attribute' => 'status',
+                        'value' => function ($model) {
 
                             $status = 0;
-                            if(isset($model->status)){
+                            if (isset($model->status)) {
                                 $status = \cpn\chanpan\utils\CNUtils::$statusPayment[$model->status];
                             }
                             return $status;
@@ -77,46 +104,20 @@ $this->params['breadcrumbs'][] = $this->title;
                     // 'update_by',
                     // 'update_date',
 
-                    [
-                        'class' => 'appxq\sdii\widgets\ActionColumn',
-                        'contentOptions' => ['style' => 'width:180px;text-align: center;'],
-                        'template' => '{update} {delete}',
-                        'buttons' => [
-                            'update' => function ($url, $model) {
-                                return Html::a('<span class="fa fa-pencil"></span> แก้ไข',
-                                    yii\helpers\Url::to(['payment/update?id=' . $model->id]), [
-                                        'title' => 'แก้ไข',
-                                        'class' => 'btn btn-primary btn-xs',
-                                        'data-action' => 'update',
-                                        'data-pjax' => 0
-                                    ]);
-                            },
-                            'delete' => function ($url, $model) {
-                                return Html::a('<span class="fa fa-trash"></span> ลบ',
-                                    yii\helpers\Url::to(['payment/delete?id=' . $model->id]), [
-                                        'title' => 'ลบ',
-                                        'class' => 'btn btn-danger btn-xs',
-                                        'data-confirm' => 'คุณต้องการลบรายการนี้ใช่หรือไม่',
-                                        'data-method' => 'post',
-                                        'data-action' => 'delete',
-                                        'data-pjax' => 0
-                                    ]);
 
-
-                            },
-                        ]
-                    ],
                 ],
             ]); ?>
             <?php Pjax::end(); ?>
 
         </div>
     </div>
-<?= ModalForm::widget([
-    'id' => 'modal-payment',
-    //'size'=>'modal-lg',
-]);
-?>
+
+
+    <div class="modal fade" id="modal-payment" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content"></div>
+        </div>
+    </div>
 
 <?php \richardfan\widget\JSRegister::begin([
     //'key' => 'bootstrap-modal',
@@ -125,18 +126,6 @@ $this->params['breadcrumbs'][] = $this->title;
     <script>
         // JS script
 
-        function loadData(url) {
-            $.get(url, function (result) {
-                $("#reloadDive").html(result);
-            });
-            return false;
-        }
-
-        $(".pagination li a").on('click', function () {
-            let url = $(this).attr('href');
-            loadData(url)
-            return false;
-        });
 
         $('#modal-addbtn-payment').on('click', function () {
             modalPayment($(this).attr('data-url'));
@@ -158,10 +147,6 @@ $this->params['breadcrumbs'][] = $this->title;
             disabledPaymentBtn(key.length);
         });
 
-        $('#payment-grid-pjax').on('dblclick', 'tbody tr', function () {
-            var id = $(this).attr('data-key');
-            modalPayment('<?= Url::to(['payment/update', 'id' => ''])?>' + id);
-        });
 
         $('#payment-grid-pjax').on('click', 'tbody tr td a', function () {
             var url = $(this).attr('href');
@@ -191,7 +176,6 @@ $this->params['breadcrumbs'][] = $this->title;
                             });
                         }
                     }).fail(function () {
-                        <?= SDNoty::show("'" . SDHtml::getMsgError() . "Server Error'", '"error"')?>
                         console.log('server error');
                     });
                 });

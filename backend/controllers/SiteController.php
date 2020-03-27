@@ -104,6 +104,7 @@ class SiteController extends Controller
      */
     public function actionIndex()
     {
+        $this->layout = '@backend/modules/admins/views/layouts/admin';
         if(\Yii::$app->user->isGuest){
             return $this->redirect(['/user/login']);
         }

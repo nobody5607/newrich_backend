@@ -1,7 +1,7 @@
 <?php
 use yii\widgets\ActiveForm;
 ?>
-<a  href="<?= \yii\helpers\Url::to(['/admins/index'])?>">&lt; ย้อนกลับ</a>
+<a  href="<?= \yii\helpers\Url::to(['/admins'])?>">&lt; ย้อนกลับ</a>
 <br><br>
 <?php $form = ActiveForm::begin([
     'options' => ['enctype' => 'multipart/form-data'],

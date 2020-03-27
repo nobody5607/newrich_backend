@@ -1,11 +1,11 @@
 <?php
 
-namespace backend\models;
+namespace backend\modules\admins\models;
 
 use Yii;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use backend\models\Payment;
+use backend\modules\admins\models\Payment;
 
 /**
  * PaymentSearch represents the model behind the search form about `backend\models\Payment`.

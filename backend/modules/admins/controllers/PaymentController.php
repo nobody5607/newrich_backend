@@ -1,11 +1,11 @@
 <?php
 
-namespace backend\controllers;
+namespace backend\modules\admins\controllers;
 
 use appxq\sdii\utils\VarDumper;
-use Yii;
-use backend\models\Payment;
 use backend\models\PaymentSearch;
+use Yii;
+use backend\modules\admins\models\Payment;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -23,7 +23,7 @@ class PaymentController extends Controller
     {
         if (parent::beforeAction($action)) {
             if (in_array($action->id, array('create', 'update', 'delete', 'index'))) {
-
+                $this->layout = 'admin';
             }
             return true;
         } else {
@@ -38,7 +38,7 @@ class PaymentController extends Controller
     public function actionIndex()
     {
 
-        $searchModel = new PaymentSearch();
+        $searchModel = new \backend\modules\admins\models\PaymentSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         return $this->render('index', [
@@ -81,7 +81,6 @@ class PaymentController extends Controller
                 $model->create_by = isset(\Yii::$app->user->id) ? \Yii::$app->user->id : '';
 
 
-
                 //$old_date = date('2020-03-25');
                 //$next_due_date = date('Y-m-d', strtotime($old_date. " +{$model->amount} days"));
                 //return $next_due_date;
@@ -93,7 +92,7 @@ class PaymentController extends Controller
                     return \cpn\chanpan\classes\CNMessage::getError('เพิ่มข้อมูลไม่สำเร็จ');
                 }
             } else {
-                if(!isset($model->status)){
+                if (!isset($model->status)) {
                     $model->status = 0;
                 }
                 return $this->renderAjax('create', [

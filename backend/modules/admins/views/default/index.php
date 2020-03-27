@@ -1,5 +1,5 @@
 <?php
-    $this->title = "จัดการ";
+$this->title = "จัดการ";
 ?>
 
 <div class="row">
@@ -7,22 +7,22 @@
         <h2>เลือกเมนู</h2>
     </div>
     <div class="col-md-12">
-        <a href="<?= \yii\helpers\Url::to(['/admins/user'])?>" class="btn btn-default btn-lg"><i class="fa fa-upload"></i> ผู้ใช้</a>
+        <a href="<?= \yii\helpers\Url::to(['/admins/user'])?>" class="btn btn-outline-info"><i class="fa fa-upload"></i> ผู้ใช้</a>
 
     </div>
     <div class="col-md-12">
         <br>
-        <a href="<?= \yii\helpers\Url::to(['/site/index'])?>" class="btn btn-default btn-lg"><i class="fa fa-upload"></i> อัปโหลดข้อมูลการสั่งซื้อสินค้า</a>
+        <a href="<?= \yii\helpers\Url::to(['/site/index'])?>" class="btn btn-outline-info"><i class="fa fa-upload"></i> อัปโหลดข้อมูลการสั่งซื้อสินค้า</a>
 
     </div>
 
     <div class="col-md-12">
         <br>
-        <a href="<?= \yii\helpers\Url::to(['/admins/price'])?>" class="btn btn-default btn-lg">แก้ไขราคา Package</a>
+        <a href="<?= \yii\helpers\Url::to(['/admins/default/price-package'])?>" class="btn btn-outline-info">แก้ไขราคา Package</a>
     </div>
     <div class="col-md-12">
         <br>
-        <a href="<?= \yii\helpers\Url::to(['/payment/index'])?>" class="btn btn-default btn-lg">อนุมัติการใช้งานระบบ</a>
+        <a href="<?= \yii\helpers\Url::to(['/admins/payment/index'])?>" class="btn btn-outline-info">อนุมัติการใช้งานระบบ</a>
     </div>
 </div>
 

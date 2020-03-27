@@ -1,20 +1,26 @@
 <?php
 
+namespace backend\modules\admins\controllers;
 
-namespace backend\controllers;
-
-
-use appxq\sdii\utils\VarDumper;
 use common\models\Options;
 use cpn\chanpan\classes\CNMessage;
 use yii\web\Controller;
 
-class AdminsController extends Controller
+/**
+ * Default controller for the `admins` module
+ */
+class DefaultController extends Controller
 {
-    public function actionIndex(){
-        return $this->render("index");
+    /**
+     * Renders the index view for the module
+     * @return string
+     */
+    public function actionIndex()
+    {
+        return $this->render('index');
     }
-    public function actionPrice(){
+
+    public function actionPricePackage(){
         $price = 0;
         if(isset(\Yii::$app->params['totalPrice'])){
             $price = \Yii::$app->params['totalPrice'];
@@ -30,7 +36,7 @@ class AdminsController extends Controller
                 return CNMessage::getError("แก้ไขข้อมูลไม่สำเร็จ");
             }
         }
-        return $this->render("price",[
+        return $this->render("price-package",[
             'price'=>$price
         ]);
     }

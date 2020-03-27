@@ -16,8 +16,13 @@ use kartik\date\DatePicker;
     ]); ?>
 
     <div class="modal-header">
-	<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-        <h4 class="modal-title" id="itemModalLabel"><i class="fa fa-table"></i> อนุมัติการใช้งานระบบ</h4>
+
+        <h5 class="modal-title" id="exampleModalLabel">อนุมัติการใช้งานระบบ</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+
+
     </div>
 
     <div class="modal-body">
@@ -46,6 +51,7 @@ use kartik\date\DatePicker;
     <?php
         echo $form->field($model, 'stdate')->widget(\kartik\date\DatePicker::classname(), [
             'options' => ['placeholder' => 'เลือกวันที่เริ่มใช้งาน...'],
+            'type' => DatePicker::TYPE_INPUT,
             'pluginOptions' => [
                 'autoclose'=>true,
                 'todayHighlight' => true,
@@ -56,6 +62,7 @@ use kartik\date\DatePicker;
     <?php
     echo $form->field($model, 'endate')->widget(\kartik\date\DatePicker::classname(), [
         'options' => ['placeholder' => 'เลือกวันที่หมดอายุการใช้งาน...'],
+        'type' => DatePicker::TYPE_INPUT,
         'pluginOptions' => [
             'autoclose'=>true,
             'todayHighlight' => true,
@@ -71,7 +78,7 @@ use kartik\date\DatePicker;
     <div class="modal-footer">
         <div class="row">
             <div class="col-md-6 col-md-offset-3">
-                <?= Html::submitButton($model->isNewRecord ? Yii::t('app', 'Create') : Yii::t('app', 'Update'), ['class' => $model->isNewRecord ? 'btn btn-success btn-lg btn-block btn-submit' : 'btn btn-primary btn-lg btn-block btn-submit']) ?>
+                <?= Html::submitButton($model->isNewRecord ? Yii::t('app', 'Create') : Yii::t('app', 'Update'), ['class' => $model->isNewRecord ? 'btn btn-primary btn-submit' : 'btn btn-primary btn-submit']) ?>
 	
             </div>
         </div>
