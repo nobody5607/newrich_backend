@@ -24,6 +24,11 @@ $this->title = "จัดการ";
         <br>
         <a href="<?= \yii\helpers\Url::to(['/admins/payment/index'])?>" class="btn btn-outline-info">อนุมัติการใช้งานระบบ</a>
     </div>
+
+    <div class="col-md-12">
+        <br>
+        <a href="<?= \yii\helpers\Url::to(['/admins/default/logout'])?>" class="btn btn-outline-danger">ออกจากระบบ</a>
+    </div>
 </div>
 
 <!--ตัวที่จะ public พรุ่งนี้มีดังนี้นะครับ-->

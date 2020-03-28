@@ -40,4 +40,10 @@ class DefaultController extends Controller
             'price'=>$price
         ]);
     }
+
+    public function actionLogout()
+    {
+        \Yii::$app->getUser()->logout();
+        return $this->goHome();
+    }
 }
