@@ -30,13 +30,13 @@ use kartik\date\DatePicker;
     <?php
         $userID = \common\modules\user\classes\CNUserFunc::getUserId();
         $data = (new \yii\db\Query())
-            ->select(['user.id','profile.name'])
+            ->select(['user.id','profile.name',"concat(profile.name,' (',user.email,')') as fullname"])
             ->from('user')
             ->innerJoin('profile','profile.user_id=user.id')
             ->where(['profile.parent_id'=>$userID])
             ->orWhere(['user.id'=>$userID])
             ->all();
-        $items = \yii\helpers\ArrayHelper::map($data,'id','name');
+        $items = \yii\helpers\ArrayHelper::map($data,'id','fullname');
         echo $form->field($model, 'user_id')->widget(\kartik\select2\Select2::classname(), [
             'data' => $items,
             'options' => ['placeholder' => 'เลือกผู้ใช้ ...'],
