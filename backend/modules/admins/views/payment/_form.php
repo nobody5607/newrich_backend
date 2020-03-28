@@ -71,7 +71,10 @@ use kartik\date\DatePicker;
     ]);
     ?>
 
-
+    <?php
+    echo $form->field($model, 'token')
+        ->textInput()->label('คีย์ <a href="#" id="createToken">สร้างคีย์</a>');
+    ?>
 
 
     </div>
@@ -79,7 +82,6 @@ use kartik\date\DatePicker;
         <div class="row">
             <div class="col-md-6 col-md-offset-3">
                 <?= Html::submitButton($model->isNewRecord ? Yii::t('app', 'Create') : Yii::t('app', 'Update'), ['class' => $model->isNewRecord ? 'btn btn-primary btn-submit' : 'btn btn-primary btn-submit']) ?>
-	
             </div>
         </div>
     </div> 
@@ -94,6 +96,17 @@ use kartik\date\DatePicker;
 ]); ?>
 <script>
 // JS script
+
+$("#createToken").on('click', function(){
+   let url = '<?= \yii\helpers\Url::to(['/admins/payment/create-token'])?>';
+   $.get(url, function (result) {
+       if(result.status == 'success') {
+           $("#payment-token").val(result.data);
+           // console.log(result.data);
+       }
+   });
+   return false;
+});
 $('form#<?= $model->formName()?>').on('beforeSubmit', function(e) {
     $('.btn-submit').prepend('<span class="icon-spin"><i class="fa fa-spinner fa-spin"></i></span> ');
     //$('.btn-submit').attr('disabled',true);

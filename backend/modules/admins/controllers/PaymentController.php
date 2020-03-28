@@ -4,6 +4,7 @@ namespace backend\modules\admins\controllers;
 
 use appxq\sdii\utils\VarDumper;
 use backend\models\PaymentSearch;
+use cpn\chanpan\classes\CNMessage;
 use Yii;
 use backend\modules\admins\models\Payment;
 use yii\web\Controller;
@@ -162,7 +163,10 @@ class PaymentController extends Controller
             throw new NotFoundHttpException('Invalid request. Please do not repeat this request again.');
         }
     }
-
+    public function actionCreateToken(){
+        $token = \Yii::$app->security->generateRandomString(40);;
+        return CNMessage::getSuccess('success', $token);
+    }
     public function actionDeletes()
     {
         if (Yii::$app->getRequest()->isAjax) {

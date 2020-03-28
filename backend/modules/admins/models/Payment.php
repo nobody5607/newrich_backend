@@ -36,7 +36,7 @@ class Payment extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['user_id', 'status', 'stdate','endate'], 'required'],
+            [['user_id', 'status', 'stdate','endate','token'], 'required'],
             [['user_id', 'status', 'create_by', 'rstat', 'update_by'], 'integer'],
             [['create_date', 'update_date','amount'], 'safe'],
             [['user_id'], 'exist', 'skipOnError' => true, 'targetClass' => User::className(), 'targetAttribute' => ['user_id' => 'id']],
@@ -60,6 +60,7 @@ class Payment extends \yii\db\ActiveRecord
             'rstat' => 'สถานะ',
             'update_by' => 'แก้ไขโดย',
             'update_date' => 'แก้ไขวันที่',
+            'token'=>'คีย์'
         ];
     }
 
