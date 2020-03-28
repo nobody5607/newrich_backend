@@ -4,30 +4,31 @@ $this->title = "จัดการ";
 
 <div class="row">
     <div class="col-md-12">
+        <h2>ยินดีต้อนรับคุณ <?= isset(\Yii::$app->user->identity->profile->name)?\Yii::$app->user->identity->profile->name:''?></h2>
         <h2>เลือกเมนู</h2>
     </div>
     <div class="col-md-12">
-        <a href="<?= \yii\helpers\Url::to(['/admins/user'])?>" class="btn btn-outline-info"><i class="fa fa-upload"></i> ผู้ใช้</a>
+        <a href="<?= \yii\helpers\Url::to(['/admins/user'])?>" class="btn btn-outline-info"><i class="glyphicon glyphicon-user"></i> ผู้ใช้</a>
 
     </div>
     <div class="col-md-12">
         <br>
-        <a href="<?= \yii\helpers\Url::to(['/site/index'])?>" class="btn btn-outline-info"><i class="fa fa-upload"></i> อัปโหลดข้อมูลการสั่งซื้อสินค้า</a>
+        <a href="<?= \yii\helpers\Url::to(['/site/index'])?>" class="btn btn-outline-info"><i class="glyphicon glyphicon-upload"></i> อัปโหลดข้อมูลการสั่งซื้อสินค้า</a>
 
     </div>
 
     <div class="col-md-12">
         <br>
-        <a href="<?= \yii\helpers\Url::to(['/admins/default/price-package'])?>" class="btn btn-outline-info">แก้ไขราคา Package</a>
+        <a href="<?= \yii\helpers\Url::to(['/admins/default/price-package'])?>" class="btn btn-outline-info"><i class="glyphicon glyphicon-briefcase"></i> แก้ไขราคา Package</a>
     </div>
     <div class="col-md-12">
         <br>
-        <a href="<?= \yii\helpers\Url::to(['/admins/payment/index'])?>" class="btn btn-outline-info">อนุมัติการใช้งานระบบ</a>
+        <a href="<?= \yii\helpers\Url::to(['/admins/payment/index'])?>" class="btn btn-outline-info"><i class="glyphicon glyphicon-transfer"></i> สร้างโค้ด และ อนุมัติการใช้งานระบบ</a>
     </div>
 
     <div class="col-md-12">
         <br>
-        <a href="<?= \yii\helpers\Url::to(['/admins/default/logout'])?>" class="btn btn-outline-danger">ออกจากระบบ</a>
+        <a href="<?= \yii\helpers\Url::to(['/admins/default/logout'])?>" class="btn btn-outline-danger"><i class="glyphicon glyphicon-off"></i> ออกจากระบบ</a>
     </div>
 </div>
 
