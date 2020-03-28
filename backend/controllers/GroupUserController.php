@@ -74,7 +74,7 @@ class GroupUserController extends Controller
      */
     public function actionCreate()
     {
-        if (Yii::$app->getRequest()->isAjax) {
+
             $model = new GroupUser();
 
             if ($model->load(Yii::$app->request->post())) {
@@ -94,9 +94,6 @@ class GroupUserController extends Controller
                     'model' => $model,
                 ]);
             }
-        } else {
-            throw new NotFoundHttpException('Invalid request. Please do not repeat this request again.');
-        }
     }
 
     /**

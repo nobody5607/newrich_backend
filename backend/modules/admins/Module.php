@@ -17,6 +17,7 @@ class Module extends \yii\base\Module
      */
     public function init()
     {
+        \Yii::$app->params['bsVersion']='4.x';
         $this->layout = 'admin';
         parent::init();
 
