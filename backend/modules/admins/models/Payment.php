@@ -60,7 +60,7 @@ class Payment extends \yii\db\ActiveRecord
             'rstat' => 'สถานะ',
             'update_by' => 'แก้ไขโดย',
             'update_date' => 'แก้ไขวันที่',
-            'token'=>'คีย์'
+            'token'=>'โค้ด'
         ];
     }
 

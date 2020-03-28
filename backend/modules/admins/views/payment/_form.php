@@ -73,7 +73,7 @@ use kartik\date\DatePicker;
 
     <?php
     echo $form->field($model, 'token')
-        ->textInput()->label('คีย์ <a href="#" id="createToken">สร้างคีย์</a>');
+        ->textInput()->label('คีย์ <a href="#" id="createToken">สร้างโค้ด</a>');
     ?>
 
 
