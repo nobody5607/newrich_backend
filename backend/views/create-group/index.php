@@ -64,25 +64,25 @@ $datas = $dataProvider->getModels();
                                 <div class="row">
                                     <div class="col-md-6 col-xs-6 text-center">
                                         <a
-                                                class="btn btn-default"
+                                                class="btn btn-default btn-lg btn-block"
                                                 href="<?= \yii\helpers\Url::to(['/group/busines?groupID=' . $v->id]) ?>">
                                             <i class="glyphicon glyphicon-eye-open"></i> ดูรายละเอียด
                                         </a>
 
-                                        <a href="#"
-                                           class="btn btn-primary btnEdit"
+                                        <a href="#" style="margin-top:20px"
+                                           class="btn btn-primary btnEdit btn-lg btn-block"
                                            data-url="<?= \yii\helpers\Url::to(['/create-group/update?id=' . $v->id]) ?>">
                                             <i class="glyphicon glyphicon-pencil"></i> แก้ไข
                                         </a>
                                     </div>
-                                    <div class="col-md-6 col-xs-6 text-center" style="margin-top:20px">
+                                    <div class="col-md-6 col-xs-6 text-center">
                                         <a href="#"
-                                           class="btn btn-danger btnDelete"
+                                           class="btn btn-danger btnDelete btn-lg btn-block"
                                            data-url="<?= \yii\helpers\Url::to(['/create-group/delete?id=' . $v->id]) ?>">
                                             <i class="glyphicon glyphicon-trash"></i> ลบ</a>
 
                                         <a
-                                                class="btn btn-success"
+                                                class="btn btn-success btn-lg btn-block" style="margin-top:20px"
                                                 href="<?= \yii\helpers\Url::to(['/group-user/index?id=' . $v->id]) ?>">
                                             <i class="glyphicon glyphicon-user"></i> เพิ่มผู้ใช้</a>
                                     </div>
