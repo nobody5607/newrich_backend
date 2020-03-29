@@ -66,7 +66,7 @@ $datas = $dataProvider->getModels();
                                         <a
                                                 class="btn btn-default btn-lg btn-block"
                                                 href="<?= \yii\helpers\Url::to(['/group/busines?groupID=' . $v->id]) ?>">
-                                            <i class="glyphicon glyphicon-eye-open"></i> ดูรายละเอียด
+                                            <i class="glyphicon glyphicon-eye-open"></i> แสดง
                                         </a>
 
                                         <a href="#" style="margin-top:20px"
