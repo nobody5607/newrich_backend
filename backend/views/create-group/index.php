@@ -65,21 +65,21 @@ $datas = $dataProvider->getModels();
                                     <i class="glyphicon glyphicon-eye-open"></i> ดูรายละเอียด
                                 </a> |
 
-                                <a class=" btnEdit" href="#"
-                                   class="btn btn-default"
+                                <a href="#"
+                                   class="btn btn-primary btnEdit"
                                    data-url="<?= \yii\helpers\Url::to(['/create-group/update?id=' . $v->id]) ?>">
                                     <i class="glyphicon glyphicon-pencil"></i> แก้ไข
                                 </a>
                                 |
-                                <a class=" btnDelete" href="#"
-                                   class="btn btn-default"
+                                <a href="#"
+                                   class="btn btn-danger btnDelete"
                                    data-url="<?= \yii\helpers\Url::to(['/create-group/delete?id=' . $v->id]) ?>">
                                     <i class="glyphicon glyphicon-trash"></i> ลบ</a>
                                 |
                                 <a
-                                        class="btn btn-default"
+                                        class="btn btn-success"
                                         href="<?= \yii\helpers\Url::to(['/group-user/index?id=' . $v->id]) ?>">
-                                    <i class="glyphicon glyphicon-user"></i>  เพิ่มผู้ใช้</a>
+                                    <i class="glyphicon glyphicon-user"></i> เพิ่มผู้ใช้</a>
 
 
                             </div>
@@ -125,7 +125,7 @@ $datas = $dataProvider->getModels();
     $(".btnDelete").on('click', function () {
         let url = $(this).attr('data-url');
         bootbox.confirm('คุณต้องการลบรายการนี้ใช่หรือไม่', function (result) {
-            if(result === true){
+            if (result === true) {
                 $.post(
                     url
                 ).done(function (result) {
