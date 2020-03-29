@@ -60,20 +60,24 @@ $datas = $dataProvider->getModels();
                             <br>
                             <div class="pull-left">
                                 <a
+                                        class="btn btn-default"
                                         href="<?= \yii\helpers\Url::to(['/group/busines?groupID=' . $v->id]) ?>">
                                     <i class="glyphicon glyphicon-eye-open"></i> ดูรายละเอียด
                                 </a> |
 
                                 <a class=" btnEdit" href="#"
+                                   class="btn btn-default"
                                    data-url="<?= \yii\helpers\Url::to(['/create-group/update?id=' . $v->id]) ?>">
                                     <i class="glyphicon glyphicon-pencil"></i> แก้ไข
                                 </a>
                                 |
                                 <a class=" btnDelete" href="#"
+                                   class="btn btn-default"
                                    data-url="<?= \yii\helpers\Url::to(['/create-group/delete?id=' . $v->id]) ?>">
                                     <i class="glyphicon glyphicon-trash"></i> ลบ</a>
                                 |
                                 <a
+                                        class="btn btn-default"
                                         href="<?= \yii\helpers\Url::to(['/group-user/index?id=' . $v->id]) ?>">
                                     <i class="glyphicon glyphicon-user"></i>  เพิ่มผู้ใช้</a>
 
