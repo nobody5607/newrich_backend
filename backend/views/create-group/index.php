@@ -58,10 +58,10 @@ $datas = $dataProvider->getModels();
 
                             <div class="clearfix"></div>
                             <br>
-                            <div class="pull-left">
+                            <div class="">
 
 
-                                <div class="row">
+                                <div class="row text-center">
                                     <div class="col-md-6 col-xs-6 text-center">
                                         <a
                                                 class="btn btn-default btn-lg btn-block"
