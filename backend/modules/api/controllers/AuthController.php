@@ -96,7 +96,7 @@ class AuthController extends Controller
             'linkCurrent'=>$linkCurrent,
             'member_type'=>$member_type,
             'parent_id'=>isset($profile->user_id)?$profile->user_id:'',
-            'tel'=>$tel,
+            'tel'=>$tel, 
             'sitecode'=>$site,
         ];
         $data = ClsAuth::saveUser($data);
