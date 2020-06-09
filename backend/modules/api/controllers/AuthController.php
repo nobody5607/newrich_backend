@@ -117,6 +117,7 @@ class AuthController extends Controller
 
     public function actionLogin()
     {
+        \Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
         $name = \Yii::$app->request->post('name');
         $email = \Yii::$app->request->post('email');
         $image = \Yii::$app->request->post('image');
@@ -126,7 +127,7 @@ class AuthController extends Controller
         $user = \backend\modules\admins\models\User::find()->where(['email' => $email])->one();
 
         if ($user) {
-            return $user->auth_key;
+            return $user;
         }else{
             $user->username = date('YmdHis') . rand(0, 10000) . time();
             $user->password = Yii::$app->security->generateRandomString(12);
