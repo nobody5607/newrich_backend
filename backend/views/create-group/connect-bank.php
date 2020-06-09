@@ -82,6 +82,8 @@ use appxq\sdii\helpers\SDHtml;
         let name = "<?= $model->name; ?>";
         if (name != '') {
             $('#tableBank').show();
+        }else{
+            $('#formBank').show();
         }
     }
 
