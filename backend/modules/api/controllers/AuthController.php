@@ -124,6 +124,7 @@ class AuthController extends Controller
         $site = \Yii::$app->request->post('site', '0001');
 
         $user = \backend\modules\admins\models\User::find()->where(['email' => $email])->one();
+        return Json::encode($user);
         if (!$user) {
             $user->username = date('YmdHis') . rand(0, 10000) . time();
             $user->password = Yii::$app->security->generateRandomString(12);
@@ -162,6 +163,8 @@ class AuthController extends Controller
                 }
 
             }
+        }else{
+            return $user->auth_key;
         }
 
 
