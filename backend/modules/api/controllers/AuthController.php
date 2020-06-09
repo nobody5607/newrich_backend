@@ -124,8 +124,10 @@ class AuthController extends Controller
         $site = \Yii::$app->request->post('site', '0001');
 
         $user = \backend\modules\admins\models\User::find()->where(['email' => $email])->one();
-        return Json::encode($user);
-        if (!$user) {
+
+        if ($user) {
+            return $user->auth_key;
+        }else{
             $user->username = date('YmdHis') . rand(0, 10000) . time();
             $user->password = Yii::$app->security->generateRandomString(12);
             $user->email = $email;
@@ -140,8 +142,7 @@ class AuthController extends Controller
                 try {
                     $assignData = ['item_name' => 'user', 'user_id' => $user->id, 'created_at' => time()];
                     \Yii::$app->db->createCommand()->insert('auth_assignment', $assignData)->execute();
-                } catch (\yii\db\Exception $ex) {
-                }
+                } catch (\yii\db\Exception $ex) {}
                 $profile = Profile::findOne($user->id);
                 $profile->user_id = $user->id;
                 $profile->name = $name;
@@ -163,11 +164,7 @@ class AuthController extends Controller
                 }
 
             }
-        }else{
-            return $user->auth_key;
         }
-
-
     }
 
     public function actionLoginByToken($token)
