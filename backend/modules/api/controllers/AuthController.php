@@ -123,11 +123,13 @@ class AuthController extends Controller
         $image = \Yii::$app->request->post('image');
         $link = \Yii::$app->request->post('link');
         $site = \Yii::$app->request->post('site', '0001');
-
+        $output = [];
         $user = \backend\modules\admins\models\User::find()->where(['email' => $email])->one();
 
         if ($user) {
-            return $user;
+            $output = $user;
+            $output['token'] = $user->auth_key;
+            return $output;
         }else{
             $user->username = date('YmdHis') . rand(0, 10000) . time();
             $user->password = Yii::$app->security->generateRandomString(12);
@@ -159,7 +161,9 @@ class AuthController extends Controller
                 $profile->member_type = 'B2B';
                 $profile->link = 'Newrich' . Date('dmYHis') . time() . rand(1000000, 999999999);
                 if ($profile->save()) {
-                    return $user->auth_key;
+                    $output = $user;
+                    $output['token'] = $user->auth_key;
+                    return $output;
                 } else {
                     return false;
                 }
