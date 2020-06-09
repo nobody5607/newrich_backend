@@ -46,7 +46,7 @@ $datas = $dataProvider->getModels();
                         <div>
                             <div class="col-md-12">
 
-                                <i class="glyphicon glyphicon-calendar"></i> <?php
+                                <?php
 
                                 if (isset($v['createDate'])) {
                                     echo \appxq\sdii\utils\SDdate::mysql2phpThDate($v['createDate']);
@@ -87,9 +87,6 @@ $datas = $dataProvider->getModels();
                                             <i class="glyphicon glyphicon-user"></i> เพิ่มผู้ใช้</a>
                                     </div>
                                 </div>
-
-
-
 
 
                             </div>

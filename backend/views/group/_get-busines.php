@@ -5,7 +5,7 @@
                     <div class="caption">
                         <div class="col-lg-12">
 
-                            <i class="glyphicon glyphicon-calendar"></i> <?php
+                            <?php
 
                             if(isset($v['createDate'])){
                                 echo \appxq\sdii\utils\SDdate::mysql2phpThDate($v['createDate']);

@@ -31,6 +31,7 @@ use Yii;
  * @property string $profile Profile
  * @property string $site Site
  * @property int $payment สถานะการชำระเงิน
+ * @property int $pin สถานะการชำระเงิน
  *
  * @property User $user
  */
@@ -53,7 +54,7 @@ class Profile extends \yii\db\ActiveRecord
             [['user_id'], 'required'],
             [['user_id', 'parent_id', 'payment'], 'integer'],
             [['bio', 'profile'], 'string'],
-            [['create_date'], 'safe'],
+            [['create_date','pin'], 'safe'],
             [['name', 'public_email', 'gravatar_email', 'location', 'website', 'avatar_path', 'avatar_base_url', 'link', 'image'], 'string', 'max' => 255],
             [['gravatar_id'], 'string', 'max' => 32],
             [['timezone'], 'string', 'max' => 40],

@@ -21,6 +21,7 @@ class GroupUserController extends Controller
 
     public function beforeAction($action)
     {
+        $this->layout='main2';
         if (parent::beforeAction($action)) {
             if (in_array($action->id, array('create', 'update', 'delete', 'index'))) {
 

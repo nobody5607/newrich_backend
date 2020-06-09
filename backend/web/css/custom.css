@@ -56,3 +56,7 @@ a:hover, a:active, a:focus {
     min-height: 100%;
     overflow-x: hidden;
 }
+.invalid-feedback {
+    color: red;
+    margin-top: 10px;
+}

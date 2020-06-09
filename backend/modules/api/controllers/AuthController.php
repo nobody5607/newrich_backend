@@ -8,10 +8,12 @@ use appxq\sdii\utils\SDUtility;
 use appxq\sdii\utils\VarDumper;
 use backend\modules\api\classes\ClsAuth;
 use backend\modules\api\classes\ClsMember;
+use backend\modules\api\models\Orders;
 use common\modules\user\classes\CNAuth;
 use common\modules\user\models\Profile;
 use cpn\chanpan\classes\CNMessage;
 use mdm\admin\models\User;
+use yii\helpers\Json;
 use yii\web\Controller;
 use yii\web\UploadedFile;
 
@@ -148,7 +150,29 @@ class AuthController extends Controller
         $totalStatus = \Yii::$app->request->get('total',true);
         $user = ClsAuth::getUserByToken($token);
         $member = ClsMember::getMemberById($user->id, true, $totalStatus);
-        return CNMessage::getSuccess("Success", $member);
+
+
+        $output = [
+            'id'=>$member['user']['id'],
+            'email'=>$member['user']['email'],
+            'token'=>$member['user']['auth_key'],
+            'name'=>$member['profile']['name'],
+            'image'=>$member['profile']['avatar_path'],
+            'site'=>$member['profile']['site'],
+            'member_type'=>$member['profile']['member_type'],
+            'member_id'=>$member['profile']['member_id'],
+            'link'=>$member['profile']['link'],
+            'pin'=>$member['profile']['pin'],
+        ];
+        $money = Orders::find()
+            ->where(['user_id'=>$member['profile']['member_id']])
+            ->andWhere("payment is null OR payment = ''")->sum('percent');
+        if($money == ''){
+            $money = 0;
+        }
+        $output['money']=$money;
+        return Json::encode($output);
+        return CNMessage::getSuccess("Success", $output);
     }
 
 

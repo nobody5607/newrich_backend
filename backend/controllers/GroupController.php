@@ -13,6 +13,10 @@ use yii\web\Controller;
 
 class GroupController extends Controller
 {
+    public function beforeAction($action) {
+        $this->layout='main2';
+        return parent::beforeAction($action);
+    }
     public function actionIndex($token)
     {
         $user = $this->getUser($token);
