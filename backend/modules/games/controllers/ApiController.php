@@ -37,6 +37,9 @@ class ApiController extends Controller
         $n3 = \Yii::$app->request->post('n3');
         $n4 = \Yii::$app->request->post('n4');
         $n5 = \Yii::$app->request->post('n5');
+        $n6 = \Yii::$app->request->post('n6');
+        $n7 = \Yii::$app->request->post('n7');
+        $n8 = \Yii::$app->request->post('n8');
         $score = \Yii::$app->request->post('score');
         $model = new GameScore1();
         $model->parent_id = $parentId;
@@ -45,6 +48,9 @@ class ApiController extends Controller
         $model->n3 = $n3;
         $model->n4 = $n4;
         $model->n5 = $n5;
+        $model->n6 = $n6;
+        $model->n7 = $n7;
+        $model->n8 = $n8;
         $model->score = $score;
         $model->createDate = date('Y-m-d H:i:s');
         if($model->save()){

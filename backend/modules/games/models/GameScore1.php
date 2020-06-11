@@ -14,6 +14,9 @@ use Yii;
  * @property string $n3
  * @property string $n4
  * @property string $n5
+ * @property string $n6
+ * @property string $n7
+ * @property string $n8
  * @property int $score
  * @property string $createBy
  * @property string $createDate
@@ -36,7 +39,7 @@ class GameScore1 extends \yii\db\ActiveRecord
         return [
             [['parent_id', 'score'], 'integer'],
             [['createDate'], 'safe'],
-            [['n1', 'n2', 'n3', 'n4', 'n5'], 'string', 'max' => 1],
+            [['n1', 'n2', 'n3', 'n4', 'n5', 'n6', 'n7', 'n8'], 'string', 'max' => 10],
             [['createBy'], 'string', 'max' => 255],
         ];
     }
@@ -54,6 +57,9 @@ class GameScore1 extends \yii\db\ActiveRecord
             'n3' => 'N3',
             'n4' => 'N4',
             'n5' => 'N5',
+            'n6' => 'N6',
+            'n7' => 'N7',
+            'n8' => 'N8',
             'score' => 'Score',
             'createBy' => 'Create By',
             'createDate' => 'Create Date',
