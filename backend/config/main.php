@@ -71,13 +71,12 @@ return [
         ],
 
 
-        
-        
- 
          
     ],
     'modules'=>[
-
+        'games' => [
+            'class' => 'backend\modules\games\Module',
+        ],
         'api' => [
             'class' => 'backend\modules\api\Module',
         ],
@@ -149,6 +148,7 @@ return [
             'create-group/*',
             'text-editor/*',
             'group-user/*',
+            'games/*'
             //'informations/index',
             //'admin/*',
         ]
