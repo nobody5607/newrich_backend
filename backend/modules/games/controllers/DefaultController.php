@@ -12,12 +12,13 @@ class DefaultController extends Controller
 {
     public function beforeAction($action)
     {
+
         header('Access-Control-Allow-Origin: *');
         $this->enableCsrfValidation = false;
         return true;
     }
     public function actionIndex(){
-//        $this->layout ='';
+        $this->layout ='@backend/views/layouts/admin.php';
         return $this->render('index');
     }
     public function actionEvent($parent_id)

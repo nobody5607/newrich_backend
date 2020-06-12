@@ -14,6 +14,11 @@ use yii\filters\VerbFilter;
  */
 class GameEventController extends Controller
 {
+    public function beforeAction($action)
+    {
+        $this->layout ='@backend/views/layouts/admin.php';
+        return true;
+    }
     /**
      * {@inheritdoc}
      */
