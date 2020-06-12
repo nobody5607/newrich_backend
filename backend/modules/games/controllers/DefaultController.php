@@ -16,6 +16,10 @@ class DefaultController extends Controller
         $this->enableCsrfValidation = false;
         return true;
     }
+    public function actionIndex(){
+//        $this->layout ='';
+        return $this->render('index');
+    }
     public function actionEvent($parent_id)
     {
         $game = GameEvent::find()->where(['parent_id'=>$parent_id])->orderBy(['number'=>SORT_ASC])->all();

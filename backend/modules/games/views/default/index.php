@@ -1,12 +1,12 @@
 <div class="games-default-index">
-    <h1><?= $this->context->action->uniqueId ?></h1>
-    <p>
-        This is the view content for action "<?= $this->context->action->id ?>".
-        The action belongs to the controller "<?= get_class($this->context) ?>"
-        in the "<?= $this->context->module->id ?>" module.
-    </p>
-    <p>
-        You may customize this page by editing the following file:<br>
-        <code><?= __FILE__ ?></code>
-    </p>
+    <?php
+        $storageUrl = isset(\Yii::$app->params['storageUrl']) ? \Yii::$app->params['storageUrl'] : '';
+    ?>
+    <div class="row">
+        <div class="col-md-6 col-md-offset-3">
+            <?php for($i=1; $i<=5; $i++):?>
+                <a href="<?= \yii\helpers\Url::to(['//games/game-event/index?parent_id='.$i])?>"><img src="<?= $storageUrl."/images/{$i}.png"?>" alt="" class="img img-responsive"></a>
+            <?php endfor;?>
+        </div>
+    </div>
 </div>

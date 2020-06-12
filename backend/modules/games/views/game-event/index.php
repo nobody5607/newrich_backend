@@ -12,7 +12,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
 ?>
 <div class="game-event-index">
-
+    <a href="<?= \yii\helpers\Url::to(['/games'])?>">< ย้อนกลับ</a>
     <h1><?= Html::encode($this->title) ?></h1>
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
