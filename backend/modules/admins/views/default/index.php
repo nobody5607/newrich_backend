@@ -25,6 +25,10 @@ $this->title = "จัดการ";
         <br>
         <a href="<?= \yii\helpers\Url::to(['/admins/payment/index'])?>" class="btn btn-outline-info"><i class="glyphicon glyphicon-transfer"></i> สร้างโค้ด และ อนุมัติการใช้งานระบบ</a>
     </div>
+    <div class="col-md-12">
+        <br>
+        <a href="<?= \yii\helpers\Url::to(['/games'])?>" class="btn btn-outline-info"><i class="glyphicon glyphicon-star"></i> เกม alfood</a>
+    </div>
 
     <div class="col-md-12">
         <br>
