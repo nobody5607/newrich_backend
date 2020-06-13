@@ -21,6 +21,10 @@ $this->params['breadcrumbs'][] = $this->title;
 
         <?php Pjax::begin(['id' => 'payment-grid-pjax']); ?>
         <?= GridView::widget([
+            'panel' => [
+                'type' => GridView::TYPE_INFO,
+                'heading' => 'user',
+            ],
             'id' => 'payment-grid',
             /*	'panelBtn' => Html::button(SDHtml::getBtnAdd(), ['data-url'=>Url::to(['payment/create']), 'class' => 'btn btn-success btn-sm', 'id'=>'modal-addbtn-payment']). ' ' .
                           Html::button(SDHtml::getBtnDelete(), ['data-url'=>Url::to(['payment/deletes']), 'class' => 'btn btn-danger btn-sm', 'id'=>'modal-delbtn-payment', 'disabled'=>true]),*/
@@ -75,10 +79,10 @@ $this->params['breadcrumbs'][] = $this->title;
                     'attribute' => 'tel',
                     'value' => 'profile.tel'
                 ],
-//                [
-//                    'attribute' => 'link',
-//                    'value' => 'profile.link'
-//                ],
+                [
+                    'attribute' => 'member_id',
+                    'value' => 'profile.member_id'
+                ],
                 [
                     'attribute' => 'member_type',
                     'value' => 'profile.member_type',

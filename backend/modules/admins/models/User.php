@@ -115,4 +115,6 @@ class User extends \yii\db\ActiveRecord
     {
         return $this->hasOne(Profile::className(), ['user_id' => 'id']);
     }
+
+
 }

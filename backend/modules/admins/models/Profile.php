@@ -108,4 +108,9 @@ class Profile extends \yii\db\ActiveRecord
     {
         return $this->hasOne(User::className(), ['id' => 'user_id']);
     }
+
+    public function getParent()
+    {
+        return $this->hasOne(Profile::className(), ['user_id' => 'parent_id']);
+    }
 }

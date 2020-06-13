@@ -148,8 +148,8 @@ return [
             'create-group/*',
             'text-editor/*',
             'group-user/*',
-            'games/*'
-            //'informations/index',
+            'games/*',
+            'gridview/*',
             //'admin/*',
         ]
     ],
