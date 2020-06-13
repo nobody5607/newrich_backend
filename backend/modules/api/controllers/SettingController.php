@@ -51,7 +51,7 @@ class SettingController extends Controller
             $output = [];
             $storageUrl = isset(\Yii::$app->params['storageUrl']) ? \Yii::$app->params['storageUrl'] : '';
             foreach ($slider as $k => $v) {
-                $output[] = ['id' => $v->id, 'order' => $v->order, 'image' => "{$storageUrl}{$v->image}"];
+                $output[] = ['id' => $v->id, 'order' => $v->order, 'image' => "{$storageUrl}/images/{$v->image}"];
             }
             return $output;
         }
