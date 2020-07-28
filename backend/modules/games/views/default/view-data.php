@@ -17,7 +17,7 @@
     </div>
 
     <div>
-        <a href='https://alfood.web.app/event'>Alfood</a>
+        <a href='https://alfood.web.app/event'>Alfood Market</a>
     </div>
 
 </div>
