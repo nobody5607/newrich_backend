@@ -32,7 +32,8 @@ $this->params['breadcrumbs'][] = $this->title;
                     'value'=>function($model){
                         $path='';
                         if($model->image){
-                            $path = Url::to("@web/uploads/{$model->image}");
+                            $storageUrl = isset(\Yii::$app->params['storageUrl'])?\Yii::$app->params['storageUrl']:'';
+                            $path = "{$storageUrl}/images/{$model->image}";
                         }
                         return  "<img src='{$path}' class='img img-responsive' style='width:200px'>";
                     }
@@ -46,14 +47,14 @@ $this->params['breadcrumbs'][] = $this->title;
                     'template' => '{update} {delete} ',
                     'buttons' => [
                         'update' => function($url, $model) {
-                            return Html::a('<span class="fas fa-pen"></span> แก้ไข', yii\helpers\Url::to(['/admin/slider/update?id='.$model->id]), [
+                            return Html::a('<span class="fas fa-pen"></span> แก้ไข', yii\helpers\Url::to(['/admins/slider/update?id='.$model->id]), [
                                 'class' => 'btn btn-primary btn-sm',
                                 'data-action' => 'update',
                                 'data-pjax' => 0
                             ]);
                         },
                         'delete' => function ($url, $model) {
-                            return Html::a('<span class="fas fa-trash"></span> ลบ', yii\helpers\Url::to(['/admin/slider/delete/', 'id' => $model->id]), [
+                            return Html::a('<span class="fas fa-trash"></span> ลบ', yii\helpers\Url::to(['/admins/slider/delete/', 'id' => $model->id]), [
                                 'class' => 'btn btn-danger btn-sm btnDelete',
                                 'data-confirm' => 'คุณต้องการลบรายการนี้ใช้หรือไม่',
                                 'data-method' => 'post',

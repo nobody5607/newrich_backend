@@ -22,6 +22,9 @@ return [
         ]
     ],
     'components' => [
+        'meta' => [
+            'class' => 'frontend\components\MetaComponent',
+        ],//seo config
         'authClientCollection' => [
             'class' => 'yii\authclient\Collection',
             'clients' => [

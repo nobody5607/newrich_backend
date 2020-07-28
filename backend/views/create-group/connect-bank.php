@@ -43,9 +43,7 @@ use appxq\sdii\helpers\SDHtml;
         <h4 class="modal-title" id="itemModalLabel">เชื่อมต่อบัญชีธนาคาร</h4>
     </div>
 
-    <div>
-
-
+    <div> 
         <div>
             <?= $form->field($model, 'user_id')->hiddenInput(['maxlength' => true])->label(false) ?>
             <?= $form->field($model, 'bank')

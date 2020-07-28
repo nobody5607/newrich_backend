@@ -70,12 +70,15 @@ class ApiController extends Controller
         $file = UploadedFile::getInstanceByName('file');
         if ($file) {
             $msg = \Yii::$app->request->post('msg');
+            $uuid = \Yii::$app->request->post('uuid');
+
             $fileName = md5($file->baseName . time()) . '.' . $file->extension;
             if ($file->saveAs($path . $fileName)) {
                 $model = new GameFile();
                 $model->filename = $fileName;
                 $model->createDate = date('Y-m-d H:i:s');
                 $model->msg = $msg;
+                $model->uuid = $uuid;
                 if ($model->save()) {
                     return "{$storageUrl}/images/{$model->filename}";
                 } else {

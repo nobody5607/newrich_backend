@@ -78,7 +78,7 @@ class CreateGroupController extends Controller
                 'model' => $this->findModel($id),
             ]);
         }
-    }
+    } 
 
     public function actionCreate()
     {

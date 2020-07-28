@@ -8,11 +8,10 @@ use Yii;
  * This is the model class for table "slider".
  *
  * @property int $id รหัส
- * @property int $order ลำดับที่
- * @property string $getAt วันที่สร้าง
- * @property string $image รูปภาพ
- * @property int $rstat สถานะ
- * @property string $department
+ * @property int|null $order ลำดับที่
+ * @property string|null $getAt วันที่สร้าง
+ * @property string|null $image รูปภาพ
+ * @property int|null $rstat สถานะ
  */
 class Slider extends \yii\db\ActiveRecord
 {
@@ -32,7 +31,8 @@ class Slider extends \yii\db\ActiveRecord
         return [
             [['order', 'rstat'], 'integer'],
             [['getAt'], 'safe'],
-            [['image', 'department'], 'string', 'max' => 255],
+//            [['image'], 'string', 'max' => 255],
+            [['image'], 'file', 'extensions' => 'png,jpg,jpeg'],
         ];
     }
 
@@ -47,7 +47,21 @@ class Slider extends \yii\db\ActiveRecord
             'getAt' => 'วันที่สร้าง',
             'image' => 'รูปภาพ',
             'rstat' => 'สถานะ',
-            'department' => 'Department',
         ];
+    }
+
+    public function upload()
+    {
+        $storage = \Yii::getAlias('@storage');
+        if ($this->validate()) {
+            $newFile = 'brief'.date('YmdHis').rand(00,999);
+            $extensions = $this->image->extension;
+            $fileName="{$newFile}.{$extensions}";
+            $this->image->saveAs("{$storage}/web/images/" .$fileName);
+            $this->image = $fileName;
+            return true;
+        } else {
+            return false;
+        }
     }
 }

@@ -1,11 +1,12 @@
 <?php
 
-namespace app\modules\admin\controllers;
+namespace backend\modules\admins\controllers;
 
-use app\utils\Utils;
+use appxq\sdii\utils\SDdate;
+use cpn\chanpan\classes\CNMessage;
 use Yii;
-use app\models\Slider;
-use app\models\SliderSearch;
+use backend\models\Slider;
+use backend\models\SliderSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -67,21 +68,17 @@ class SliderController extends Controller
     public function actionCreate()
     {
         $model = new Slider();
-
         if ($model->load(Yii::$app->request->post())) {
-            $model->getAt = Utils::currentDate();
+            $model->getAt = date('Y-m-d H:i:s');
             $model->image = UploadedFile::getInstance($model, 'image');
-//            return 'ok';
             $model->rstat = 1;
             if(!empty($model->image)){
                 $model->upload();
             }
-
-
             if($model->save()){
-                return Utils::getSuccess("ท่านทำรายการสำเร็จ");
+                return CNMessage::getSuccess('ท่านทำรายการสำเร็จ');
             }else{
-                return Utils::getError("เกิดข้อผิดพลาด", $model->errors);
+                return CNMessage::getError("เกิดข้อผิดพลาด", $model->errors);
             }
         }
 
@@ -112,16 +109,15 @@ class SliderController extends Controller
             if(!empty($model->image)){
                 $model->upload();
                 $file = Yii::$app->session['image'];
-                @unlink("uploads/{$file}");
+                $storage = \Yii::getAlias('@storage');
+                @unlink("{$storage}/web/images/{$file}");
             }else{
                 $model->image = Yii::$app->session['image'];
             }
-
-
             if($model->save()){
-                return Utils::getSuccess("ท่านทำรายการสำเร็จ");
+                return CNMessage::getSuccess('ท่านทำรายการสำเร็จ');
             }else{
-                return Utils::getError("เกิดข้อผิดพลาด", $model->errors);
+                return CNMessage::getError("เกิดข้อผิดพลาด", $model->errors);
             }
         }
 

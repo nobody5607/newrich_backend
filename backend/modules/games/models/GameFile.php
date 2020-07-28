@@ -30,7 +30,7 @@ class GameFile extends \yii\db\ActiveRecord
     {
         return [
             [['createBy'], 'integer'],
-            [['createDate'], 'safe'],
+            [['createDate','uuid'], 'safe'],
             [['msg'], 'string'],
             [['filename'], 'string', 'max' => 255],
         ];
