@@ -1,7 +1,7 @@
 <?php
 
     use yii\helpers\Url;
-    $link = 'http://backend.newriched.com/';
+    $link = 'https://api.newriched.com/';
     $actual_link = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . "%3A%2F$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
     $mainUrl = "{$link}/games/default/view-data?uuid=" . $id;
     $new_url = str_replace(":", "%3A", $mainUrl);
