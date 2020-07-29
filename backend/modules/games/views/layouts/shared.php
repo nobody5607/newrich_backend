@@ -10,7 +10,7 @@
     <?php 
         if($this->metaTags){
             foreach($this->metaTags as $v){ 
-                echo $v;     
+                echo $v.'\n';     
             }
         }
 ?>
