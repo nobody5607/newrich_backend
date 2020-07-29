@@ -12,6 +12,10 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+        integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><?= $model->msg; ?></title>
@@ -24,24 +28,25 @@
 <body>
     
 
-<!-- Latest compiled and minified CSS -->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
-    integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-<p style="font-size: 18px;">
-    <div>
-        <label for="">แชร์ข้อมูล</label>
-    </div>
-    <div>
-        <a class="text-white btn btn-default" style='background: #4267b2;
-        border-radius: 5px;
-        color: white; font-size:20pt;    width: 55px;' href="https://www.facebook.com/sharer.php?u=<?= $mainUrl; ?>"
-            target="_blank">
-            <i class="fa fa-facebook"></i>
-        </a> 
-    </div>
+<!-- Load Facebook SDK for JavaScript -->
+  <div id="fb-root"></div>
+  <script>(function(d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.8";
+    fjs.parentNode.insertBefore(js, fjs);
+  }(document, 'script', 'facebook-jssdk'));</script>
+
+  <!-- Your share button code -->
+  <label for="">แชร์ข้อมูล</label>
+  <div class="fb-share-button" 
+    data-href="<?= $mainUrl; ?>" 
+    data-layout="button_count">
+  </div>
 
 
-</p>
+
+ 
 </body>
 </html>
