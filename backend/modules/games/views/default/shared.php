@@ -1,12 +1,13 @@
 <?php 
     use yii\helpers\Url;
     $this->title = $msg;
+    $tag = "#Alfood Market #อาหารสดออนไลน์";
     $link = 'https://api.newriched.com';
     // $link = 'http://backend.newrich.local/';
     $mainUrl = "{$link}/games/default/view-data?uuid={$id}";
     $this->registerMetaTag([
             'property'=>'og:title',
-            'content'=>$msg 
+            'content'=>$msg."{$tag}" 
     ]);
     $this->registerMetaTag([
             'property'=>'og:type',
