@@ -31,7 +31,7 @@ class DefaultController extends Controller
     }
 
     public function actionShared(){
-        // $this->layout ='shared.php';
+        $this->layout ='shared.php';
         //return $this->layout;
         $id = \Yii::$app->request->get('uuid');
         $path = isset(\Yii::$app->params['storageUrl']) ? \Yii::$app->params['storageUrl'] : '';
@@ -45,7 +45,7 @@ class DefaultController extends Controller
         }
 
         
-        return $this->renderPartial('shared',[
+        return $this->render('shared',[
             'id'=>$id,
             'image'=>$image,
             'model'=>$model,
