@@ -33,8 +33,10 @@
         href="https://www.facebook.com/sharer/sharer.php?&u=<?= $mainUrl; ?>" target="_blank">
             <i class="fa fa-facebook"></i>
         </a>
-        <a target="_blank" href="https://lineit.line.me/share/ui?url=<?= $mainUrl;?>" target="_blank"><i
-                            class="fa fa-line"></i></a>
+        <a target="_blank" style='    width: 50px;'
+        href="https://lineit.line.me/share/ui?url=<?= $mainUrl;?>" target="_blank">
+            <img src="<?= Url::to('@web/img/line.png')?>" alt="">
+                            </a>
 
 
 
