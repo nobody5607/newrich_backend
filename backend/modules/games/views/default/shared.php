@@ -2,7 +2,6 @@
     use yii\helpers\Url;
     $link = 'https://api.newriched.com/';
     // $link = 'http://backend.newrich.local/';
-    $actual_link = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . "%3A%2F$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
     $mainUrl = "{$link}/games/default/view-data?uuid=" . $id;
  
 ?> 
@@ -25,20 +24,25 @@
 <body>
     
 
-<p style="font-size: 18px;">
-    <div>
-        <label for="">แชร์ข้อมูล</label>
-    </div>
-    <div>
-        <a class="text-white btn btn-default" href="https://www.facebook.com/sharer.php?u=<?= $mainUrl; ?>"
-            target="_blank">
-            <i class="fa fa-facebook"></i>
-        </a>
-        <a class="text-white btn btn-default" href="https://twitter.com/share?url=<?= $mainUrl; ?>" target=" _blank">
-            <i class="fa fa-twitter "></i>
-        </a>
-    </div>
-</p>
+<!-- Load Facebook SDK for JavaScript -->
+  <div id="fb-root"></div>
+  <script>(function(d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.8";
+    fjs.parentNode.insertBefore(js, fjs);
+  }(document, 'script', 'facebook-jssdk'));</script>
+
+  <!-- Your share button code -->
+  <label for="">แชร์ข้อมูล</label>
+  <div class="fb-share-button" 
+    data-href="<?= $mainUrl; ?>" 
+    data-layout="button_count">
+  </div>
+
+
+
  
 </body>
 </html>
