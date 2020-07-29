@@ -61,12 +61,14 @@ class DefaultController extends Controller
         $image = '';
         if($model){
             $image = "{$path}/images/{$model->filename}";
+            $msg = $model->msg;
         }
         //return $image;
         return $this->render('view-data',[
             'id'=>$id,
             'image'=>$image,
-            'model'=>$model
+            'model'=>$model,
+            'msg'=>$msg
         ]);
     }
 }

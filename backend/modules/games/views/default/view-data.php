@@ -1,10 +1,30 @@
-<?php
+<?php 
     use yii\helpers\Url;
+    $this->title = $msg;
+    $link = 'https://api.newriched.com';
+    // $link = 'http://backend.newrich.local/';
+    $mainUrl = "{$link}/games/default/view-data?uuid={$id}";
+    $this->registerMetaTag([
+            'property'=>'og:title',
+            'content'=>$msg 
+    ]);
+    $this->registerMetaTag([
+            'property'=>'og:type',
+            'content'=>'article'
+    ]);
+    $this->registerMetaTag([
+            'property'=>'og:url',
+            'content'=>"{$link}/games/default/shared?uuid={$id}"
+    ]); 
+    $this->registerMetaTag([
+            'property'=>'og:image',
+            'content'=>$image
+    ]);
+    $this->registerMetaTag([
+            'property'=>'og:description',
+            'content'=>$msg 
+    ]);
 ?> 
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
-    integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
- 
 <div class="container">
     <div>
         <h1>ใส่ใจในความพิงพอใจ</h1>
@@ -17,6 +37,7 @@
     </div>
 
     <div>
+    <br>
         <a href='https://alfood.web.app/event'>Alfood Market</a>
     </div>
 
