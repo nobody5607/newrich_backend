@@ -27,6 +27,10 @@
     ]);
 ?>  
 
+<p>
+        <h4>แชร์ข้อมูล</h4>
+</p>
+
  <a class="text-white btn btn-default" style="background: #4267b2;
         border-radius: 5px;
         color: white; font-size:20pt;    width: 55px;" 
