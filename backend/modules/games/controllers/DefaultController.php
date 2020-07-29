@@ -31,21 +31,25 @@ class DefaultController extends Controller
     }
 
     public function actionShared(){
-        $this->layout ='shared.php';
+        // $this->layout ='shared.php';
         //return $this->layout;
         $id = \Yii::$app->request->get('uuid');
         $path = isset(\Yii::$app->params['storageUrl']) ? \Yii::$app->params['storageUrl'] : '';
         $model = GameFile::find()->where(['uuid'=>$id])->one();
         $image = '';
+        $msg='';
+        
         if($model){
             $image = "{$path}/images/{$model->filename}";
+            $msg = $model->msg;
         }
 
         
         return $this->renderPartial('shared',[
             'id'=>$id,
             'image'=>$image,
-            'model'=>$model
+            'model'=>$model,
+            'msg'=>$msg
         ]);
     }
     public function actionViewData(){
