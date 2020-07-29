@@ -25,27 +25,13 @@
 </head>
 <body>
     
-
-<!-- Load Facebook SDK for JavaScript -->
-  <div id="fb-root"></div>
-  <script>(function(d, s, id) {
-    var js, fjs = d.getElementsByTagName(s)[0];
-    if (d.getElementById(id)) return;
-    js = d.createElement(s); js.id = id;
-    js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.8";
-    fjs.parentNode.insertBefore(js, fjs);
-  }(document, 'script', 'facebook-jssdk'));</script>
-
-  <!-- Your share button code -->
-  <label for="">แชร์ข้อมูล</label>
-  <div class="fb-share-button" 
-    data-href="<?= $mainUrl; ?>" 
-    data-layout="button_count">
-  </div>
-
-
-
  
+ <a class="text-white btn btn-default" style="background: #4267b2;
+        border-radius: 5px;
+        color: white; font-size:20pt;    width: 55px;" 
+        href="https://www.facebook.com/sharer/sharer.php?kid_directed_site=0&sdk=joey&u=<?= $mainUrl; ?>&display=popup&ref=plugin&src=share_button" target="_blank">
+            <i class="fa fa-facebook"></i>
+        </a>
 </body>
 </html>
 
