@@ -17,7 +17,7 @@
 
     <title><?= isset($model->msg)?$model->msg:''; ?></title>
 
- <meta property="og:title"             content="<?= isset($model->msg)?$model->msg:''; ?>"/>
+ <meta property="og:title"   content="xxx"/>
     <meta property="og:type"             content="website"/>
     <meta property="og:url"               content="<?= $mainUrl?>"/>
     <meta property="og:image"         content="<?= isset($image)?$image:''; ?>"/>
