@@ -4,26 +4,26 @@
     $link = 'https://api.newriched.com';
     // $link = 'http://backend.newrich.local/';
     $mainUrl = "{$link}/games/default/view-data?uuid={$id}";
-    // $this->registerMetaTag([
-    //         'property'=>'og:title',
-    //         'content'=>$msg 
-    // ]);
-    // $this->registerMetaTag([
-    //         'property'=>'og:type',
-    //         'content'=>'website'
-    // ]);
-    // $this->registerMetaTag([
-    //         'property'=>'og:url',
-    //         'content'=>"{$link}/games/default/view-data?uuid={$id}"
-    // ]);
-    // $this->registerMetaTag([
-    //         'property'=>'og:image',
-    //         'content'=>$image
-    // ]);
-    // $this->registerMetaTag([
-    //         'property'=>'og:description',
-    //         'content'=>$msg 
-    // ]);
+    $this->registerMetaTag([
+            'property'=>'og:title',
+            'content'=>$msg 
+    ]);
+    $this->registerMetaTag([
+            'property'=>'og:type',
+            'content'=>'website'
+    ]);
+    $this->registerMetaTag([
+            'property'=>'og:url',
+            'content'=>"{$link}/games/default/view-data?uuid={$id}"
+    ]);
+    $this->registerMetaTag([
+            'property'=>'og:image',
+            'content'=>$image
+    ]);
+    $this->registerMetaTag([
+            'property'=>'og:description',
+            'content'=>$msg 
+    ]);
 ?>  
 
  <a class="text-white btn btn-default" style="background: #4267b2;
