@@ -29,7 +29,7 @@
  <a class="text-white btn btn-default" style="background: #4267b2;
         border-radius: 5px;
         color: white; font-size:20pt;    width: 55px;" 
-        href="https://www.facebook.com/sharer/sharer.php?kid_directed_site=0&sdk=joey&u=<?= $mainUrl; ?>&display=popup&ref=plugin&src=share_button" target="_blank">
+        href="https://www.facebook.com/sharer/sharer.php?kid_directed_site=0&sdk=joey&u=<?= $mainUrl; ?>" target="_blank">
             <i class="fa fa-facebook"></i>
         </a>
 
