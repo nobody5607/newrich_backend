@@ -1,6 +1,6 @@
 <?php
     use yii\helpers\Url;
-    $link = 'https://api.newriched.com/';
+    $link = 'https://api.newriched.com';
     // $link = 'http://backend.newrich.local/';
     $mainUrl = "{$link}/games/default/view-data?uuid=" . $id;
  
@@ -14,7 +14,9 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title><?= isset($model->msg)?$model->msg:''; ?></title>
+
     <meta property="og:url"           content="<?= $mainUrl?>" />
     <meta property="og:type"          content="website" />
     <meta property="og:title"         content="<?= isset($model->msg)?$model->msg:''; ?>" />
