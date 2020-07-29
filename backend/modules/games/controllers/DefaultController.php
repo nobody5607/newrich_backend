@@ -40,7 +40,9 @@ class DefaultController extends Controller
         if($model){
             $image = "{$path}/images/{$model->filename}";
         }
-        return $this->render('shared',[
+
+        
+        return $this->renderPartial('shared',[
             'id'=>$id,
             'image'=>$image,
             'model'=>$model
