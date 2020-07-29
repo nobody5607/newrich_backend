@@ -16,13 +16,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title><?= isset($model->msg)?$model->msg:''; ?></title>
-    <title>มนุษย์มดมหากาฬ (อังกฤษ: Ant-Man) เป็นภาพยนตร์ซูเปอร์ฮีโรอเมริกัน ในปี ค.ศ. 2015 ที่สร้างจากหนังสือการ์ตูนของมาร์เวลเรื่อง แอนต์-แมน สร้างโดย มาร์เวล สตูดิโอส์ ... ทำให้ครอสถูกย่อส่วนจนตาย แลงค์ถูกย่อส่วนลงไปเรื่อย ๆ จนติดอยู่ในมิติควอนตัม</title>
 
-    <meta property="og:url"           content="<?= $mainUrl?>" />
-    <meta property="og:type"          content="website" />
-    <meta property="og:title"         content="<?= isset($model->msg)?$model->msg:''; ?>" />
-    <meta property="og:description"   content="<?= isset($model->msg)?$model->msg:''; ?>" />
-    <meta property="og:image"         content="<?= isset($image)?$image:''; ?>" />
+ <meta property="og:title"             content="<?= isset($model->msg)?$model->msg:''; ?>"/>
+    <meta property="og:type"             content="website"/>
+    <meta property="og:url"               content="<?= $mainUrl?>"/>
+    <meta property="og:image"         content="<?= isset($image)?$image:''; ?>"/>
+    <meta property="og:site_name"    content="alfood.web.app"/>
+    <meta property="fb:admins"         content="000000000000000000"/>
+    <meta property="og:description"   content="<?= isset($model->msg)?$model->msg:''; ?>" /> 
 </head>
 <body>
     
