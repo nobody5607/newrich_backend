@@ -1,5 +1,6 @@
-<?php
+<?php 
     use yii\helpers\Url;
+    $this->title = $msg;
     $link = 'https://api.newriched.com';
     // $link = 'http://backend.newrich.local/';
     $mainUrl = "{$link}/games/default/view-data?uuid={$id}";
