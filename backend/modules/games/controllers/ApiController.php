@@ -8,6 +8,8 @@ use backend\modules\admins\models\Payment;
 use backend\modules\games\models\GameEvent;
 use backend\modules\games\models\GameFile;
 use backend\modules\games\models\GameScore1;
+use backend\modules\games\models\Promotion;
+use yii\db\Expression;
 use yii\web\Controller;
 use yii\web\UploadedFile;
 
@@ -87,6 +89,16 @@ class ApiController extends Controller
 
 //                return $file;
             }
+        }
+    }
+
+
+    public function actionCode(){
+        $query = Promotion::find() 
+        ->orderBy(new Expression('rand()'))
+        ->limit(1)->one();
+        if($query){
+            return $query->code;
         }
     }
 }
