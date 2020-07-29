@@ -1,6 +1,6 @@
 <?php 
     use yii\helpers\Url;
-    $tag = "#Alfood Market #อาหารสดออนไลน์";
+    $tag = "<br/>#Alfood Market #อาหารสดออนไลน์";
     $this->title = $msg;
     $link = 'https://api.newriched.com';
     // $link = 'http://backend.newrich.local/';
