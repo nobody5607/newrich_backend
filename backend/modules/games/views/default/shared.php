@@ -2,6 +2,7 @@
     use yii\helpers\Url;
     $link = 'https://api.newriched.com';
     // $link = 'http://backend.newrich.local/';
+    $mainUrl = "{$link}/games/default/view-data?uuid={$id}";
     $this->registerMetaTag([
             'property'=>'og:title',
             'content'=>$msg 
