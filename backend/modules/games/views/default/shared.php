@@ -15,12 +15,12 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><?= $model->msg; ?></title>
+    <title><?= isset($model->msg)?$model->msg:''; ?></title>
     <meta property="og:url"           content="<?= $mainUrl?>" />
     <meta property="og:type"          content="website" />
-    <meta property="og:title"         content="<?= $model->msg; ?>" />
-    <meta property="og:description"   content="<?= $model->msg; ?>" />
-    <meta property="og:image"         content="<?= $image; ?>" />
+    <meta property="og:title"         content="<?= isset($model->msg)?$model->msg:''; ?>" />
+    <meta property="og:description"   content="<?= isset($model->msg)?$model->msg:''; ?>" />
+    <meta property="og:image"         content="<?= isset($image)?$image:''; ?>" />
 </head>
 <body>
     
