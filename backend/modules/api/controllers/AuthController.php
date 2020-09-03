@@ -130,9 +130,11 @@ class AuthController extends Controller
         if ($user != null) {
             $profile = Profile::findOne($user->id);
             $profile->image = $image;
-            $profile->save();
-
-            return ['token'=>$user->auth_key];
+            $profile->image2 = $image;
+            if(!$profile->save()){
+                return 'error';
+            }
+            return ['token'=>$user->auth_key,'profile'=>$profile];
         }else{
             $user = new \backend\modules\admins\models\User();
             $user->username = date('YmdHis') . rand(0, 10000) . time();
@@ -169,7 +171,7 @@ class AuthController extends Controller
                 $profile->site = $site;
                 $profile->avatar_path = $image;
                 $profile->image = $image;
-
+                $profile->image2 = $image;
                 $profile->parent_id = isset($memberParent->user_id) ? $memberParent->user_id : '';
                 $profile->member_type = 'B2B';
                 $profile->link = 'Newrich' . Date('dmYHis') . time() . rand(1000000, 999999999);
@@ -213,6 +215,7 @@ class AuthController extends Controller
         }else{
             $imageUrl = $member['profile']['avatar_path'];
         }
+        //return CNMessage::getSuccess("Success", $profile);
         $output = [
             'id' => $member['user']['id'],
             'email' => $member['user']['email'],

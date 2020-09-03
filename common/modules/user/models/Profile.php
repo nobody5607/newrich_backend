@@ -48,7 +48,7 @@ class Profile extends BaseProfile{
             ['firstname','required', 'on' => ['create', 'connect', 'update','update-profile'],'message'=> \Yii::t('chanpan','Firstname cannot be blank.')],
             [['lastname'],'required','on' => ['create', 'connect', 'update','update-profile'],'message'=> \Yii::t('chanpan','Lastname cannot be blank.')],
             [['avatar_path', 'avatar_base_url'], 'string'],
-            [['image','tel','firstname','lastname'], 'safe']
+            [['image','tel','firstname','lastname','image2'], 'safe']
         ];
         
         return \yii\helpers\ArrayHelper::merge($rules, $addon);
