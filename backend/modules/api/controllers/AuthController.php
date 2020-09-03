@@ -125,15 +125,17 @@ class AuthController extends Controller
         $link = \Yii::$app->request->post('link');
         $site = \Yii::$app->request->post('site', '0001');
         $output = [];
+
         $user = \backend\modules\admins\models\User::find()->where(['email' => $email])->one();
-
-
         if ($user != null) {
+            $profile = Profile::findOne($user->id);
+            $profile->image = $image;
+            $profile->save();
+
             return ['token'=>$user->auth_key];
         }else{
             $user = new \backend\modules\admins\models\User();
             $user->username = date('YmdHis') . rand(0, 10000) . time();
-
             $password = Yii::$app->security->generateRandomString(12);
             $user->email = $email;
             $user->created_at = time();
@@ -166,6 +168,8 @@ class AuthController extends Controller
                 $profile->sitecode = $site;
                 $profile->site = $site;
                 $profile->avatar_path = $image;
+                $profile->image = $image;
+
                 $profile->parent_id = isset($memberParent->user_id) ? $memberParent->user_id : '';
                 $profile->member_type = 'B2B';
                 $profile->link = 'Newrich' . Date('dmYHis') . time() . rand(1000000, 999999999);
@@ -201,14 +205,14 @@ class AuthController extends Controller
         $totalStatus = \Yii::$app->request->get('total', true);
         $user = ClsAuth::getUserByToken($token);
         $member = ClsMember::getMemberById($user->id, true, $totalStatus);
-
+        $profile = Profile::findOne($user->id);
 
         $output = [
             'id' => $member['user']['id'],
             'email' => $member['user']['email'],
             'token' => $member['user']['auth_key'],
             'name' => $member['profile']['name'],
-            'image' => $member['profile']['avatar_path'],
+            'image' => isset($profile->image)?$profile->image:$member['profile']['avatar_path'],
             'site' => $member['profile']['site'],
             'member_type' => $member['profile']['member_type'],
             'member_id' => $member['profile']['member_id'],
