@@ -5,17 +5,18 @@ namespace backend\modules\api\controllers;
 
 
 use appxq\sdii\utils\SDUtility;
-use appxq\sdii\utils\VarDumper;
+//use appxq\sdii\utils\VarDumper;
 use backend\modules\api\classes\ClsAuth;
 use backend\modules\api\classes\ClsMember;
 use backend\modules\api\models\Orders;
-use common\modules\user\classes\CNAuth;
+//use common\modules\user\classes\CNAuth;
 use common\modules\user\models\Profile;
 use cpn\chanpan\classes\CNMessage;
-use mdm\admin\models\User;
+//use mdm\admin\models\User;
 use yii\helpers\Json;
 use yii\web\Controller;
 use yii\web\UploadedFile;
+use Yii;
 
 class AuthController extends Controller
 {
@@ -126,31 +127,41 @@ class AuthController extends Controller
         $output = [];
         $user = \backend\modules\admins\models\User::find()->where(['email' => $email])->one();
 
-        if ($user) {
+
+        if ($user != null) {
             return ['token'=>$user->auth_key];
         }else{
+            $user = new \backend\modules\admins\models\User();
             $user->username = date('YmdHis') . rand(0, 10000) . time();
-            $user->password = Yii::$app->security->generateRandomString(12);
+
+            $password = Yii::$app->security->generateRandomString(12);
             $user->email = $email;
             $user->created_at = time();
             $user->confirmed_at = time();
             $user->updated_at = time();
             $user->flags = 0;
-            $user->password_hash = Yii::$app->security->generatePasswordHash($user->password);
+            $user->password_hash = Yii::$app->security->generatePasswordHash($password);
             $user->auth_key = Yii::$app->security->generateRandomString();
             if ($user->save()) {
                 $memberParent = Profile::find()->where(['link'=>$link])->one();
+
                 try {
                     $assignData = ['item_name' => 'user', 'user_id' => $user->id, 'created_at' => time()];
                     \Yii::$app->db->createCommand()->insert('auth_assignment', $assignData)->execute();
-                } catch (\yii\db\Exception $ex) {}
+                } catch (\yii\db\Exception $ex) {
+                    return $ex->getMessage();
+                }
                 $profile = Profile::findOne($user->id);
+                if($profile == null){
+                    $profile = new Profile();
+                }
                 $profile->user_id = $user->id;
                 $profile->name = $name;
                 $profile->public_email = $email;
                 $profile->gravatar_email = $email;
                 $nameObj = explode(' ', $name);
-                $profile->lastname = issett($nameObj[0]) ? $nameObj[0] : '';
+
+                $profile->lastname = isset($nameObj[0]) ? $nameObj[0] : '';
                 $profile->firstname = isset($nameObj[1]) ? $nameObj[1] : '';
                 $profile->sitecode = $site;
                 $profile->site = $site;
