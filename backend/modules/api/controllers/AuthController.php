@@ -207,12 +207,18 @@ class AuthController extends Controller
         $member = ClsMember::getMemberById($user->id, true, $totalStatus);
         $profile = Profile::findOne($user->id);
 
+        $imageUrl = '';
+        if(isset($profile->image) && $profile->image != ''){
+            $imageUrl = $profile->image;
+        }else{
+            $imageUrl = $member['profile']['avatar_path'];
+        }
         $output = [
             'id' => $member['user']['id'],
             'email' => $member['user']['email'],
             'token' => $member['user']['auth_key'],
             'name' => $member['profile']['name'],
-            'image' => isset($profile->image)?$profile->image:$member['profile']['avatar_path'],
+            'image' => $imageUrl,
             'site' => $member['profile']['site'],
             'member_type' => $member['profile']['member_type'],
             'member_id' => $member['profile']['member_id'],
