@@ -210,8 +210,8 @@ class AuthController extends Controller
         $profile = Profile::findOne($user->id);
 
         $imageUrl = '';
-        if(isset($profile->image) && $profile->image != ''){
-            $imageUrl = $profile->image;
+        if(isset($profile->image2) && $profile->image2 != ''){
+            $imageUrl = $profile->image2;
         }else{
             $imageUrl = $member['profile']['avatar_path'];
         }
