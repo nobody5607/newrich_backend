@@ -286,4 +286,15 @@ class SettingController extends Controller
             return CNMessage::getError("ไม่สำเร็จ");
         }
     }
+    public function actionGetBanks(){
+        $token = \Yii::$app->request->headers->get('x-access-token');
+        if (!$token) {
+            return CNMessage::getError("Error", "คุณไม่มีสิทธิ์ใช้งานส่วนนี้");
+        }
+        $user = $this->getUserByToken($token);
+        $model = Connectbank::find()->where(['user_id'=>$user->id])->all();
+        return CNMessage::getSuccess("สำเร็จ", $model);
+    }
+
+
 }
