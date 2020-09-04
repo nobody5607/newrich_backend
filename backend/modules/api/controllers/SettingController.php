@@ -272,6 +272,8 @@ class SettingController extends Controller
         $accountType = \Yii::$app->request->post('accountType');
         $accountNumber = \Yii::$app->request->post('accountNumber');
         $accountName = \Yii::$app->request->post('accountName');
+        $id = \Yii::$app->request->post('id','');
+
         $active = \Yii::$app->request->post('active');
         if (!$token) {
             return CNMessage::getError("Error", "คุณไม่มีสิทธิ์ใช้งานส่วนนี้");
@@ -283,7 +285,12 @@ class SettingController extends Controller
             return CNMessage::getError("คุณสามารเพิ่มได้แค่ 3 รายการเท่านั้น");
         }
 
-        $model = new Connectbank();
+        if($id != ''){
+            $model = Connectbank::findOne($id);
+        }else{
+            $model = new Connectbank();
+        }
+
         $model->user_id= $user->id;
         $model->name= $accountName;
         $model->account= $accountNumber;
