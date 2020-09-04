@@ -266,6 +266,17 @@ class SettingController extends Controller
 
     }
 
+    public function actionDeleteBank()
+    {
+        $id = \Yii::$app->request->post('id', '');
+        $model = Connectbank::findOne($id);
+        if($model->delete()){
+            return CNMessage::getSuccess("ลบสำเร็จ");
+        }else{
+            return CNMessage::getError("ลบไม่สำเร็จ");
+        }
+    }
+
     public function actionSaveBank()
     {
         $token = \Yii::$app->request->headers->get('x-access-token');
