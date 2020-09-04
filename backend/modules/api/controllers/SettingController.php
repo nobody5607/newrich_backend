@@ -302,7 +302,7 @@ class SettingController extends Controller
             return CNMessage::getError("Error", "คุณไม่มีสิทธิ์ใช้งานส่วนนี้");
         }
         $user = $this->getUserByToken($token);
-        $model = Connectbank::find()->where(['user_id'=>$user->id])->all();
+        $model = Connectbank::find()->where(['user_id'=>$user->id])->orderBy(['active'=>SORT_DESC])->all();
         if($model){
             foreach($model as $k=>$v){
                 $bankItem = Bankitem::find()->where(['id'=>$v->bank])->one();
