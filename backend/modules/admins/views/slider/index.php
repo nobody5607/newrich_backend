@@ -11,6 +11,7 @@ $this->title = 'รายการ';
 $this->params['breadcrumbs'][] = ['label' => 'Admin', 'url' => ['/admin']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
+<a href="<?= Url::to(['/admins'])?>">< ย้อนกลับ</a>
     <div class="container-fluid width90 bg-white">
         <div class="row">
             <div class="col-md-6"><?= Html::encode($this->title) ?></div>

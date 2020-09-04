@@ -205,6 +205,7 @@ class CreateGroupController extends Controller
                 return CNMessage::getError('บันทึกรายการไม่สำเร็จกรุณาลองใหม่อีกครั้งค่ะ');
             }
         }
+        //return 'ok';
         $model->user_id = $user_id;
         return $this->render('connect-bank',[
            'model'=>$model
