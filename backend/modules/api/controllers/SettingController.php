@@ -5,6 +5,7 @@ namespace backend\modules\api\controllers;
 
 
 use appxq\sdii\utils\VarDumper;
+use backend\models\Bankitem;
 use backend\models\Connectbank;
 use backend\models\CreateBusines;
 use backend\models\CreateGroup;
@@ -293,6 +294,12 @@ class SettingController extends Controller
         }
         $user = $this->getUserByToken($token);
         $model = Connectbank::find()->where(['user_id'=>$user->id])->all();
+        if($model){
+            foreach($model as $k=>$v){
+                $bankItem = Bankitem::find()->where(['id'=>$v->bank])->one();
+                $v->bank = $bankItem->name;
+            }
+        }
         return CNMessage::getSuccess("สำเร็จ", $model);
     }
 
