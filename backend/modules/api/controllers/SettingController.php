@@ -277,6 +277,12 @@ class SettingController extends Controller
             return CNMessage::getError("Error", "คุณไม่มีสิทธิ์ใช้งานส่วนนี้");
         }
         $user = $this->getUserByToken($token);
+
+        $check = Connectbank::find()->where(['user_id'=>$user->id])->one();
+        if($check && count($check) > 3){
+            return CNMessage::getError("คุณสามารเพิ่มได้แค่ 3 รายการเท่านั้น");
+        }
+
         $model = new Connectbank();
         $model->user_id= $user->id;
         $model->name= $accountName;
