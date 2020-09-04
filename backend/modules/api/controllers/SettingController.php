@@ -268,6 +268,14 @@ class SettingController extends Controller
 
     public function actionDeleteBank()
     {
+
+        $token = \Yii::$app->request->headers->get('x-access-token');
+        $id = \Yii::$app->request->post('id',''); 
+        if (!$token) {
+            return CNMessage::getError("Error", "คุณไม่มีสิทธิ์ใช้งานส่วนนี้");
+        }
+        $user = $this->getUserByToken($token);
+
         $id = \Yii::$app->request->post('id', '');
         $model = Connectbank::findOne($id);
         if($model->delete()){
