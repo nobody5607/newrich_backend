@@ -280,7 +280,7 @@ class SettingController extends Controller
         }
         $user = $this->getUserByToken($token);
 
-        $check = Connectbank::find()->select('count(*)')->where(['user_id'=>$user->id])->select();
+        $check = Connectbank::find()->select('count(*)')->where(['user_id'=>$user->id])->scalar();
         if($check > 3){
             return CNMessage::getError("คุณสามารเพิ่มได้แค่ 3 รายการเท่านั้น");
         }
