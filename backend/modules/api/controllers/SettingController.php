@@ -272,6 +272,7 @@ class SettingController extends Controller
         $accountType = \Yii::$app->request->post('accountType');
         $accountNumber = \Yii::$app->request->post('accountNumber');
         $accountName = \Yii::$app->request->post('accountName');
+        $active = \Yii::$app->request->post('active');
         if (!$token) {
             return CNMessage::getError("Error", "คุณไม่มีสิทธิ์ใช้งานส่วนนี้");
         }
@@ -281,6 +282,14 @@ class SettingController extends Controller
         $model->name= $accountName;
         $model->account= $accountNumber;
         $model->bank= $accountType;
+        $model->active = $active;
+        $x=Connectbank::find()->where(['user_id'=>$user->id])->all();
+        if($x){
+            foreach($x as $k=>$v){
+                $v->active = 0;
+                $v->save();
+            }
+        }
         if($model->save()){
             return CNMessage::getSuccess("สำเร็จ");
         }else{

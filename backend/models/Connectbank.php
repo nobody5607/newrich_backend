@@ -33,7 +33,7 @@ class Connectbank extends \yii\db\ActiveRecord
     {
         return [
             [['name', 'bank','account'], 'required'],
-            [['user_id', 'bank'], 'integer'],
+            [['user_id', 'bank','active'], 'integer'],
             [['detail'], 'string'],
             [['name'], 'string', 'max' => 255],
             [['account'], 'string', 'max' => 50],
@@ -53,6 +53,7 @@ class Connectbank extends \yii\db\ActiveRecord
             'account' => 'เลขที่บัญชี',
             'detail' => 'รายละเอียด',
             'bank' => 'ชื่อธนาคาร',
+            'active'=>'สถานะการใช้งาน'
         ];
     }
 
