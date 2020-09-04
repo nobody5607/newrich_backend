@@ -264,4 +264,26 @@ class SettingController extends Controller
 
 
     }
+
+    public function actionSaveBank()
+    {
+        $token = \Yii::$app->request->headers->get('x-access-token');
+        $accountType = \Yii::$app->request->post('accountType');
+        $accountNumber = \Yii::$app->request->post('accountNumber');
+        $accountName = \Yii::$app->request->post('accountName');
+        if (!$token) {
+            return CNMessage::getError("Error", "คุณไม่มีสิทธิ์ใช้งานส่วนนี้");
+        }
+        $user = $this->getUserByToken($token);
+        $model = new Connectbank();
+        $model->user_id= $user->id;
+        $model->name= $accountName;
+        $model->account= $accountNumber;
+        $model->bank= $accountType;
+        if($model->save()){
+            return CNMessage::getSuccess("สำเร็จ");
+        }else{
+            return CNMessage::getError("ไม่สำเร็จ");
+        }
+    }
 }
