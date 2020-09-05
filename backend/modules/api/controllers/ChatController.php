@@ -109,7 +109,7 @@ class ChatController extends Controller
         $roomId = \Yii::$app->request->get('roomId');
         try{
             $chat = Chat::find()
-                ->where(['room_id'=>$roomId])->orderBy(['id'=>SORT_DESC])
+                ->where(['room_id'=>$roomId])->orderBy(['id'=>SORT_ASC])
                 ->all();
             return CNMessage::getSuccess('สำเร็จ', $chat);
         }catch (Exception $ex){
