@@ -140,6 +140,11 @@ class ChatController extends Controller
         }
     }
 
+    //get user id
+    public function actionGetUserId(){
+        return $this->userId;
+    }
+
 
 
 }
