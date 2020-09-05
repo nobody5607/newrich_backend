@@ -123,6 +123,7 @@ class ChatController extends Controller
 
             $chat = new Chat();
             $chat->msg = $msg;
+            $chat->room_id= $roomId;
             $chat->create_by = $this->userId;
             $chat->create_date = date('Y-m-d H:i:s');
             if($chat->save()){
