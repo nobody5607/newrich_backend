@@ -67,15 +67,17 @@ class ChatController extends Controller
     //create room
     public function actionCreateRoom(){
         $friendId = \Yii::$app->request->post('friendId');
-        $room = new Room();
-        $room->user_id = $this->userId;
-        $room->friend_id= $friendId;
-        $room->create_date=date('Y-m-d H:i:s');
-        $room->create_by = $this->userId;
-        if($room->save()){
-            return CNMessage::getSuccess('สำเร็จ', $room);
-        }else{
-            return CNMessage::getError('เกิดข้อผิดพลาด', $room->errors);
+        if($friendId != ''){
+            $room = new Room();
+            $room->user_id = $this->userId;
+            $room->friend_id= $friendId;
+            $room->create_date=date('Y-m-d H:i:s');
+            $room->create_by = $this->userId;
+            if($room->save()){
+                return CNMessage::getSuccess('สำเร็จ', $room);
+            }else{
+                return CNMessage::getError('เกิดข้อผิดพลาด', $room->errors);
+            }
         }
     }
 
