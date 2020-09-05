@@ -121,15 +121,17 @@ class ChatController extends Controller
         $msg = \Yii::$app->request->post('msg');
         try{
 
-            $chat = new Chat();
-            $chat->msg = $msg;
-            $chat->room_id= $roomId;
-            $chat->create_by = $this->userId;
-            $chat->create_date = date('Y-m-d H:i:s');
-            if($chat->save()){
-                return CNMessage::getSuccess('สำเร็จ', $chat);
-            }else{
-                return CNMessage::getError('เกิดข้อผิดพลาด', $chat->errors);
+            if($msg != ''){
+                $chat = new Chat();
+                $chat->msg = $msg;
+                $chat->room_id= $roomId;
+                $chat->create_by = $this->userId;
+                $chat->create_date = date('Y-m-d H:i:s');
+                if($chat->save()){
+                    return CNMessage::getSuccess('สำเร็จ', $chat);
+                }else{
+                    return CNMessage::getError('เกิดข้อผิดพลาด', $chat->errors);
+                }
             }
         }catch (Exception $ex){
             return CNMessage::getError('เกิดข้อผิดพลาด', $ex->getMessage());
