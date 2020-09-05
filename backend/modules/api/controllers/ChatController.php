@@ -57,6 +57,7 @@ class ChatController extends Controller
                     ':friend_id2'=>$friendId,':user_id2'=>$this->userId
                 ])
                 ->one();
+
             return CNMessage::getSuccess('สำเร็จ', $room);
         }catch (Exception $ex){
             return CNMessage::getError('เกิดข้อผิดพลาด', $ex->getMessage());
@@ -106,7 +107,7 @@ class ChatController extends Controller
         $roomId = \Yii::$app->request->get('roomId');
         try{
             $chat = Chat::find()
-                ->where(['room_id'=>$roomId])
+                ->where(['room_id'=>$roomId])->orderBy(['id'=>SORT_DESC])
                 ->all();
             return CNMessage::getSuccess('สำเร็จ', $chat);
         }catch (Exception $ex){
@@ -119,7 +120,7 @@ class ChatController extends Controller
         $roomId = \Yii::$app->request->post('roomId');
         $msg = \Yii::$app->request->post('msg');
         try{
-            
+
             $chat = new Chat();
             $chat->msg = $msg;
             $chat->create_by = $this->userId;
