@@ -68,7 +68,7 @@ class ChatController extends Controller
                 $profile = Profile::find()->where(['user_id' => $v->user_id])->one();
                 $chat = Chat::find()->where(['room_id' => $v->id])->orderBy(['id' => SORT_DESC])->one();
                 //return $profile;
-                $output = [
+                $output[] = [
                     'friend' => $profile->name,
                     'date' => SDdate::mysql2phpThDateSmall($v->create_date),
                     'friend_id' => $profile->user_id,
