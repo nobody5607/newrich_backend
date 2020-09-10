@@ -70,7 +70,7 @@ class ChatController extends Controller
                 //return $profile;
                 $output[] = [
                     'friend' => $profile->name,
-                    'date' => SDdate::mysql2phpThDateSmall($v->create_date),
+                    'date' => SDdate::mysql2phpThDateTime($v->create_date),
                     'friend_id' => $profile->user_id,
                     'user_id' => $this->userId,
                     'msg' => isset($chat->msg) ? $chat->msg : ''
@@ -78,6 +78,20 @@ class ChatController extends Controller
             }
         }
         return CNMessage::getSuccess('สำเร็จ', $output);
+    }
+
+    //update-status-room
+    public function actionUpdateStatusRoom($id)
+    {
+        $model = Room::find()->where(['id' => $id])->one();
+        if($model){
+            $model->status = 1;
+            if($model->save()){
+                return CNMessage::getSuccess('สำเร็จ', $model);
+            }else{
+                return CNMessage::getError('เกิดข้อผิดพลาด', $model->errors);
+            }
+        }
     }
 
     //get room
