@@ -51,7 +51,9 @@ class ChatController extends Controller
     {
 //        return $this->userId;
         $count = 0;
-        $model = Room::find()->select('count(*)')->where(['friend_id' => $this->userId])->andWhere('status = 0')->scalar();
+        $model = Room::find()->select('count(*)')
+            ->where(['friend_id' => $this->userId])
+            ->andWhere('status = 0')->scalar();
         if ($model) {
             $count = $model;
         }
@@ -102,11 +104,14 @@ class ChatController extends Controller
             $room = Room::find()
                 ->where('user_id=:user_id AND friend_id=:friend_id')
                 ->orWhere('friend_id=:friend_id2 AND user_id=:user_id2')
+                ->orWhere('user_id=:user_id3 AND friend_id=:friend_id3 ')
                 ->addParams([
                     ':user_id' => $this->userId, ':friend_id' => $friendId,
-                    ':friend_id2' => $friendId, ':user_id2' => $this->userId
+                    ':friend_id2' => $friendId, ':user_id2' => $this->userId,
+                    ':user_id3'=>$friendId,':friend_id3' => $this->userId
                 ])
-                ->one();
+                ->createCommand()->rawSql;
+
 
             return CNMessage::getSuccess('สำเร็จ', $room);
         } catch (Exception $ex) {
