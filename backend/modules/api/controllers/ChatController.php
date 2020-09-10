@@ -5,6 +5,7 @@ namespace backend\modules\api\controllers;
 
 
 use appxq\sdii\utils\SDdate;
+use backend\modules\admins\models\Profile;
 use backend\modules\games\models\Chat;
 use backend\modules\games\models\Room;
 use cpn\chanpan\classes\CNMessage;
@@ -43,7 +44,35 @@ class ChatController extends Controller
         return $user;
     }
 
-    //room
+    //get count room
+    public function actionGetCountRoom(){
+//        return $this->userId;
+        $count = 0;
+        $model = Room::find()->select('count(*)')->where(['friend_id'=>$this->userId])->andWhere('status = 0')->scalar();
+        if($model){
+            $count = $model;
+        }
+        return CNMessage::getSuccess('สำเร็จ', $count);
+    }
+
+    //get room by user id
+    public function actionGetRoomByFriendId(){
+        $output=[];
+        $model = Room::find()->where(['friend_id'=>$this->userId])->all();
+        if($model){
+            foreach($model as $v){
+                $profile = Profile::find()->where(['user_id'=>$v->user_id])->one();
+                //return $profile;
+                $output=[
+                    'friend'=>$profile->name,
+                    'date'=>SDdate::mysql2phpThDateSmall($v->create_date),
+                    'friend_id'=>$profile->user_id,
+                    'user_id'=>$this->userId
+                ];
+            }
+        }
+        return CNMessage::getSuccess('สำเร็จ', $output);
+    }
 
     //get room
     public function actionGetRoom(){
@@ -73,6 +102,7 @@ class ChatController extends Controller
             $room->friend_id= $friendId;
             $room->create_date=date('Y-m-d H:i:s');
             $room->create_by = $this->userId;
+            $room->status = 0;
             if($room->save()){
                 return CNMessage::getSuccess('สำเร็จ', $room);
             }else{

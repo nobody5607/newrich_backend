@@ -30,7 +30,7 @@ class Room extends \yii\db\ActiveRecord
     {
         return [
             [['user_id', 'friend_id', 'create_by'], 'integer'],
-            [['create_date'], 'safe'],
+            [['create_date','status'], 'safe'],
         ];
     }
 
