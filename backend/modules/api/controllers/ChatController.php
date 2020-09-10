@@ -89,7 +89,7 @@ class ChatController extends Controller
             if($model->save()){
                 return CNMessage::getSuccess('สำเร็จ', $model);
             }else{
-                return CNMessage::getError('เกิดข้อผิดพลาด', $model->errors);
+                return CNMessage::getError('เกิดข้อผิดพลาด actionUpdateStatusRoom ', $model->errors);
             }
         }
     }
