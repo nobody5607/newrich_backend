@@ -109,8 +109,7 @@ class ChatController extends Controller
                     ':user_id' => $this->userId, ':friend_id' => $friendId,
                     ':friend_id2' => $friendId, ':user_id2' => $this->userId,
                     ':user_id3'=>$friendId,':friend_id3' => $this->userId
-                ])
-                ->createCommand()->rawSql;
+                ])->one();
 
 
             return CNMessage::getSuccess('สำเร็จ', $room);
