@@ -137,7 +137,7 @@ class SettingController extends Controller
         if ($model) {
             return "{$storageUrl}/{$model->image}";
         }
-        return "{$storageUrl}/noimage.png";
+        return "{$storageUrl}/images/noimage.png";
     }
 
     public function actionUploadPayment()
@@ -270,7 +270,7 @@ class SettingController extends Controller
     {
 
         $token = \Yii::$app->request->headers->get('x-access-token');
-        $id = \Yii::$app->request->post('id',''); 
+        $id = \Yii::$app->request->post('id','');
         if (!$token) {
             return CNMessage::getError("Error", "คุณไม่มีสิทธิ์ใช้งานส่วนนี้");
         }

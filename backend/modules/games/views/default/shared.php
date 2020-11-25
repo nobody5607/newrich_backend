@@ -31,12 +31,9 @@
         <h4>แชร์ข้อมูล</h4>
 </p>
 
- <a class="text-white btn btn-default" style="background: #4267b2;
-        border-radius: 5px;
-        color: white; font-size:20pt;    width: 55px;" 
+ <a class="text-white btn btn-default" style="background: #4267b2;border-radius: 5px;color: white; font-size:20pt;    width: 55px;" 
         href="https://www.facebook.com/sharer/sharer.php?&u=<?= $mainUrl; ?>" target="_blank">
-            <i class="fa fa-facebook"></i>
-        </a>
+            <i class="fa fa-facebook"></i></a>
         <a target="_blank" 
         href="https://lineit.line.me/share/ui?url=<?= $mainUrl;?>" target="_blank">
             <img style='    width: 50px;' src="<?= Url::to('@web/img/line.png')?>" alt="">
