@@ -4,6 +4,7 @@
 namespace backend\modules\api\controllers;
 
 
+use appxq\sdii\utils\SDUtility;
 use appxq\sdii\utils\VarDumper;
 use backend\models\Bankitem;
 use backend\models\Connectbank;
@@ -19,6 +20,7 @@ use backend\modules\admins\models\Profile;
 use backend\modules\api\models\Orders;
 use common\modules\user\models\User;
 use cpn\chanpan\classes\CNMessage;
+use cpn\chanpan\utils\CNUtils;
 use yii\helpers\Json;
 use yii\web\Controller;
 use yii\web\UploadedFile;
@@ -156,7 +158,7 @@ class SettingController extends Controller
                 $model->status = 0;
 
                 if ($model->save()) {
-                    return $model;
+                    return Json::encode(['status'=>'ok','data'=>$model]);
                 } else {
                     return $model->errors;
                 }
