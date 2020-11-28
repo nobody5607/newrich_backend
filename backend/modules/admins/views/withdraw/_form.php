@@ -11,35 +11,35 @@ use appxq\sdii\helpers\SDHtml;
 $this->title = 'ถอนเงิน';
 ?>
 
-    <div class="withdraw-form">
+    <div class="card">
+        <div class="card-header"><?= $this->title;?></div>
+        <div class="card-body">
 
-        <?php $form = ActiveForm::begin([
-            'id' => $model->formName(),
-        ]); ?>
+            <?php $form = ActiveForm::begin([
+                'id' => $model->formName(),
+            ]); ?>
+            <div >
+                <div class="mb-3">
+                    <label>ชื่อลูกค้า: <b><?= \backend\lib\CNUtils::getUserById($model->user_id) ?></b></label>
+                </div>
 
-        <h2><?= $this->title;?></h2>
-        <hr>
-        <div >
-            <div class="mb-3">
-                <label>ชื่อลูกค้า: <b><?= \backend\lib\CNUtils::getUserById($model->user_id) ?></b></label>
+                <div class="row">
+                    <div class="col-md-6">	<?= $form->field($model, 'amount')->textInput(['maxlength' => true]) ?>
+                    </div>
+                    <div class="col-md-6">
+                        <?= $form->field($model, 'status')->inline()->radioList(\backend\lib\CNUtils::$statusWithdraw) ?>
+                    </div>
+                </div>
+
+            </div>
+            <div class="text-right">
+                <?= Html::submitButton($model->isNewRecord ? Yii::t('app', 'Create') : Yii::t('app', 'ยืนยัน'), ['class' => $model->isNewRecord ? 'btn btn-success btn-lg btn-submit' : 'btn btn-primary btn-lg btn-submit']) ?>
+
             </div>
 
-            <div class="row">
-                <div class="col-md-6">	<?= $form->field($model, 'amount')->textInput(['maxlength' => true]) ?>
-                </div>
-                <div class="col-md-6">
-                    <?= $form->field($model, 'status')->inline()->radioList(\backend\lib\CNUtils::$statusWithdraw) ?>
-                </div>
-            </div>
+            <?php ActiveForm::end(); ?>
 
         </div>
-        <div class="text-right">
-            <?= Html::submitButton($model->isNewRecord ? Yii::t('app', 'Create') : Yii::t('app', 'ยืนยัน'), ['class' => $model->isNewRecord ? 'btn btn-success btn-lg btn-submit' : 'btn btn-primary btn-lg btn-submit']) ?>
-
-        </div>
-
-        <?php ActiveForm::end(); ?>
-
     </div>
 
 <?php \richardfan\widget\JSRegister::begin([
