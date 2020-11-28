@@ -13,7 +13,6 @@ $this->title = 'อนุมัติการใช้งานระบบ';
 $this->params['breadcrumbs'][] = $this->title;
 
 ?>
-    <a href="<?= \yii\helpers\Url::to(['/admins']) ?>">&lt; ย้อนกลับ</a>
     <div class="box box-primary">
         <div class="box-header">
             <h2><?= Html::encode($this->title) ?></h2>

@@ -18,7 +18,7 @@ $this->params['breadcrumbs'][] = $this->title;
 <div>
     <h2><?=  Html::encode($this->title) ?></h2>
 </div>
-<div class="">
+<div class="table-responsive">
     <?= GridView::widget([
         'id' => 'refund-grid',
         'dataProvider' => $dataProvider,
@@ -53,11 +53,11 @@ $this->params['breadcrumbs'][] = $this->title;
 //                    },
                 ]
             ],
-            [
-                'class' => 'yii\grid\SerialColumn',
-                'headerOptions' => ['style'=>'text-align: center;'],
-                'contentOptions' => ['style'=>'width:60px;text-align: center;'],
-            ],
+//            [
+//                'class' => 'yii\grid\SerialColumn',
+//                'headerOptions' => ['style'=>'text-align: center;'],
+//                'contentOptions' => ['style'=>'width:60px;text-align: center;'],
+//            ],
             [
                'attribute'=>'user_id',
                'value'=>function($model){
@@ -66,10 +66,18 @@ $this->params['breadcrumbs'][] = $this->title;
                 'filter'=>\yii\helpers\ArrayHelper::map(\common\modules\user\models\Profile::find()->asArray()->all(), 'user_id', 'name'),
             ],
             'order_id',
-            'amount',
+            [
+                'format'=>'raw',
+                'contentOptions'=>['class'=>'text-right'],
+                'attribute'=>'amount',
+                'value'=>function($model){
+                    return isset($model->amount) ? number_format($model->amount,2):'';
+                }
+
+            ],
             [
 
-                'contentOptions' => ['style'=>'width:200px;text-align: center;'],
+                'contentOptions' => ['style'=>'width:130px;text-align: center;'],
                 'attribute'=>'status',
                 'value'=>function($model){
                     $item = \backend\lib\CNUtils::$statusApprove;
@@ -79,6 +87,19 @@ $this->params['breadcrumbs'][] = $this->title;
                     return $item[$model->status];
                 },
                 'filter'=>\backend\lib\CNUtils::$statusApprove,
+            ],
+            [
+
+                'contentOptions' => ['style'=>'width:130px;text-align: center;'],
+                'attribute'=>'payment',
+                'value'=>function($model){
+                    $item = \backend\lib\CNUtils::$statusPayment;
+                    if(!$model->status){
+                        return $item['0'];
+                    }
+                    return $item[$model->payment];
+                },
+                'filter'=>\backend\lib\CNUtils::$statusPayment,
             ],
             [
                 'attribute'=>'approveBy',
@@ -95,4 +116,6 @@ $this->params['breadcrumbs'][] = $this->title;
 
 </div>
 </div>
+
+
 

@@ -11,6 +11,7 @@ use yii\widgets\Breadcrumbs;
 use app\assets\AppAsset;
 
 \backend\themes\admin\AdminAsset::register($this);
+\cpn\chanpan\assets\SweetAlertAsset::register($this);
 ?>
 <?php $this->beginPage() ?>
 <!DOCTYPE html>
@@ -131,7 +132,13 @@ use app\assets\AppAsset;
         </div>
     </div>
 </div>
-
+<?php \appxq\sdii\widgets\CSSRegister::begin()?>
+<style>
+    table{
+        font-size:14px;
+    }
+</style>
+<?php \appxq\sdii\widgets\CSSRegister::end()?>
 <?php $this->endBody() ?>
 </body>
 </html>

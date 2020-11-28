@@ -37,7 +37,7 @@ class Refund extends \yii\db\ActiveRecord
         return [
             [['user_id', 'approveBy', 'rstat', 'create_by', 'update_by'], 'integer'],
             [['amount'], 'number'],
-            [['approveDate', 'create_date', 'update_datte','status','payment'], 'safe'],
+            [['approveDate', 'create_date', 'update_date','status','payment'], 'safe'],
             [['order_id'], 'string', 'max' => 100],
         ];
     }

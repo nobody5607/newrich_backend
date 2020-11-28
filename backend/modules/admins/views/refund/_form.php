@@ -31,12 +31,11 @@ $this->title='ส่วนลดเงินคืน';
     </div>
         <div class="row">
             <div class="col-md-6">
-                <?= $form->field($model, 'status')->inline()->radioList(['1'=>'อนุมัติ','0'=>'ไม่อนุมัติ']) ?>
-
+                <?= $form->field($model, 'status')->inline()->radioList(\backend\lib\CNUtils::$statusApprove) ?>
             </div>
             <div class="col-md-6">
 
-                <?= $form->field($model, 'payment')->inline()->radioList(['1'=>'โอนแล้ว','0'=>'รอโอน']) ?>
+                <?= $form->field($model, 'payment')->inline()->radioList(\backend\lib\CNUtils::$statusPayment) ?>
 
             </div>
         </div>
@@ -75,8 +74,9 @@ $('form#<?= $model->formName()?>').on('beforeSubmit', function(e) {
                 type: result.status,
                 timer: 1000
             });
-            $(document).find('#modal-refund').modal('hide');
-            $.pjax.reload({container:'#refund-grid-pjax'});
+            setTimeout(function(){
+                location.href = '<?= \yii\helpers\Url::to(['/admins/refund'])?>';
+            },1500);
 
         } else {
             swal({
@@ -87,7 +87,6 @@ $('form#<?= $model->formName()?>').on('beforeSubmit', function(e) {
             });
         } 
     }).fail(function() {
-        <?= SDNoty::show("'" . SDHtml::getMsgError() . "Server Error'", '"error"')?>
         console.log('server error');
     });
     return false;

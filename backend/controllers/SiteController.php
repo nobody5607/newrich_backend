@@ -108,6 +108,7 @@ class SiteController extends Controller
         if(\Yii::$app->user->isGuest){
             return $this->redirect(['/user/login']);
         }
+        return $this->redirect(['/admins']);
         $model = new Files();
         if (Yii::$app->request->isPost) {
             $model->file = UploadedFile::getInstance($model, 'file');

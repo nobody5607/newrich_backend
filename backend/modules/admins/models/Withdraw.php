@@ -1,8 +1,7 @@
 <?php
 
-namespace backend\models;
+namespace backend\modules\admins\models;
 
-use backend\modules\admins\models\User;
 use Yii;
 
 /**
@@ -34,7 +33,7 @@ class Withdraw extends \yii\db\ActiveRecord
     {
         return [
             [['user_id', 'amount', 'approveBy'], 'integer'],
-            [['createDate', 'approveDate','rstat','create_by','create_date','update_by','update_date'], 'safe'],
+            [['createDate', 'approveDate','rstat','create_by','create_date','update_by','update_date','status'], 'safe'],
             [['user_id'], 'exist', 'skipOnError' => true, 'targetClass' => User::className(), 'targetAttribute' => ['user_id' => 'id']],
         ];
     }
@@ -51,6 +50,8 @@ class Withdraw extends \yii\db\ActiveRecord
             'createDate' => 'วันที่ถอน',
             'approveBy' => 'อนุมัติโดย',
             'approveDate' => 'อนุมัติวันที่',
+            'status' => 'สถานะการโอนเงิน',
+            'approveBy'=>'อนุมัติโดย'
         ];
     }
 

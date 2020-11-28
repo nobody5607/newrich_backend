@@ -4,8 +4,8 @@ namespace backend\modules\admins\controllers;
 
 use backend\lib\CNUtils;
 use Yii;
-use backend\modules\admins\models\Refund;
-use backend\modules\admins\models\RefundSearch;
+use backend\modules\admins\models\Withdraw;
+use backend\modules\admins\models\WithdrawSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -14,9 +14,9 @@ use yii\web\Response;
 use appxq\sdii\helpers\SDHtml;
 
 /**
- * RefundController implements the CRUD actions for Refund model.
+ * WithdrawController implements the CRUD actions for Withdraw model.
  */
-class RefundController extends Controller
+class WithdrawController extends Controller
 {
 
     public function beforeAction($action)
@@ -32,12 +32,12 @@ class RefundController extends Controller
     }
 
     /**
-     * Lists all Refund models.
+     * Lists all Withdraw models.
      * @return mixed
      */
     public function actionIndex()
     {
-        $searchModel = new RefundSearch();
+        $searchModel = new WithdrawSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         return $this->render('index', [
@@ -47,7 +47,7 @@ class RefundController extends Controller
     }
 
     /**
-     * Displays a single Refund model.
+     * Displays a single Withdraw model.
      * @param integer $id
      * @return mixed
      */
@@ -65,14 +65,14 @@ class RefundController extends Controller
     }
 
     /**
-     * Creates a new Refund model.
+     * Creates a new Withdraw model.
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
     public function actionCreate()
     {
         if (Yii::$app->getRequest()->isAjax) {
-            $model = new Refund();
+            $model = new Withdraw();
 
             if ($model->load(Yii::$app->request->post())) {
                 $model->rstat = 1;
@@ -94,7 +94,7 @@ class RefundController extends Controller
     }
 
     /**
-     * Updates an existing Refund model.
+     * Updates an existing Withdraw model.
      * If update is successful, the browser will be redirected to the 'view' page.
      * @param integer $id
      * @return mixed
@@ -109,10 +109,6 @@ class RefundController extends Controller
                 $model->update_by = isset(\Yii::$app->user->id) ? \Yii::$app->user->id : '';
                 $model->approveBy = CNUtils::getUserId();
                 $model->approveDate = CNUtils::getCurrentDate();
-
-                $model->create_by = CNUtils::getUserId();
-                $model->create_date = CNUtils::getCurrentDate();
-                $model->rstat = 1;
                 if ($model->save()) {
                     return \cpn\chanpan\classes\CNMessage::getSuccess('Update successfully');
                 } else {
@@ -122,17 +118,15 @@ class RefundController extends Controller
                 if($model->status == ''){
                     $model->status = 0;
                 }
-                if($model->payment == ''){
-                    $model->payment = 0;
-                }
                 return $this->render('update', [
                     'model' => $model,
                 ]);
             }
+
     }
 
     /**
-     * Deletes an existing Refund model.
+     * Deletes an existing Withdraw model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
      * @param integer $id
      * @return mixed
@@ -178,15 +172,15 @@ class RefundController extends Controller
     }
 
     /**
-     * Finds the Refund model based on its primary key value.
+     * Finds the Withdraw model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
      * @param integer $id
-     * @return Refund the loaded model
+     * @return Withdraw the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
     protected function findModel($id)
     {
-        if (($model = Refund::findOne($id)) !== null) {
+        if (($model = Withdraw::findOne($id)) !== null) {
             return $model;
         } else {
             throw new NotFoundHttpException('The requested page does not exist.');

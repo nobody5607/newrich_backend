@@ -53,6 +53,9 @@
         <div id="collapseUsers" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
                 <a class="collapse-item" href="<?= Url::to(['/admins/refund'])?>">ส่วนลดเงินคืน</a>
+                <hr class="sidebar-divider">
+                <a class="collapse-item" href="<?= Url::to(['/admins/withdraw'])?>">ถอนเงิน</a>
+
             </div>
         </div>
     </li>

@@ -14,6 +14,8 @@ class CNUtils
 {
 
     public static $statusApprove =['0'=>'รออนุมัติ','1'=>'อนุมัติ','2'=>'ไม่อนุมัติ'];
+    public static $statusWithdraw =['0'=>'รอโอน','1'=>'โอนแล้ว'];
+    public static $statusPayment =['1'=>'โอนแล้ว','0'=>'รอโอน'];
     /**
      * @param $model $model
      * @param $attribute field

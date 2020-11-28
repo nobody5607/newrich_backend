@@ -254,6 +254,9 @@ class SettingController extends Controller
         $model->user_id = $user->id;
         $model->amount = $amount;
         $model->createDate = date('Y-m-d H:i:s');
+        $model->rstat = 1;
+        $model->create_by = \backend\lib\CNUtils::getUserId();
+        $model->create_date = \backend\lib\CNUtils::getCurrentDate();
         if($model->save()){
             $profile = Profile::findOne($user->id);
             $order = Orders::find()->where(['user_id'=>$profile->member_id])->all();

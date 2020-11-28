@@ -24,7 +24,7 @@ class PaymentController extends Controller
     {
         if (parent::beforeAction($action)) {
             if (in_array($action->id, array('create', 'update', 'delete', 'index'))) {
-                $this->layout = 'admin';
+//                $this->layout = 'admin';
             }
             return true;
         } else {

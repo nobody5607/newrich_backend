@@ -5,12 +5,12 @@ namespace backend\modules\admins\models;
 use Yii;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use backend\modules\admins\models\Refund;
+use backend\modules\admins\models\Withdraw;
 
 /**
- * RefundSearch represents the model behind the search form about `backend\modules\admins\models\Refund`.
+ * WithdrawSearch represents the model behind the search form about `backend\modules\admins\models\Withdraw`.
  */
-class RefundSearch extends Refund
+class WithdrawSearch extends Withdraw
 {
     /**
      * @inheritdoc
@@ -18,9 +18,8 @@ class RefundSearch extends Refund
     public function rules()
     {
         return [
-            [['id', 'user_id', 'approveBy','status','payment'], 'integer'],
-            [['order_id', 'approveDate'], 'safe'],
-            [['amount'], 'number'],
+            [['id', 'user_id', 'amount', 'approveBy','status'], 'integer'],
+            [['createDate', 'approveDate'], 'safe'],
         ];
     }
 
@@ -42,7 +41,7 @@ class RefundSearch extends Refund
      */
     public function search($params)
     {
-        $query = Refund::find()->where('rstat not in(0,3)');
+        $query = Withdraw::find()->where('rstat not in(0,3)');
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
@@ -61,15 +60,12 @@ class RefundSearch extends Refund
 
         $query->andFilterWhere([
             'status' => $this->status,
-            'payment' => $this->payment,
             'user_id' => $this->user_id,
             'amount' => $this->amount,
+            'createDate' => $this->createDate,
             'approveBy' => $this->approveBy,
             'approveDate' => $this->approveDate,
         ]);
-
-
-        $query->andFilterWhere(['like', 'order_id', $this->order_id]);
 
         return $dataProvider;
     }

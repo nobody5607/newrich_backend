@@ -60,11 +60,21 @@ $this->params['breadcrumbs'][] = $this->title;
                     ]
                 ],
                 [
-                    'contentOptions' => ['style' => 'width:100px;text-align: left;'],
+                    'contentOptions' => ['style' => 'width:200px;text-align: left;'],
                     'format'=>'raw',
                     'attribute' => 'name',
                     'value' => function($model){
-                        return '<a href="#" data-toggle="tooltip" title="'.$model->email.'">'.$model->profile->name.'</a>';
+                        $defaultImage = 'https://newrich-8ee77.web.app/assets/images/logo.png';
+                        $image2 = $model->profile->image2;
+                        if($model->profile->image2 == ''){
+                            $image2 = $defaultImage;
+                        }
+
+                        $name = $model->profile->name;
+                        if($model->profile->name == ''){
+                            $name = 'ไม่มีชื่อ';
+                        }
+                        return '<a href="#" data-toggle="tooltip" title="'.$model->email.'"><img style="width:30px;border-radius:30px;" src="'.$image2.'"> '.$name.'</a>';
                     }
                 ],
                 [
