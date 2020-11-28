@@ -23,6 +23,10 @@ class AdminAsset extends AssetBundle
         'js/sb-admin-2.min.js',
         'js/vue.js',
         'js/axios.js',
+
+        'vendor/chart.js/Chart.min.js',
+        'js/demo/chart-area-demo.js',
+        'js/demo/chart-pie-demo.js'
     ];
     public $depends = [
         'yii\web\YiiAsset',

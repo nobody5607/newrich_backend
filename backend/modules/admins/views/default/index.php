@@ -2,58 +2,161 @@
 $this->title = "จัดการ";
 ?>
 
-<div class="row">
+<div class="container-fluid"> <!-- Begin Page Content -->
+    <div>
 
-    <div class="col-md-12">
-        <h2>ยินดีต้อนรับคุณ <?= isset(\Yii::$app->user->identity->profile->name)?\Yii::$app->user->identity->profile->name:''?></h2>
-        <hr>
-        <h3>Newriched</h3>
+        <!-- Page Heading -->
+        <div class="d-sm-flex align-items-center justify-content-between mb-4">
+            <h1 class="h3 mb-0 text-gray-800">Dashboard</h1>
+        </div>
+
+        <!-- Content Row -->
+        <div class="row">
+
+            <!-- Earnings (Monthly) Card Example -->
+            <div class="col-xl-3 col-md-6 mb-4" style="cursor: pointer" id="users">
+                <div class="card border-left-primary shadow h-100 py-2">
+                    <div class="card-body">
+                        <div class="row no-gutters align-items-center">
+                            <div class="col mr-2">
+                                <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
+                                    ผู้ใช้ทั้งหมด</div>
+                                <div class="h5 mb-0 font-weight-bold text-gray-800"><?= $userCount; ?></div>
+                            </div>
+                            <div class="col-auto">
+                                <i class="fas fa-users fa-2x text-gray-300"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Earnings (Monthly) Card Example -->
+            <div class="col-xl-3 col-md-6 mb-4" style="cursor: pointer" id="refund">
+                <div class="card border-left-success shadow h-100 py-2">
+                    <div class="card-body">
+                        <div class="row no-gutters align-items-center">
+                            <div class="col mr-2">
+                                <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
+                                    ส่วนลดเงินคืน</div>
+                                <div class="h5 mb-0 font-weight-bold text-gray-800"><?= $refundCount; ?></div>
+                            </div>
+                            <div class="col-auto">
+                                <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Pending Requests Card Example -->
+            <div class="col-xl-3 col-md-6 mb-4" style="cursor: pointer" id="withdraw">
+                <div class="card border-left-warning shadow h-100 py-2">
+                    <div class="card-body">
+                        <div class="row no-gutters align-items-center">
+                            <div class="col mr-2">
+                                <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
+                                    ถอนเงิน</div>
+                                <div class="h5 mb-0 font-weight-bold text-gray-800"><?= $refundWithdraw;?></div>
+                            </div>
+                            <div class="col-auto">
+                                <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Content Row -->
+
+        <div class="row">
+
+            <!-- Area Chart -->
+            <div class="col-xl-8 col-lg-7">
+                <div class="card shadow mb-4">
+                    <!-- Card Header - Dropdown -->
+                    <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                        <h6 class="m-0 font-weight-bold text-primary">Earnings Overview</h6>
+                        <div class="dropdown no-arrow">
+                            <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
+                            </a>
+                            <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in" aria-labelledby="dropdownMenuLink">
+                                <div class="dropdown-header">Dropdown Header:</div>
+                                <a class="dropdown-item" href="#">Action</a>
+                                <a class="dropdown-item" href="#">Another action</a>
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item" href="#">Something else here</a>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Card Body -->
+                    <div class="card-body">
+                        <div class="chart-area"><div class="chartjs-size-monitor"><div class="chartjs-size-monitor-expand"><div class=""></div></div><div class="chartjs-size-monitor-shrink"><div class=""></div></div></div>
+                            <canvas id="myAreaChart" style="display: block; height: 320px; width: 622px;" width="1244" height="640" class="chartjs-render-monitor"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Pie Chart -->
+            <div class="col-xl-4 col-lg-5">
+                <div class="card shadow mb-4">
+                    <!-- Card Header - Dropdown -->
+                    <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                        <h6 class="m-0 font-weight-bold text-primary">Revenue Sources</h6>
+                        <div class="dropdown no-arrow">
+                            <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
+                            </a>
+                            <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in" aria-labelledby="dropdownMenuLink">
+                                <div class="dropdown-header">Dropdown Header:</div>
+                                <a class="dropdown-item" href="#">Action</a>
+                                <a class="dropdown-item" href="#">Another action</a>
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item" href="#">Something else here</a>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Card Body -->
+                    <div class="card-body">
+                        <div class="chart-pie pt-4 pb-2"><div class="chartjs-size-monitor"><div class="chartjs-size-monitor-expand"><div class=""></div></div><div class="chartjs-size-monitor-shrink"><div class=""></div></div></div>
+                            <canvas id="myPieChart" width="556" height="490" class="chartjs-render-monitor" style="display: block; height: 245px; width: 278px;"></canvas>
+                        </div>
+                        <div class="mt-4 text-center small">
+                                        <span class="mr-2">
+                                            <i class="fas fa-circle text-primary"></i> Direct
+                                        </span>
+                            <span class="mr-2">
+                                            <i class="fas fa-circle text-success"></i> Social
+                                        </span>
+                            <span class="mr-2">
+                                            <i class="fas fa-circle text-info"></i> Referral
+                                        </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
     </div>
-    <div class="col-md-12">
-        <a href="<?= \yii\helpers\Url::to(['/admins/user'])?>" class="btn btn-outline-info"><i class="glyphicon glyphicon-user"></i> ผู้ใช้</a>
-
-    </div>
-    <div class="col-md-12">
-        <br>
-        <a href="<?= \yii\helpers\Url::to(['/admins/slider'])?>" class="btn btn-outline-info"><i class="glyphicon glyphicon-picture"></i> อัปโหลด Slider</a>
-
-    </div>
-
-
-    <div class="col-md-12">
-        <br>
-        <a href="<?= \yii\helpers\Url::to(['/site/index'])?>" class="btn btn-outline-info"><i class="glyphicon glyphicon-upload"></i> อัปโหลดข้อมูลการสั่งซื้อสินค้า</a>
-
-    </div>
-
-    <div class="col-md-12">
-        <br>
-        <a href="<?= \yii\helpers\Url::to(['/admins/default/edit-play-money'])?>" class="btn btn-outline-info"><i class="glyphicon glyphicon-briefcase"></i> แก้ไข รับเงินคืนทำอย่างไร</a>
-    </div>
-    <div class="col-md-12">
-        <br>
-        <a href="<?= \yii\helpers\Url::to(['/admins/default/money-condition'])?>" class="btn btn-outline-info"><i class="glyphicon glyphicon-flag"></i> แก้ไข เงื่อนไขรับเงินคืน</a>
-    </div>
+    <!-- /.container-fluid -->
 </div>
 
-    <hr>
-    <div class="row">
-
-        <div class="col-md-12">
-            <h3>Alfood</h3>
-            <br>
-            <a href="<?= \yii\helpers\Url::to(['/games'])?>" class="btn btn-outline-info"><i class="glyphicon glyphicon-star"></i> เกม alfood</a>
-        </div>
-
-        <div class="col-md-12">
-            <br>
-            <a href="<?= \yii\helpers\Url::to(['/admins/default/logout'])?>" class="btn btn-outline-danger"><i class="glyphicon glyphicon-off"></i> ออกจากระบบ</a>
-        </div>
-    </div>
-
-<!--ตัวที่จะ public พรุ่งนี้มีดังนี้นะครับ-->
-<!--1 หน้าสร้างธุรกิจ จะสามารถเห็นได้เฉพาะคนที่มีสิทธิ์เท่านั้น-->
-<!--2 ทุกคนสามารถสมัครสมาชิกได้ แต่ จะไม่สามารถใช้งานส่วนของ สร้างธุระกิจได้-->
-<!--3 ผู้ใช้งานที่จะใช้งานส่วนของการสร้างธุรกิจได้ จะต้องชำระเงิน ก่อน-->
-<!--4 ผู้ใช้ที่จะกอปลิงค์ไปให้คนอื่นสมัครต่อได้ จะต้องชำระเงินก่อน-->
-<!--5 อัตราค่าสมัครของสมาชิก คิดเป็นกี่บาทครับ ?-->
+<?php \richardfan\widget\JSRegister::begin()?>
+<script>
+    $("#users").click(function(){
+        let url = '<?= \yii\helpers\Url::to(['/admins/user'])?>';
+        location.href = url;
+    });
+    $("#refund").click(function(){
+        let url = '<?= \yii\helpers\Url::to(['/admins/refund'])?>';
+        location.href = url;
+    });
+    $("#withdraw").click(function(){
+        let url = '<?= \yii\helpers\Url::to(['/admins/withdraw'])?>';
+        location.href = url;
+    });
+</script>
+<?php \richardfan\widget\JSRegister::end()?>

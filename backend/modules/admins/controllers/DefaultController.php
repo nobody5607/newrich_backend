@@ -3,6 +3,9 @@
 namespace backend\modules\admins\controllers;
 
 use appxq\sdii\utils\VarDumper;
+use backend\modules\admins\models\Refund;
+use backend\modules\admins\models\User;
+use backend\modules\admins\models\Withdraw;
 use backend\modules\core\classes\CoreFunc;
 use common\models\Options;
 use cpn\chanpan\classes\CNMessage;
@@ -23,7 +26,15 @@ class DefaultController extends Controller
 
     public function actionIndex()
     {
-        return $this->render('index');
+        $userCount = User::find()->select('count(*)')->scalar();
+        $refundCount = Refund::find()->select('count(*)')->scalar();
+        $refundWithdraw = Withdraw::find()->select('count(*)')->where('status is null or status = 0')->scalar();
+        //return $user;
+        return $this->render('index',[
+            'userCount'=>$userCount,
+            'refundCount'=>$refundCount,
+            'refundWithdraw'=>$refundWithdraw
+        ]);
     }
 
     public function actionPricePackage(){
