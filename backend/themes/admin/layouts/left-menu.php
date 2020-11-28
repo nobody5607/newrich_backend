@@ -101,7 +101,18 @@
     <li class="nav-item">
         <a class="nav-link" href="<?= Url::to(['/games'])?>">
             <i class="fas fa-fw fa-chart-area"></i>
-            <span>Alfood</span></a>
+            <span>คูปอง</span></a>
+    </li>
+
+    <!-- Heading -->
+    <div class="sidebar-heading">
+        Report Alfood
+    </div>
+    <!-- Nav Item - Charts -->
+    <li class="nav-item">
+        <a class="nav-link" href="http://report.newriched.com/index.html">
+            <i class="fas fa-fw fa-chart-area"></i>
+            <span>รายงานการขาย Alfood</span></a>
     </li>
 
 
