@@ -48,14 +48,14 @@ return [
                 //'/admins/default/price' => 'admins/price',
             ],
         ],
-//        'view' => [
-//            'theme' => [
-//                'pathMap' => [
-//                    '@app/views' => '@backend/themes/adminlte/views',
-//                   // '@dektrium/user/views' => '@app/views/user'
-//                ]
-//            ]
-//        ],
+        'view' => [
+            'theme' => [
+                'pathMap' => [
+                    '@app/views' => '@backend/themes/admin',
+                   // '@dektrium/user/views' => '@app/views/user'
+                ]
+            ]
+        ],
         
         'session' => [ 
             'name' => 'advanced-backend',

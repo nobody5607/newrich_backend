@@ -17,8 +17,9 @@ class Module extends \yii\base\Module
      */
     public function init()
     {
+        $this->layout = '@backend/themes/admin/layouts/main';
         \Yii::$app->params['bsVersion']='4.x';
-        $this->layout = 'admin';
+        //$this->layout = 'admin';
         parent::init();
 
         // custom initialization code goes here

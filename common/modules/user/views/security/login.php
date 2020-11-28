@@ -28,19 +28,12 @@ $this->params['breadcrumbs'][] = $this->title;
 //https://backend.newriched.com/site/auth?authclient=facebook
 ?>
 
-<div class="row">
+<div class="row justify-content-center mt-5">
 
-    <div class="col-md-4 col-md-offset-4">
+    <div class="col-md-4">
         <div class="panel">
             <div class="panel-body">
-                <?=
-                common\modules\user\classes\CNAuthChoice::widget([
-                    'baseAuthUrl' => ['/site/auth'],
-                    'popupMode' => false,
-                    'options' => [
-                    ]
-                ])
-                ?>
+                <h2 class="text-center mb-3 mt-3"><b>Newriched</b></h2>
 
 
                 <?php $form = ActiveForm::begin([
@@ -94,19 +87,6 @@ $this->params['breadcrumbs'][] = $this->title;
                 ) ?>
 
                 <?php ActiveForm::end(); ?>
-                <!-- /.social-auth-links -->
-                <div  style="margin-top:10px;">
-                    <?php if ($module->enableConfirmation): ?>
-                        <p class="text-center">
-                            <?= Html::a(Yii::t('user', 'Didn\'t receive confirmation message?'), ['/user/registration/resend']) ?>
-                        </p>
-                    <?php endif ?>
-                    <?php if ($module->enableRegistration): ?>
-                        <p class="text-center">
-                            <?= Html::a(Yii::t('user', 'Don\'t have an account? Sign up!'), 'https://newriched.com/register') ?>
-                        </p>
-                    <?php endif ?>
-                </div>
                 
             </div>
             
@@ -118,39 +98,8 @@ $this->params['breadcrumbs'][] = $this->title;
 </div>
 <?php \appxq\sdii\widgets\CSSRegister::begin()?>
 <style>
-    .form-control {
-        display: block;
-        width: 100%;
-        height: 45px;
-        padding: 6px 12px;
-        font-size: 20px;
-        line-height: 1.428571;
-        color: #555555;
-        background-color: #fff;
-        background-image: none;
-        border: 1px solid #ccc;
-        border-radius: 4px;
-        -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
-        box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
-        -webkit-transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
-        -o-transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
-        -webkit-transition: border-color ease-in-out .15s, -webkit-box-shadow ease-in-out .15s;
-        transition: border-color ease-in-out .15s, -webkit-box-shadow ease-in-out .15s;
-        transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
-        transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s, -webkit-box-shadow ease-in-out .15s;
-    }
-    .btn-primary {
-        color: #fff;
-        background-color: #4abdac;
-        border-color: #269887;
-    }
-    .btn-primary:hover,.btn-primary:active {
-        color: #fff;
-        background-color: #4abdac;
-        border-color: #3ca797;
-    }
+
 </style>
 <?php \appxq\sdii\widgets\CSSRegister::end()?>
 
 
- 

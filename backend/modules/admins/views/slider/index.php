@@ -7,21 +7,20 @@ use yii\widgets\Pjax;
 /* @var $searchModel app\models\ResourceSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 use yii\helpers\Url;
-$this->title = 'รายการ';
+$this->title = 'จัดการภาพ Banner';
 $this->params['breadcrumbs'][] = ['label' => 'Admin', 'url' => ['/admin']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<a href="<?= Url::to(['/admins'])?>">< ย้อนกลับ</a>
     <div class="container-fluid width90 bg-white">
-        <div class="row">
-            <div class="col-md-6"><?= Html::encode($this->title) ?></div>
+        <h2><?= Html::encode($this->title)?></h2>
+
+        <div class="row mt-3 mb-3">
+            <div class="col-md-6"></div>
             <div class="col-md-6 text-right"><?= Html::a('เพิ่มรายการ', ['create'], ['class' => 'btn btn-success']) ?></div>
         </div>
-        <h1></h1>
 
         <?= GridView::widget([
             'dataProvider' => $dataProvider,
-            'filterModel' => $searchModel,
             'layout'=> "{items}\n<div class='text-center d-flex justify-content-center'>{pager}</div>",
             'tableOptions'=>['class'=>'table table-hover','style'=>'background: #fff;','id'=>'table-shared2'],
 

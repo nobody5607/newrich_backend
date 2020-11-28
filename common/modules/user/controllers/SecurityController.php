@@ -11,11 +11,12 @@ class SecurityController extends BaseSecurityController{
     //put your code here
     public function actionLogin()
     {
+        $this->layout = '@backend/themes/admin/layouts/login.php';
         \Yii::$app->language='th-TH';
-       $redirectUrl = \Yii::$app->request->get('redirectUrl');
-       if(empty( \Yii::$app->session['redirectUrl'])){
-           \Yii::$app->session['redirectUrl']=$redirectUrl;
-       }
+//       $redirectUrl = \Yii::$app->request->get('redirectUrl');
+//       if(empty( \Yii::$app->session['redirectUrl'])){
+//           \Yii::$app->session['redirectUrl']=$redirectUrl;
+//       }
 
        // $this->layout='@backend/themes/adminlte/views/layouts/main';
         if (!\Yii::$app->user->isGuest) {

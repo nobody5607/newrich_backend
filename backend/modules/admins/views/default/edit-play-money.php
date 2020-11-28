@@ -2,7 +2,6 @@
 $this->title = "แก้ไขราคา";
 ?>
 <div>
-    <a href="<?= \yii\helpers\Url::to(['/admins'])?>">&lt; ย้อนกลับ</a>
     <h2>รับเงินคืนทำอย่างไร</h2>
     <form action="#">
         <textarea

@@ -13,40 +13,33 @@ $this->title = 'ผู้ใช้';
 $this->params['breadcrumbs'][] = $this->title;
 
 ?>
-<a href="<?= \yii\helpers\Url::to(['/admins']) ?>">&lt; ย้อนกลับ</a>
 <div class="box box-primary">
-   <h2><?= Html::encode($this->title) ?></h2>
     <div class="box-body">
         <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
         <?php Pjax::begin(['id' => 'payment-grid-pjax']); ?>
         <?= GridView::widget([
             'panel' => [
-                'type' => GridView::TYPE_INFO,
-                'heading' => 'user',
+                'type' => GridView::TYPE_DEFAULT,
+                'heading' => $this->title,
             ],
             'id' => 'payment-grid',
             /*	'panelBtn' => Html::button(SDHtml::getBtnAdd(), ['data-url'=>Url::to(['payment/create']), 'class' => 'btn btn-success btn-sm', 'id'=>'modal-addbtn-payment']). ' ' .
                           Html::button(SDHtml::getBtnDelete(), ['data-url'=>Url::to(['payment/deletes']), 'class' => 'btn btn-danger btn-sm', 'id'=>'modal-delbtn-payment', 'disabled'=>true]),*/
             'dataProvider' => $dataProvider,
-            'filterModel' => $searchModel,
+//            'filterModel' => $searchModel,
             'columns' => [
 
                 [
-                    'class' => 'yii\grid\SerialColumn',
-                    'headerOptions' => ['style' => 'text-align: center;'],
-                    'contentOptions' => ['style' => 'width:60px;text-align: center;'],
-                ],
-                [
                     'class' => 'appxq\sdii\widgets\ActionColumn',
-                    'contentOptions' => ['style' => 'width:180px;text-align: center;'],
+                    'contentOptions' => ['style' => 'width:200px;text-align: center;'],
                     'template' => '{update} {delete}',
                     'buttons' => [
                         'update' => function ($url, $model) {
-                            return Html::a('<span class="fa fa-pencil"></span> แก้ไข',
+                            return Html::a('<span class="fa fa-edit"></span> แก้ไข',
                                 yii\helpers\Url::to(['/admins/user/update?id=' . $model->id]), [
                                     'title' => 'แก้ไข',
-                                    'class' => 'btn btn-primary btn-xs',
+                                    'class' => 'btn btn-primary btn-sm',
                                     'data-action' => 'update',
                                     'data-pjax' => 0
                                 ]);
@@ -55,7 +48,7 @@ $this->params['breadcrumbs'][] = $this->title;
                             return Html::a('<span class="fa fa-trash"></span> ลบ',
                                 yii\helpers\Url::to(['/admins/user/delete?id=' . $model->id]), [
                                     'title' => 'ลบ',
-                                    'class' => 'btn btn-danger btn-xs',
+                                    'class' => 'btn btn-danger btn-sm',
                                     'data-confirm' => 'คุณต้องการลบรายการนี้ใช่หรือไม่',
                                     'data-method' => 'post',
                                     'data-action' => 'delete',
@@ -66,14 +59,13 @@ $this->params['breadcrumbs'][] = $this->title;
                         },
                     ]
                 ],
-
                 [
-                    'attribute' => 'email',
-                    'value' => 'email'
-                ],
-                [
+                    'contentOptions' => ['style' => 'width:100px;text-align: left;'],
+                    'format'=>'raw',
                     'attribute' => 'name',
-                    'value' => 'profile.name'
+                    'value' => function($model){
+                        return '<a href="#" data-toggle="tooltip" title="'.$model->email.'">'.$model->profile->name.'</a>';
+                    }
                 ],
                 [
                     'attribute' => 'tel',
@@ -88,6 +80,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     'value' => 'profile.member_type',
                     'filter' => ['B2B' => 'B2B', 'B2C' => 'B2C', 'C2C']
                 ],
+
 
 
             ],

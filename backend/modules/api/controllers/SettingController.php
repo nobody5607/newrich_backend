@@ -207,6 +207,9 @@ class SettingController extends Controller
         $model->user_id = $user->id;
         $model->order_id = $order_id;
         $model->amount = $amount;
+        $model->rstat = 1;
+        $model->status = 0;
+        $model->payment = 0;
 
         if ($model->save()) {
             return $model;
