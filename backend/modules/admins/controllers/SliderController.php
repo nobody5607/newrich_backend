@@ -76,7 +76,8 @@ class SliderController extends Controller
                 $model->upload();
             }
             if($model->save()){
-                return CNMessage::getSuccess('ท่านทำรายการสำเร็จ');
+                return $this->render(['/admins/slider']);
+//                return CNMessage::getSuccess('ท่านทำรายการสำเร็จ');
             }else{
                 return CNMessage::getError("เกิดข้อผิดพลาด", $model->errors);
             }
