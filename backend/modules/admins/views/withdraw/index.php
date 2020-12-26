@@ -11,7 +11,7 @@ $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="box box-primary">
     <h2><?= Html::encode($this->title) ?> </h2>
-    <div class="box-body">
+    <div class="table-responsive">
         <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
         <?= GridView::widget([
@@ -32,20 +32,7 @@ $this->params['breadcrumbs'][] = $this->title;
                                     'data-action' => 'update',
                                     'data-pjax' => 0
                                 ]);
-                        },
-//                        'delete' => function ($url, $model) {
-//                            return Html::a('<span class="fa fa-trash"></span> ' . Yii::t('app', 'Delete'),
-//                                yii\helpers\Url::to(['withdraw/delete?id=' . $model->id]), [
-//                                    'title' => Yii::t('app', 'Delete'),
-//                                    'class' => 'btn btn-danger btn-xs',
-//                                    'data-confirm' => Yii::t('chanpan', 'Are you sure you want to delete this item?'),
-//                                    'data-method' => 'post',
-//                                    'data-action' => 'delete',
-//                                    'data-pjax' => 0
-//                                ]);
-//
-//
-//                        },
+                        }
                     ]
                 ],
                 [
@@ -92,9 +79,29 @@ $this->params['breadcrumbs'][] = $this->title;
                     },
                     'filter'=>\yii\helpers\ArrayHelper::map(\common\modules\user\models\Profile::find()->asArray()->all(), 'user_id', 'name'),
                 ],
+                [
+                    'format'=>'raw',
+                    'attribute'=>'image',
+                    'value'=>function($model){
+                        $path='';
+                        if($model->image){
+                            $storageUrl = isset(\Yii::$app->params['storageUrl'])?\Yii::$app->params['storageUrl']:'';
+                            $path = "{$storageUrl}/images/{$model->image}";
+                        }
+//                        return $path;
+                        return  "<img src='{$path}' class='img img-responsive' style='width:200px'>";
+
+                    }
+                ],
+
             ]
 
         ]); ?>
 
     </div>
 </div>
+<style>
+    th{
+        white-space: nowrap;
+    }
+</style>

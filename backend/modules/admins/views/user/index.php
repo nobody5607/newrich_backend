@@ -90,10 +90,6 @@ $this->params['breadcrumbs'][] = $this->title;
                     'value' => 'profile.tel'
                 ],
                 [
-                    'attribute' => 'member_id',
-                    'value' => 'profile.member_id'
-                ],
-                [
                     'attribute' => 'member_type',
                     'value' => 'profile.member_type',
                     'filter' => ['B2B' => 'B2B', 'B2C' => 'B2C', 'C2C']

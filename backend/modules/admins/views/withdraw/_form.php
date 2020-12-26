@@ -17,6 +17,7 @@ $this->title = 'ถอนเงิน';
 
             <?php $form = ActiveForm::begin([
                 'id' => $model->formName(),
+                'options' => ['enctype'=>'multipart/form-data']
             ]); ?>
             <div >
                 <div class="mb-3">
@@ -24,10 +25,16 @@ $this->title = 'ถอนเงิน';
                 </div>
 
                 <div class="row">
-                    <div class="col-md-6">	<?= $form->field($model, 'amount')->textInput(['maxlength' => true]) ?>
+                    <div class="col-md-6">
+                        <?= $form->field($model, 'amount')->textInput(['maxlength' => true]) ?>
                     </div>
                     <div class="col-md-6">
                         <?= $form->field($model, 'status')->inline()->radioList(\backend\lib\CNUtils::$statusWithdraw) ?>
+                    </div>
+                </div>
+                <div class="row mt-3">
+                    <div class="col-md-12">
+                        <?= $form->field($model, 'image')->fileInput(['accept' => 'image/*']) ?>
                     </div>
                 </div>
 
@@ -53,33 +60,39 @@ $this->title = 'ถอนเงิน';
             $('.btn-submit').attr('disabled', true);
 
             var $form = $(this);
-            $.post(
-                $form.attr('action'), //serialize Yii2 form
-                $form.serialize()
-            ).done(function (result) {
-                $('.btn-submit .icon-spin').remove();
-                $('.btn-submit').attr('disabled', false);
-                if (result.status == 'success') {
-                    swal({
-                        title: result.message,
-                        text: result.message,
-                        type: result.status,
-                        timer: 1000
-                    });
-                    setTimeout(function(){
-                        location.href = '<?= \yii\helpers\Url::to(['/admins/withdraw'])?>';
-                    },1500);
+            var formData = new FormData($(this)[0]);
+            $.ajax({
+                url: $form.attr('action'),
+                type: 'POST',
+                data: formData,
+                processData: false,
+                contentType: false,
+                cache: false,
+                enctype: 'multipart/form-data',
+                success: function (result) {
+                    $('.btn-submit .icon-spin').remove();
+                    $('.btn-submit').attr('disabled', false);
 
-                } else {
-                    swal({
-                        title: result.message,
-                        text: result.message,
-                        type: result.status,
-                        timer: 1000
-                    });
+                    if (result.status == 'success') {
+                        swal({
+                            title: '',
+                            text: result.message,
+                            type: result.status,
+                            timer: 1000
+                        });
+                        setTimeout(function () {
+                            location.href = '<?= \yii\helpers\Url::to(['/admins/withdraw'])?>';
+                        }, 1000);
+
+                    } else {
+                        swal({
+                            title: '',
+                            text: result.message,
+                            type: result.status,
+                            //timer: 1000
+                        });
+                    }
                 }
-            }).fail(function () {
-                console.log('server error');
             });
             return false;
         });

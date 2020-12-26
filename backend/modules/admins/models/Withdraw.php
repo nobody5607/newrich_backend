@@ -2,7 +2,9 @@
 
 namespace backend\modules\admins\models;
 
+use appxq\sdii\utils\VarDumper;
 use Yii;
+use yii\web\UploadedFile;
 
 /**
  * This is the model class for table "withdraw".
@@ -33,8 +35,9 @@ class Withdraw extends \yii\db\ActiveRecord
     {
         return [
             [['user_id', 'amount', 'approveBy'], 'integer'],
-            [['createDate', 'approveDate','rstat','create_by','create_date','update_by','update_date','status'], 'safe'],
+            [['createDate', 'approveDate','rstat','create_by','create_date','update_by','update_date','status','image'], 'safe'],
             [['user_id'], 'exist', 'skipOnError' => true, 'targetClass' => User::className(), 'targetAttribute' => ['user_id' => 'id']],
+            [['image'], 'file', 'extensions' => 'jpg, png', 'mimeTypes' => 'image/jpeg, image/png',]
         ];
     }
 
@@ -51,7 +54,8 @@ class Withdraw extends \yii\db\ActiveRecord
             'approveBy' => 'อนุมัติโดย',
             'approveDate' => 'อนุมัติวันที่',
             'status' => 'สถานะการโอนเงิน',
-            'approveBy'=>'อนุมัติโดย'
+            'approveBy'=>'อนุมัติโดย',
+            'image'=>'หลักฐานการโอน'
         ];
     }
 
@@ -61,5 +65,23 @@ class Withdraw extends \yii\db\ActiveRecord
     public function getUser()
     {
         return $this->hasOne(User::className(), ['id' => 'user_id']);
+    }
+
+    public function upload()
+    {
+        $storage = \Yii::getAlias('@storage');
+        if ($this->validate()) {
+            $extensions = explode('.',$this->image->name);
+
+            $newFile = 'approve_money_'.date('YmdHis').rand(00,999);
+            $extensions = end($extensions);
+            $fileName="{$newFile}.{$extensions}";
+            $this->image->saveAs("{$storage}/web/images/approved/" .$fileName);
+            $this->image = $fileName;
+//
+            return true;
+        } else {
+            return false;
+        }
     }
 }

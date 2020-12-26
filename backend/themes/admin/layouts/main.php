@@ -137,6 +137,9 @@ use app\assets\AppAsset;
     table{
         font-size:14px;
     }
+    td {
+        white-space: nowrap;
+    }
 </style>
 <?php \appxq\sdii\widgets\CSSRegister::end()?>
 <?php $this->endBody() ?>

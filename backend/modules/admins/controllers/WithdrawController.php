@@ -2,6 +2,7 @@
 
 namespace backend\modules\admins\controllers;
 
+use appxq\sdii\utils\VarDumper;
 use backend\lib\CNUtils;
 use Yii;
 use backend\modules\admins\models\Withdraw;
@@ -12,6 +13,7 @@ use yii\filters\VerbFilter;
 use yii\filters\AccessControl;
 use yii\web\Response;
 use appxq\sdii\helpers\SDHtml;
+use yii\web\UploadedFile;
 
 /**
  * WithdrawController implements the CRUD actions for Withdraw model.
@@ -109,6 +111,15 @@ class WithdrawController extends Controller
                 $model->update_by = isset(\Yii::$app->user->id) ? \Yii::$app->user->id : '';
                 $model->approveBy = CNUtils::getUserId();
                 $model->approveDate = CNUtils::getCurrentDate();
+
+                $model->image = UploadedFile::getInstance($model, 'image');
+                //VarDumper::dump($model->image);
+                //$model->rstat = 1;
+                if(!empty($model->image)){
+                    $model->upload();
+                }
+
+
                 if ($model->save()) {
                     return \cpn\chanpan\classes\CNMessage::getSuccess('Update successfully');
                 } else {

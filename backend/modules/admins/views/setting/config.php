@@ -73,7 +73,7 @@ $this->title = 'ตั้งค่าระบบ';
             },
             submit: async function () {
                 try{
-                    let url = '<?= \yii\helpers\Url::to(['/xadmins/setting/save-data'])?>';
+                    let url = '<?= \yii\helpers\Url::to(['/admins/setting/save-data'])?>';
                     let form = new FormData();
                     form.append('totalPrice',this.totalPrice);
                     form.append('parentNewriched',this.parentNewriched);

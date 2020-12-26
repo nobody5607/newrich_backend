@@ -27,6 +27,30 @@ $this->params['breadcrumbs'][] = $this->title;
             'columns' => [
                 ['class' => 'yii\grid\SerialColumn'],
                 [
+                    'class' => 'yii\grid\ActionColumn',
+                    'contentOptions' => ['style' => 'width:100px;text-align: center;'],
+                    'template' => '{update} {delete} ',
+                    'buttons' => [
+                        'update' => function($url, $model) {
+                            return Html::a('<span class="fas fa-edit"></span> ', yii\helpers\Url::to(['/admins/slider/update?id='.$model->id]), [
+                                'class' => 'btn btn-primary btn-sm',
+                                'data-action' => 'update',
+                                'data-pjax' => 0
+                            ]);
+                        },
+                        'delete' => function ($url, $model) {
+                            return Html::a('<span class="fas fa-trash"></span> ', yii\helpers\Url::to(['/admins/slider/delete/', 'id' => $model->id]), [
+                                'class' => 'btn btn-danger btn-sm btnDelete',
+                                'data-confirm' => 'คุณต้องการลบรายการนี้ใช้หรือไม่',
+                                'data-method' => 'post',
+                                'data-action' => 'delete',
+                                'data-pjax' => 0
+                            ]);
+
+                        },
+                    ]
+                ],
+                [
                     'format'=>'raw',
                     'attribute'=>'image',
                     'value'=>function($model){
@@ -41,30 +65,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 'getAt',
                 'order',
 
-                [
-                    'class' => 'yii\grid\ActionColumn',
-                    'contentOptions' => ['style' => 'width:250px;text-align: center;'],
-                    'template' => '{update} {delete} ',
-                    'buttons' => [
-                        'update' => function($url, $model) {
-                            return Html::a('<span class="fas fa-pen"></span> แก้ไข', yii\helpers\Url::to(['/admins/slider/update?id='.$model->id]), [
-                                'class' => 'btn btn-primary btn-sm',
-                                'data-action' => 'update',
-                                'data-pjax' => 0
-                            ]);
-                        },
-                        'delete' => function ($url, $model) {
-                            return Html::a('<span class="fas fa-trash"></span> ลบ', yii\helpers\Url::to(['/admins/slider/delete/', 'id' => $model->id]), [
-                                'class' => 'btn btn-danger btn-sm btnDelete',
-                                'data-confirm' => 'คุณต้องการลบรายการนี้ใช้หรือไม่',
-                                'data-method' => 'post',
-                                'data-action' => 'delete',
-                                'data-pjax' => 0
-                            ]);
 
-                        },
-                    ]
-                ],
             ],
         ]); ?>
 
