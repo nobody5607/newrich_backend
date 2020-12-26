@@ -86,6 +86,7 @@
              data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
                 <a class="collapse-item" href="<?= Url::to(['/admins/payment'])?>">อนุมัติการใช้งานระบบ</a>
+                <a class="collapse-item" href="<?= Url::to(['/admins/setting'])?>">ตั้งค่าระบบ</a>
             </div>
         </div>
     </li>
