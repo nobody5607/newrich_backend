@@ -16,3 +16,8 @@ class SettingController extends Controller
         return $this->render('config',[]);
     }
 }
+    public function actionIndex(){
+        return $this->render('index',[]);
+    }
+
+}
