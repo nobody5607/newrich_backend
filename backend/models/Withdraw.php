@@ -51,6 +51,7 @@ class Withdraw extends \yii\db\ActiveRecord
             'createDate' => 'วันที่ถอน',
             'approveBy' => 'อนุมัติโดย',
             'approveDate' => 'อนุมัติวันที่',
+            'image'=>'หลักฐานการชำระเงิน'
         ];
     }
 
