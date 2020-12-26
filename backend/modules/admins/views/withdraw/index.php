@@ -86,7 +86,7 @@ $this->params['breadcrumbs'][] = $this->title;
                         $path='';
                         if($model->image){
                             $storageUrl = isset(\Yii::$app->params['storageUrl'])?\Yii::$app->params['storageUrl']:'';
-                            $path = "{$storageUrl}/images/{$model->image}";
+                            $path = "{$storageUrl}/images/approved/{$model->image}";
                         }
 //                        return $path;
                         return  "<img src='{$path}' class='img img-responsive' style='width:200px'>";
