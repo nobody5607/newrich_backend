@@ -36,7 +36,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     'template' => '{update} {delete}',
                     'buttons' => [
                         'update' => function ($url, $model) {
-                            return Html::a('<span class="fa fa-edit"></span> แก้ไข',
+                            return Html::a('<span class="fa fa-edit"></span> ',
                                 yii\helpers\Url::to(['/admins/user/update?id=' . $model->id]), [
                                     'title' => 'แก้ไข',
                                     'class' => 'btn btn-primary btn-sm',
@@ -45,7 +45,7 @@ $this->params['breadcrumbs'][] = $this->title;
                                 ]);
                         },
                         'delete' => function ($url, $model) {
-                            return Html::a('<span class="fa fa-trash"></span> ลบ',
+                            return Html::a('<span class="fa fa-trash"></span> ',
                                 yii\helpers\Url::to(['/admins/user/delete?id=' . $model->id]), [
                                     'title' => 'ลบ',
                                     'class' => 'btn btn-danger btn-sm',
@@ -58,6 +58,10 @@ $this->params['breadcrumbs'][] = $this->title;
 
                         },
                     ]
+                ],
+                [
+                    'label' => 'รหัสสมาชิก',
+                    'value' => 'profile.user_id'
                 ],
                 [
                     'contentOptions' => ['style' => 'width:200px;text-align: left;'],
@@ -78,6 +82,10 @@ $this->params['breadcrumbs'][] = $this->title;
                     }
                 ],
                 [
+                    'attribute' => 'email',
+                    'value' => 'profile.public_email'
+                ],
+                [
                     'attribute' => 'tel',
                     'value' => 'profile.tel'
                 ],
@@ -89,6 +97,14 @@ $this->params['breadcrumbs'][] = $this->title;
                     'attribute' => 'member_type',
                     'value' => 'profile.member_type',
                     'filter' => ['B2B' => 'B2B', 'B2C' => 'B2C', 'C2C']
+                ],
+                [
+                    'attribute' => 'link',
+                    'value' => 'profile.link'
+                ],
+                [
+                    'label' => 'วันที่เป็นสมาชิก',
+                    'value' => 'profile.create_date'
                 ],
 
 
@@ -107,6 +123,11 @@ $this->params['breadcrumbs'][] = $this->title;
     </div>
 </div>
 
+<style>
+    th,td {
+        white-space: nowrap;
+    }
+</style>
 <?php \richardfan\widget\JSRegister::begin([
     //'key' => 'bootstrap-modal',
     'position' => \yii\web\View::POS_READY

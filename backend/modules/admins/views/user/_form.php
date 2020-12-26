@@ -65,12 +65,18 @@ $('form#<?= $model->formName()?>').on('beforeSubmit', function(e) {
         $('.btn-submit .icon-spin').remove();
         $('.btn-submit').attr('disabled',false);
         if(result.status == 'success') {
-            swal({
-                title: result.message,
-                text: result.message,
-                type: result.status,
-                timer: 1000
+            // swal({
+            //     title: result.message,
+            //     text: result.message,
+            //     type: result.status,
+            //     timer: 1000
+            // });
+
+            $.notify(result.message,{
+                position:'top right',
+                className: 'success',
             });
+
             $(document).find('#modal-user').modal('hide');
             $.pjax.reload({container:'#user-grid-pjax'});
 
